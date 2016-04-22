@@ -1,14 +1,1 @@
 include ../partials/headers
-
-include ../partials/headers
-
-h1 Login Page
-form(action="/auth/login" method = "POST")
-	p USERNAME:
-		input(type="text" name="user[username]")
-	p PASSWORD:
-		input(type="password" name="user[password]")
-	p
-		input(type="submit" value="LOGIN")
-
-a(href = "/users/new") Add a User
