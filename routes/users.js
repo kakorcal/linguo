@@ -9,16 +9,7 @@ router.route('/')
 		res.render('users/index');
 	})
 	.post((req, res)=>{
-		//COMPLETED : ACCEPT A PLAIN TEXT PASSWORD
-		bcrypt.hash(req.body.user.password, SALT_WORK_FACTOR, (error, hash)=>{
-			eval(require('locus'))
-			knex('users')
-			.insert({username: req.body.user.username,
-							 password: hash})
-			.then(()=>{
-				res.redirect('/users');
-			});
-		})
+		res.redirect('/users');
 	});
 
 router.route('/new')
