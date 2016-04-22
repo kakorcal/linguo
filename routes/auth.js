@@ -10,13 +10,7 @@ router.route('/login')
 		res.render('auth/login');
 	})
 	.post(
-		passport.authenticate('local',
-		{
-			successRedirect: '/users',
-			failureRedirect: '/auth/login',
-			failureFlash: true,
-			successFlash: true
-		}
+	  res.redirect();
 	));
 
 router.route('/logout')

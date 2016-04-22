@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
-const SALT_WORK_FACTOR = 10;
-const bcrypt = require('bcrypt');
 
 router.route('/')
 	.get((req, res)=>{
