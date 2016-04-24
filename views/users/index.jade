@@ -1,7 +1,8 @@
-h1 Users Index Page
+extends ../layout
+block content
+	h1 Users Index Page
 
-each user in users
-	table
-		li Name: #{user.username}
-		li Description: #{user.description}
-		li: a(href="users/"+user.id) Visit this User!
+	each user in users
+			li Name: #{user.username}
+			li Description: #{user.description}
+			li: a(href="users/"+user.id) Visit this User!

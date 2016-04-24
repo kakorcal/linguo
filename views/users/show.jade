@@ -1,8 +1,10 @@
-h1 Users Show Page
+extends ../layout
+block content
+	h1 Users Show Page
 
-li #{user.username}
-li #{user.gender}
-li #{user.age}
-li #{user.description}
+	li #{user.username}
+	li #{user.gender}
+	li #{user.age}
+	li #{user.description}
 
-a(href="#{user.id}/edit") Edit this User
+	a(href="#{user.id}/edit") Edit this User
