@@ -1,12 +1,11 @@
-include ./partials/headers
-
-h1 Find a Language Partner
-form(action="/users?_method=POST" method="POST")
-	p What Language are you practicing?
-		input(type="text", name="user[practicing]")
-	p Where Are You?
-		input(type="text", name="user[location]")
-	p 
-		input(type="submit" value="Find a Partner")
-
-a(href="auth/login") Login With Google
+extends ./layout
+block title 
+  title Language APP
+block styles
+  link(rel='stylesheet' href='/stylesheets/style.css')
+block content
+  h1 LANGUO.IO
+  a(href="#") 
+    button(class='btn btn-primary') FIND A LANGUAGE PARTNER
+  a(href="auth/login") 
+    button(class='btn btn-danger') LOGIN WITH GOOGLE
