@@ -17,6 +17,7 @@
     "flash": "^1.1.0",
     "jade": "^1.11.0",
     "knex": "^0.10.0",
+    "locus": "^1.2.0",
     "method-override": "^2.3.5",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
