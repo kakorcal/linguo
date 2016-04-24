@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
 const passport = require('passport');
-const FacebookStrategy = require('passport-facebook').Strategy;
-
+const GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 
 router.route('/login')
 	.get((req, res)=>{
