@@ -8,7 +8,7 @@ const routes = require('./routes');
 const session = require('cookie-session');
 const flash = require('connect-flash');
 const passport = require('passport');
-
+const morgan = require('morgan');
 
 app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({extended:true}));
