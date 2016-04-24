@@ -11,7 +11,6 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-
 app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
