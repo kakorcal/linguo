@@ -1,0 +1,30 @@
+// Resources - Add any useful notes here!
+
+// database
+http://dba.stackexchange.com/questions/54192/database-design-for-threading-messages
+
+// passport 
+http://mherman.org/blog/2015/01/31/local-authentication-with-passport-and-express-4/#.VxLlLJMrKRt
+http://toon.io/understanding-passportjs-authentication-flow/
+http://mherman.org/blog/2013/11/10/social-authentication-with-passport-dot-js/#.VxwNI5MrKRs
+https://www.youtube.com/watch?v=zbfet_-Z5UQ
+
+// git workflow
+https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow
+
+// facebook api
+https://developers.facebook.com/blog/2016/
+https://developers.facebook.com/docs/videos/live-video-api
+https://developers.facebook.com/docs/sharing
+https://developers.facebook.com/blog/post/2016/04/12/introducing-graph-api-v26/
+https://live.fb.com/api/
+
+// google hangout
+https://developers.google.com/+/hangouts/sample-apps
+https://developers.google.com/+/hangouts/getting-started#2-create-a-google-developers-console-project
+https://developers.google.com/+/hangouts/publishing#active-apps-list
+https://developers.google.com/+/hangouts/button#hangout_button_code
+http://stackoverflow.com/questions/31144874/gapi-is-not-defined-google-sign-in-issue-with-gapi-auth2-init
+
+// react
+http://tylermcginnis.com/reactjs-tutorial-a-comprehensive-guide-to-building-apps-with-react/

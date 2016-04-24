@@ -1,0 +1,10 @@
+// Ideas 
+
+// highlight comment - opens audio feedback
+
+// sentiment - color coded text. 
+
+// visual breakdown establish profile and gives feedback. 
+
+// google hangout lectures? 
+   add a feed page where people can browse currently active google hangouts
