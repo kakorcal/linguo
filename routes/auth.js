@@ -10,8 +10,7 @@ router.route('/login')
 		res.render('auth/login');
 	})
 	.post(
-	  res.redirect();
-	));
+	);
 
 router.route('/logout')
 	.get((req, res)=>{
