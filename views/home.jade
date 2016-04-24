@@ -1,0 +1,12 @@
+include ./partials/headers
+
+h1 Find a Language Partner
+form(action="/users?_method=POST" method="POST")
+	p What Language are you practicing?
+		input(type="text", name="user[practicing]")
+	p Where Are You?
+		input(type="text", name="user[location]")
+	p 
+		input(type="submit" value="Find a Partner")
+
+a(href="auth/login") Login With Google

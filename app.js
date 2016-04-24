@@ -46,7 +46,7 @@ passport.use(new GoogleStrategy({
 
 
 app.get('/', (req,res)=>{
-	res.redirect('/auth/login');
+	res.render('home');
 });
 
 app.use('/users', routes.users);
