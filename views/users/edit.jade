@@ -46,3 +46,8 @@ block content
 				option 5
 		p
 			input(type = "submit" value = "Update My Language Profile")
+
+	form(action="/users/#{user.id}?_method=delete" method="POST")
+		p
+			input(type="submit" value="Delete this user")
+
