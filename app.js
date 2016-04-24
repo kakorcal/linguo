@@ -50,7 +50,10 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:3000/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile);
+    // const user = profile._json;
+    eval(require('locus'))
+    // console.log(profile)
+    // console.log("EMAILSSSSSSS",profile.emails);
     return done(null, profile);
   }
 ));
