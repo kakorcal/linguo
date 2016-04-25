@@ -1,0 +1,61 @@
+@font-face {
+  font-family:'nunito-bold';
+  font-weight: normal;
+  font-style: normal;
+  src:url('../fonts/nunito/nunito-bold-webfont.eot');
+  src:url('../fonts/nunito/nunito-bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/nunito/nunito-bold-webfont.woff2') format('woff2'),
+    url('../fonts/nunito/nunito-bold-webfont.woff') format('woff'),
+    url('../fonts/nunito/nunito-bold-webfont.ttf') format('truetype'),
+    url('../fonts/nunito/nunito-bold-webfont.svg#webfont') format('svg');
+}
+
+body {
+  background-color: rgba(95,207,128,1);
+  color: white;
+  font-family: 'nunito-bold';
+}
+
+.home-header {
+  position: relative;
+}
+
+.logo-container h1 {
+  font-size: 56px;
+  display: inline;
+  vertical-align: middle;
+}
+
+img#logo {
+  width: 180px;
+}
+
+.google-btn {
+  position: absolute;
+  top: 50%;
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  right: 0;
+}
+
+.google-btn button {
+  background-color: #e15258;
+  font-size: 25px;
+}
+
+.home-content {
+  text-align: center;
+}
+
+.home-content h3 {
+  margin: 70px 0;
+  font-size: 25px;
+}
+
+.search-btn button {
+  background-color: #3079ab;
+  font-size: 35px;
+}
