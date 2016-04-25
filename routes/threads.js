@@ -13,11 +13,12 @@ router.route('/')
 	})
 	.post(function(req, res)
 	{
+		//INSERTS A THREAD INTO THE THREADS TABLE
 		knex('threads')
 		.insert(req.body.thread)
 		.returning('id')
 		.then((thread_id)=>{
-			eval(require('locus'))
+			//INSERTS A MESSAGE INTO THE MESSAGES TABLE BASED ON THE THREAD ID
 			knex('messages')
 			.insert({
 				thread_id: thread_id[0],
@@ -27,7 +28,7 @@ router.route('/')
 			})
 			.returning('*')
 			.then((data)=>{
-				eval(require('locus'))
+				//INSERTS 2 ROWS INTO THE THREAD PARTICIPANTS TABLE BASED ON ID'S RETURNED FROM THE MESSAGE INSERT
 				knex('thread_participants')
 				.insert({thread_id:thread_id[0], user_id:data[0].sender_id})
 				.then(()=>{
@@ -48,6 +49,7 @@ router.route('/')
 router.route('/new')
 	.get(function(req,res)
 	{
+		eval(require('locus'))
 		res.render("threads/new");
 	});
 
@@ -62,7 +64,11 @@ router.route('/:id')
 		.where('id', req.params.id)
 		.first()
 		.then((thread)=>{
-			res.render('threads/show', {thread});
+			knex('messages')
+			.where('thread_id', thread.id)
+			.then((messages)=>{
+				res.render('threads/show', {thread, messages});
+			})
 		})
 	})
 	.put(function(req, res)
