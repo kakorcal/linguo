@@ -10,10 +10,29 @@ module.exports = (passport) => {
       callbackURL: "http://localhost:3000/auth/google/callback"
     },
     function(accessToken, refreshToken, profile, done) {
-      // const user = profile._json;
-      // console.log(profile)
-      // console.log("EMAILSSSSSSS",profile.emails);
-      return done(null, profile);
+      const data = profile._json;
+      // Does user have an account with us?
+      knex('users').where('email', data.emails[0].value).first().then((user) => {
+        // If not, insert them into the database
+        if(!user) {
+          knex('users').insert({
+            email: data.emails[0].value,
+            google_id: data.id,
+            name: data.displayName,
+            img_url: data.image.url
+          }).then((user) => {
+            console.log('USER CREATED', user);
+            return done(null, user);
+          })
+        }
+        // If yes, pass along their information
+        else {
+          console.log('USER ALREADY EXISTS', user);
+          return done(null, user);
+        }
+      }).catch((err) => {
+        return done(err, null);
+      })
     }
   ));
 

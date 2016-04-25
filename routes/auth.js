@@ -24,18 +24,4 @@ router.get('/google/callback', passport.authenticate('google', {
   failureRedirect: '/'
 }));
 
-// router.route('/google/callback')
-//   .get((req,res,next) => {
-
-//   }
-
-//     passport.authenticate('google', 
-//     // If failure, return to login
-//     { failureRedirect: '/login' }),
-//   function(req, res, next) {
-//     res.redirect('/');
-//   }
-
-//   )
-
 module.exports = router;
