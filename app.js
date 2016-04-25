@@ -66,7 +66,7 @@ app.get('/', (req,res)=>{
 app.use('/users', routes.users);
 app.use('/auth', routes.auth);
 app.use('/threads', routes.threads);
-
+app.use('/languages', routes.languages);
 
 app.listen(3000, ()=>{
 	console.log('Server listening on port 3000...');
