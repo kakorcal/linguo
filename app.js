@@ -30,7 +30,6 @@ app.use(flash());
 
 require('./helpers/passport')(passport);
 
-
 app.get('/', (req,res)=>{
 	res.render('home');
 });
