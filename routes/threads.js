@@ -67,6 +67,7 @@ router.route('/:id')
 		.where('id', req.params.id)
 		.first()
 		.then((thread)=>{
+			//REFACTOR TO A JOIN BETWEEN MESSAGES AND USERS SO THAT USERS CAN BE DISPLAYED ON THREADS PAGE
 			knex('messages')
 			.where('thread_id', thread.id)
 			.then((messages)=>{
