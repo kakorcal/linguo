@@ -1,0 +1,9 @@
+extends ../layout
+block content
+	h1 Threads Index Page
+
+	each thread in threads
+		div(class="list-group")
+			h4(class = "list-group-item-heading"): a(href= "threads/#{thread.id}") #{thread.subject}
+
+	a(href="threads/new") Create a New Thread

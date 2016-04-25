@@ -1,0 +1,7 @@
+extends ../layout
+block content
+	h1 Threads Edit Page
+
+	each thread in threads
+		div(class="list-group")
+			h4(class = "list-group-item-heading") #{thread.subject}
