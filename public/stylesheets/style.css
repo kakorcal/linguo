@@ -26,3 +26,53 @@ body {
   color: white;
   font-family: 'nunito-bold';
 }
+
+.logo-container h1 {
+  font-size: 56px;
+  display: inline;
+  vertical-align: middle;
+}
+
+img#logo {
+  width: 180px;
+}
+
+nav {
+  background-color: #53bbb4;
+}
+
+#navbar {
+  position: relative;
+}
+
+.btn-field {
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  right: 0;
+}
+
+.btn-field button {
+  font-size: 15px;
+  margin-left: 7px;
+}
+
+.btn-field .search-btn button {
+  background-color: #3079ab;
+}
+
+.btn-field .inbox-btn button {
+  background-color: #838cc7;
+}
+
+.btn-field .edit-btn button {
+  background-color: #f9845b;
+}
+
+.btn-field .logout-btn button {
+  background-color: #e15258;
+}

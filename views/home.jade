@@ -4,9 +4,7 @@ block styles
 block content
   div(id='home')
     div(class='home-header')
-      div(class='logo-container')
-        img(src='/assets/logo.png' id='logo')
-        h1 LANGUO
+      include ./includes/_logo
       div(class='google-btn')
         a(href="auth/google") 
           button(class='btn btn-danger') LOGIN WITH GOOGLE
