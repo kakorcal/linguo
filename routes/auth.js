@@ -4,19 +4,24 @@ const knex = require('../db/knex');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-router.route('/login')
-	.get((req, res)=>{
-		res.render('auth/login');
-	})
-	.post(
-	);
+// router.route('/login')
+// 	.get((req, res)=>{
+// 		res.render('auth/login');
+// 	})
+// 	.post(
+// 	);
 
 router.route('/logout')
 	.get((req, res)=>{
-		
+		//req.logout added by passport - delete the user id/session
+    req.logout();
+    console.log("USER IS LOGGED OUT");
+    res.redirect('/');
 	});
 
 router.route('/google')
+  // Sends request to Google to authenticate user
+  // Runs passport.use function in helpers/passport
   .get(passport.authenticate('google', {scope: 'openid profile email'}))
 
 router.get('/google/callback', (req, res, next) => {
@@ -24,6 +29,7 @@ router.get('/google/callback', (req, res, next) => {
     console.log("AUTHENTICATE HAPPENED")
     if (err) { return next(err); }
     if (!user) { return res.redirect('/'); } // Thinks about adding a flash message to alert user that they don't exist
+    // Logs User In
     req.logIn(user, function(err) {
       if (err) { return next(err); }
       console.log("LOG IN HAPPENED")
