@@ -15,10 +15,35 @@ router.route('/')
 	{
 		knex('threads')
 		.insert(req.body.thread)
-		.then(()=>{
-			res.redirect("/threads")	
+		.returning('id')
+		.then((thread_id)=>{
+			eval(require('locus'))
+			knex('messages')
+			.insert({
+				thread_id: thread_id[0],
+				sender_id: 1,
+				rec_id: 2,
+				message: "default",
+			})
+			.returning('*')
+			.then((data)=>{
+				eval(require('locus'))
+				knex('thread_participants')
+				.insert({thread_id:thread_id[0], user_id:data[0].sender_id})
+				.then(()=>{
+					eval(require('locus'))
+			  	knex('thread_participants')
+			  	.insert({thread_id:thread_id[0], user_id:data[0].rec_id})
+			  	.then(()=>{})
+
+				})
+			
+			.then(()=>{
+				res.redirect("/threads");
+			})
 		})
 	});
+});
 
 router.route('/new')
 	.get(function(req,res)
