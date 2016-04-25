@@ -43,4 +43,16 @@ block content
 	form(action="/users/#{user.id}?_method=delete" method="POST")
 		p
 			input(type="submit" value="Delete this user")
+ 
+	table
+		caption Language Profile
+		tr
+			th Language
+			th Proficiency
+			th Intent
+				each language in languages
+					tr
+						td=language.languages
+						td=language.proficiency
+						td=language.approach 
 

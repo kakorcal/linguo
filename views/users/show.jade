@@ -8,3 +8,15 @@ block content
 	li #{user.description}
 
 	a(href="#{user.id}/edit") Edit this User
+
+	table
+		caption Language Profile
+		tr
+			th Language
+			th Proficiency
+			th Intent
+				each language in languages
+					tr
+						td=language.languages
+						td=language.proficiency
+						td=language.approach
