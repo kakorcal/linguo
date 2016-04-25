@@ -27,6 +27,12 @@ body {
   font-family: 'nunito-bold';
 }
 
+#flash-container {
+  margin: 0;
+  text-align: center;
+  display: none;
+}
+
 input, textarea {
   color: black;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", 

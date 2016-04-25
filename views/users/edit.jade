@@ -3,7 +3,6 @@ block nav
 	include ../includes/_nav
 block content
 	h1 Users Edit Page
-
 	form(action="/users/#{user.id}?_method=put" method="POST")
 		p Location:
 			input(type="text" name="user[location]" value = "#{user.location}")
