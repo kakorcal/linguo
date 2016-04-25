@@ -21,7 +21,6 @@ app.use(express.static(__dirname + '/public'));
 //get auth.js module
 var auth = require('./routes/auth');
 
-
 app.use(session({
   secret: process.env.SECRET
 }));
