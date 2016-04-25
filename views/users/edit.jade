@@ -19,32 +19,25 @@ block content
 		p
 			input(type="submit" value="Delete this user")
 
-	form(action="/users/#{user.id}?_method=put" method="POST")
-		p What languages are you practicing?
-			select(name="practicing[language]")
+	form(action="/languages" method="POST")
+		p Add a language to your profile!
+			select(name="language[languages]")
 				option
 				option(value = "spanish") Spanish
 				option(value = "english") English
 		p Level of Proficiency
-			select(name="practicing[proficiency]")
-				option 1
-				option 2
-				option 3
-				option 4
-				option 5
-		p What languages are you able to help others learn?
-			select(name="teaching[language]")
-				option
-				option(value = "english") English
-				option(value = "spanish") Spanish
-		p Level of Proficiency
-			select(name="teaching[proficiency]")
+			select(name="language[proficiency]")
 				option 1
 				option 2
 				option 3
 				option 4
 				option 5
 		p
+			select(name= "language[approach]")
+				option Learning
+				option Teaching
+		p		
+			input(type = "hidden" name= "language[user_id]" value = "#{user.id}")
 			input(type = "submit" value = "Update My Language Profile")
 
 	form(action="/users/#{user.id}?_method=delete" method="POST")

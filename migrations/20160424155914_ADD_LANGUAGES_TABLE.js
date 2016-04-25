@@ -9,5 +9,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schama.dropTable('languages');
+  return knex.schema.dropTable('languages');
 };
