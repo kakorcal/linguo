@@ -22,9 +22,11 @@ module.exports = (passport) => {
             google_id: data.id,
             name: data.displayName,
             img_url: data.image.url
-          }).then((user) => {
+          })
+          .returning('*')
+          .then((user) => {
             console.log('USER CREATED', user);
-            return done(null, user);
+            return done(null, user[0]);
           })
         }
         // If yes, pass along their information
@@ -44,7 +46,6 @@ module.exports = (passport) => {
     //later this will be where you selectively send to the browser an identifier for your user, like their primary key from the database, or their ID from linkedin
     console.log("SERIALIZE" ,user)
     var id = user.id;
-    // eval(require('locus'))
     done(null, user.id);
   });
 
