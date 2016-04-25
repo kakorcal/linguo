@@ -9,7 +9,7 @@ router.route('/')
 	.get((req, res)=>{
 		knex('users')
 		.then(users=>{
-			res.render('users/index', {users, user: req.user});
+			res.render('users/index', {users});
 		});
 	})
 	.post((req, res)=>{

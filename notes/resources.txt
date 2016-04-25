@@ -28,3 +28,6 @@ http://stackoverflow.com/questions/31144874/gapi-is-not-defined-google-sign-in-i
 
 // react
 http://tylermcginnis.com/reactjs-tutorial-a-comprehensive-guide-to-building-apps-with-react/
+
+// jade
+http://stackoverflow.com/questions/18343651/jade-indentation-errors
