@@ -31,6 +31,7 @@ exports.seed = function(knex, Promise) {
     	description: 'I am here to learn a new language!',
         email: "albus@abrakadabra.com"
     }),
+    
     knex('users').insert(
     {
     	id: 3, 
