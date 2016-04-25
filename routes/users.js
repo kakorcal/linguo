@@ -23,19 +23,27 @@ router.route('/:id/edit')
 		knex('users')
 		.where('id', req.params.id)
 		.first()
-		.then((user) => {
-			res.render('users/edit', {user});
-		})
-	});
+		.then(user=>{
+		knex('languages')
+		.where('user_id', user.id)
+		.then(languages => {
+			res.render('users/edit', {user, languages});
+		});
+		});
+	})
 
 router.route('/:id')
 	.get((req, res)=>{
 		knex('users')
 		.where('id', req.params.id)
 		.first()
-		.then((user)=>{
-			res.render('users/show', {user});
-		})
+		.then(user=>{
+		knex('languages')
+		.where('user_id', user.id)
+		.then(languages => {
+			res.render('users/show', {user, languages});
+		});
+		});
 	})
 	.put((req, res)=>{
 			knex('users')
