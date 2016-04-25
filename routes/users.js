@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const authHelpers = require("../helpers/authHelpers")
 const knex = require('../db/knex');
+
+router.use(authHelpers.currentUser);
 
 router.route('/')
 	.get((req, res)=>{

@@ -10,6 +10,7 @@ const session = require('cookie-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const authHelpers = require("./helpers/authHelpers");
 
 app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({extended:true}));
@@ -29,6 +30,7 @@ app.use(passport.session());
 app.use(flash());
 
 require('./helpers/passport')(passport);
+app.use(authHelpers.currentUser);
 
 app.get('/', (req,res)=>{
 	res.render('home');
