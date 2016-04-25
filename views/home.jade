@@ -2,11 +2,19 @@ extends ./layout
 block title 
   title Language APP
 block styles
-  link(rel='stylesheet' href='/stylesheets/style.css')
+  link(rel='stylesheet' href='/stylesheets/home.css')
 block content
-  h1 LANGUO.IO
-  a(href="users") 
-    button(class='btn btn-primary') FIND A LANGUAGE PARTNER
-  a(href="auth/google") 
-    button(class='btn btn-danger') LOGIN WITH GOOGLE
-
+  div(id='home')
+    div(class='home-header')
+      div(class='logo-container')
+        img(src='/assets/logo.png' id='logo')
+        h1 LANGUO
+      div(class='google-btn')
+        a(href="auth/google") 
+          button(class='btn btn-danger') LOGIN WITH GOOGLE
+    div(class='home-content')
+      h3 Practice your second language by meeting up with native speakers living in your area!
+      div(class='search-btn')
+        a(href="users") 
+          button(class='btn btn-primary') FIND A LANGUAGE PARTNER
+      div(class='arrow bounce')

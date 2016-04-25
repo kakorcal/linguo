@@ -1,7 +1,9 @@
-h1 Users Index Page
+extends ../layout
+block content
+	h1 Users Index Page
 
-each user in users
-	table
-		li Name: #{user.username}
-		li Description: #{user.description}
-		li: a(href="users/"+user.id) Visit this User!
+	each user in users
+		div(class="list-group")
+			h4(class = "list-group-item-heading") #{user.username}
+			p(class = "list-group-item-text"): li Description: #{user.description}
+			li: a(href="users/"+user.id) Visit this User!

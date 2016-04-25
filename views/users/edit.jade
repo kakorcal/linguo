@@ -1,18 +1,53 @@
-h1 Users Edit Page
+extends ../layout
+block content
+	h1 Users Edit Page
 
-form(action="/users/#{user.id}?_method=put" method="POST")
-	p Location:
-		input(type="text" name="user[location]" value = "#{user.location}")
-	p Gender:
-		input(type="text" name="user[gender]" value = "#{user.gender}")
-	p Age:
-		input(type="text" name="user[age]" value = "#{user.age}")
-	p Avatar URL:
-		input(type="text" name="user[img_url]" value = "#{user.img_url}")
-	p Description:
-		input(type="text" name="user[description]" value = "#{user.description}")
-	p
-		input(type="submit")
-form(action="/users/#{user.id}?_method=delete" method="POST")
-	p
-		input(type="submit" value="Delete this user")
+	form(action="/users/#{user.id}?_method=put" method="POST")
+		p Location:
+			input(type="text" name="user[location]" value = "#{user.location}")
+		p Gender:
+			input(type="text" name="user[gender]" value = "#{user.gender}")
+		p Age:
+			input(type="text" name="user[age]" value = "#{user.age}")
+		p Avatar URL:
+			input(type="text" name="user[img_url]" value = "#{user.img_url}")
+		p Description:
+			input(type="text" name="user[description]" value = "#{user.description}")
+		p
+			input(type="submit" value = "Update My Info")
+	form(action="/users/#{user.id}?_method=delete" method="POST")
+		p
+			input(type="submit" value="Delete this user")
+
+	form(action="/users/#{user.id}?_method=put" method="POST")
+		p What languages are you practicing?
+			select(name="practicing[language]")
+				option
+				option(value = "spanish") Spanish
+				option(value = "english") English
+		p Level of Proficiency
+			select(name="practicing[proficiency]")
+				option 1
+				option 2
+				option 3
+				option 4
+				option 5
+		p What languages are you able to help others learn?
+			select(name="teaching[language]")
+				option
+				option(value = "english") English
+				option(value = "spanish") Spanish
+		p Level of Proficiency
+			select(name="teaching[proficiency]")
+				option 1
+				option 2
+				option 3
+				option 4
+				option 5
+		p
+			input(type = "submit" value = "Update My Language Profile")
+
+	form(action="/users/#{user.id}?_method=delete" method="POST")
+		p
+			input(type="submit" value="Delete this user")
+
