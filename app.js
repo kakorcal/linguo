@@ -20,7 +20,6 @@ app.use(express.static(__dirname + '/public'));
 //get auth.js module
 var auth = require('./routes/auth');
 
-
 app.use(session({
   secret: process.env.SECRET
 }));
@@ -30,7 +29,6 @@ app.use(passport.session());
 app.use(flash());
 
 require('./helpers/passport')(passport);
-
 
 app.get('/', (req,res)=>{
 	res.render('home');

@@ -8,3 +8,15 @@
 /* red #e15258*/
 /* orange #f9845b*/
 /* lightblue #53bbb4*/
+
+@font-face {
+  font-family:'nunito-bold';
+  font-weight: normal;
+  font-style: normal;
+  src:url('../fonts/nunito/nunito-bold-webfont.eot');
+  src:url('../fonts/nunito/nunito-bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/nunito/nunito-bold-webfont.woff2') format('woff2'),
+    url('../fonts/nunito/nunito-bold-webfont.woff') format('woff'),
+    url('../fonts/nunito/nunito-bold-webfont.ttf') format('truetype'),
+    url('../fonts/nunito/nunito-bold-webfont.svg#webfont') format('svg');
+}
