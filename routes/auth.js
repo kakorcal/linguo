@@ -26,30 +26,35 @@ router.get('/google/callback', (req, res, next) => {
   // Runs passport.serializeUser function in helpers/passport
   passport.authenticate('google', (err, user, info) => {
     console.log("AUTHENTICATE HAPPENED", user);
-    if (err) { return next(err); }
-    if (!user) { return res.redirect('/'); } // Thinks about adding a flash message to alert user that they don't exist
-    // LOG IN - STEP 6 > Process of creating a session is initiated
-    // Runs passport.deserializeUser in helpers/passport
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      console.log("LOG IN HAPPENED", user)
-      // eval(require('locus'))
-      // Knex query to determine if location is 'null'
-      knex('users').where('id', user.id).first().then((user) => {
-        console.log("USER FOUND")
-        if(user.location === null) {
-          // If null, redirect to user/:id/edit
-          return res.redirect('/users/' + user.id + '/edit');
-          // CONSIDER ADDING FLASH TO ALERT THAT LOCATION (AND AGE, GENDER) SHOULD BE FILLED IN
-        } else {
-          // If not null, redirect to user/:id
-          return res.redirect('/users/' + user.id);
+    if (err)  return next(err)
+    else{
+      // LOG IN - STEP 6 > Process of creating a session is initiated
+      // Runs passport.deserializeUser in helpers/passport
+      req.logIn(user, function(err) {
+        if (err) { 
+          return next(err); 
         }
-      }).catch((err) => {
-        console.log("KNEX REQUEST ERRORS OUT")
-        return res.redirect('/');
-      })
-    });
+        console.log("LOG IN HAPPENED", user)
+        // eval(require('locus'))
+        // Knex query to determine if location is 'null'
+        knex('users').where('id', user.id).first().then((user) => {
+          console.log("USER FOUND")
+          if(user.location === null) {
+            req.flash('loginMessage', 'Please complete the rest of your profile, including Location, Gender, and Age')
+            // If null, redirect to user/:id/edit
+            return res.redirect('/users/' + user.id + '/edit');
+            // CONSIDER ADDING FLASH TO ALERT THAT LOCATION (AND AGE, GENDER) SHOULD BE FILLED IN
+          } else {
+            req.flash('loginMessage', 'Login successful!')
+            // If not null, redirect to user/:id
+            return res.redirect('/users/' + user.id);
+          }
+        }).catch((err) => {
+          console.log("KNEX REQUEST ERRORS OUT")
+          return res.redirect('/');
+        })   
+      }) 
+    }
   })(req,res,next)
 });
 
@@ -58,6 +63,7 @@ router.route('/logout')
 		//req.logout added by passport - delete the user id/session
     req.logout();
     console.log("USER IS LOGGED OUT");
+    req.flash('logoutMessage', 'You have successfully logged out!')
     res.redirect('/');
 	});
 
