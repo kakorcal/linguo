@@ -27,6 +27,13 @@ body {
   font-family: 'nunito-bold';
 }
 
+input, textarea {
+  color: black;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", 
+               "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+}
+
 .logo-container h1 {
   font-size: 56px;
   display: inline;
@@ -73,6 +80,6 @@ nav {
   background-color: #f9845b;
 }
 
-.btn-field .logout-btn button {
+.btn-field .auth-btn button {
   background-color: #e15258;
 }

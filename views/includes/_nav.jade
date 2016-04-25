@@ -2,15 +2,23 @@ nav
   div(class='container' id='navbar')
     include _logo
     div(class='btn-field')
-      span(class='search-btn')
-        a(href="/users/")
-          button(class='btn btn-primary') SEARCH PARTNERS
-      span(class='inbox-btn')
-        a(href="/#{user.id}")
-          button(class='btn btn-success') VIEW INBOX
-      span(class='edit-btn')
-        a(href="#{user.id}/edit")
-          button(class='btn btn-warning') EDIT PROFILE
-      span(class='logout-btn')
-        a(href="#")
-          button(class='btn btn-danger') LOGOUT
+      if (currentUser)
+        span(class='search-btn')
+          a(href="/users/")
+            button(class='btn btn-primary') SEARCH PARTNERS
+        span(class='inbox-btn')
+          a(href="/users/#{user.id}")
+            button(class='btn btn-success') VIEW INBOX
+        span(class='edit-btn')
+          a(href="/users/#{user.id}/edit")
+            button(class='btn btn-warning') EDIT PROFILE
+        span(class='auth-btn')
+          a(href="/auth/logout")
+            button(class='btn btn-danger') LOGOUT
+      else
+        span(class='search-btn')
+          a(href="/users/")
+            button(class='btn btn-primary') SEARCH PARTNERS
+        span(class='auth-btn')
+          a(href="/auth/google") 
+            button(class='btn btn-danger') LOGIN WITH GOOGLE

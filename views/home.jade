@@ -6,8 +6,12 @@ block content
     div(class='home-header')
       include ./includes/_logo
       div(class='google-btn')
-        a(href="auth/google") 
-          button(class='btn btn-danger') LOGIN WITH GOOGLE
+        if (currentUser)
+          a(href="/auth/logout")
+            button(class='btn btn-danger') LOGOUT
+        else
+          a(href="/auth/google") 
+            button(class='btn btn-danger') LOGIN WITH GOOGLE
     div(class='home-content')
       div(class='sub-header')
         h3 Practice your second language by meeting up with native speakers living in your area!
