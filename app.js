@@ -33,7 +33,7 @@ require('./helpers/passport')(passport);
 app.use(authHelpers.currentUser);
 
 app.get('/', (req,res)=>{
-	res.render('home');
+	res.render('home', {message: req.flash('logoutMessage')});
 });
 
 app.use('/users', routes.users);

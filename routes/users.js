@@ -27,11 +27,11 @@ router.route('/:id/edit')
 		.where('id', req.params.id)
 		.first()
 		.then(user=>{
-		knex('languages')
-		.where('user_id', user.id)
-		.then(languages => {
-			res.render('users/edit', {user, languages});
-		});
+			knex('languages')
+			.where('user_id', user.id)
+			.then(languages => {
+				res.render('users/edit', {user, languages, message: req.flash('loginMessage')});
+			});
 		});
 	})
 
@@ -41,11 +41,11 @@ router.route('/:id')
 		.where('id', req.params.id)
 		.first()
 		.then(user=>{
-		knex('languages')
-		.where('user_id', user.id)
-		.then(languages => {
-			res.render('users/show', {user, languages});
-		});
+			knex('languages')
+			.where('user_id', user.id)
+			.then(languages => {
+				res.render('users/show', {user, languages, message: req.flash('loginMessage')});
+			});
 		});
 	})
 	.put((req, res)=>{
