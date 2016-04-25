@@ -10,6 +10,7 @@ block content
 			form(action = "/threads" method = "POST")
 				input(type = "text" name = "thread[subject]")
 				input(type = "text" name = "message[message]")
-				input(type = "hidden" name = "message[sender_id]")
-				input(type = "hidden" name = "message[rec_id]")
+				input(type = "hidden" name = "message[sender_id]" value = "#{currentUser.id}")
+				input(type = "hidden" name = "message[rec_id]" value = "#{user.id}")
 				input(type = "submit" value = "Send Message!")
+

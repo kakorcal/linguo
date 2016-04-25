@@ -19,12 +19,17 @@ router.route('/')
 		.returning('id')
 		.then((thread_id)=>{
 			//INSERTS A MESSAGE INTO THE MESSAGES TABLE BASED ON THE THREAD ID
+			//CHECK WHAT MESSAGE LOOKS LIKE
+			var message = req.body.message;
+
+			eval(require('locus'))
 			knex('messages')
-			.insert({
-				thread_id: thread_id[0],
-				sender_id: 1,
-				rec_id: 2,
-				message: "default",
+			.insert(
+			{
+				message: message.message,
+				sender_id: message.sender_id,
+				rec_id: message.rec_id,
+				thread_id: thread_id[0]
 			})
 			.returning('*')
 			.then((data)=>{
