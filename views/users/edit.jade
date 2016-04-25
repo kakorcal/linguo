@@ -21,24 +21,26 @@ block content
 
 	form(action="/languages" method="POST")
 		p Add a language to your profile!
-			select(name="language[languages]")
+			select(name="language[languages]" required)
 				option
 				option(value = "Spanish") Spanish
 				option(value = "English") English
 		p Level of Proficiency
-			select(name="language[proficiency]")
+			select(name="language[proficiency]" required)
+				option
 				option 1
 				option 2
 				option 3
 				option 4
 				option 5
-		p
-			select(name= "language[approach]")
+		p Intent
+			select(name= "language[approach]" required)
+				option
 				option Learning
 				option Teaching
 		p		
 			input(type = "hidden" name= "language[user_id]" value = "#{user.id}")
-			input(type = "submit" value = "Update My Language Profile")
+			input(type = "submit" value = "Add to My Language Profile")
 
 	form(action="/users/#{user.id}?_method=delete" method="POST")
 		p
@@ -55,4 +57,7 @@ block content
 						td=language.languages
 						td=language.proficiency
 						td=language.approach 
+						td
+							form(action = "/languages/"+language.id+"?_method=delete" method = "POST")
+								input('type' = "submit" value = "Remove")
 

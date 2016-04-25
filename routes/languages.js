@@ -18,20 +18,30 @@ router.route('/')
 		});
 	});
 
-router.route('/new')
-	.get(function(req,res)
-	{});
+// router.route('/new')
+// 	.get(function(req,res)
+// 	{});
 
-router.route('/:id/edit')
-	.get(function(req, res)
-	{});
+// router.route('/:id/edit')
+// 	.get(function(req, res)
+// 	{});
 
 router.route('/:id')
-	.get(function(req, res)
-	{})
-	.put(function(req, res)
-	{})
+	// .get(function(req, res)
+	// {})
+	// .put(function(req, res)
+	// {})
 	.delete(function(req,res)
-	{});
+	{
+		knex('languages')
+		.where('id', req.params.id)
+		.delete()
+		.returning('*')
+		.then(deleted =>
+		{
+			eval(require('locus'))
+			res.redirect("/users/"+deleted[0].user_id);
+		});
+	});
 
 module.exports = router;
