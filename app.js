@@ -33,7 +33,22 @@ require('./helpers/passport')(passport);
 app.use(authHelpers.currentUser);
 
 app.get('/', (req,res)=>{
-	res.render('home', {message: req.flash('logoutMessage')});
+  // Define flash msgs
+	var logoutMsg = req.flash('logoutMessage');
+  var notLoggedInMsg = req.flash('notLoggedIn');
+  // Determine which (if any) flash message has been passed through
+  if (!!logoutMsg.length) {
+    console.log("A LOGOUT MESSAGE WILL BE DISPLAYED");
+    res.render('home', {message: logoutMsg});
+  } 
+  else if (!!notLoggedInMsg.length) {
+    console.log("A NOT LOGGED IN MESSAGE WILL BE DISPLAYED");    
+    res.render('home', {message: notLoggedInMsg});
+  } 
+  else {
+    console.log("NORMAL HOME RENDER");
+    res.render('home'); 
+  }
 });
 
 app.use('/users', routes.users);
