@@ -14,13 +14,6 @@ router.use(authHelpers.currentUser);
 // 	.post(
 // 	);
 
-router.route('/logout')
-	.get((req, res)=>{
-		//req.logout added by passport - delete the user id/session
-    req.logout();
-    console.log("USER IS LOGGED OUT");
-    res.redirect('/');
-	});
 
 router.route('/google')
   // LOG IN - STEP 1 > Request is sent to Google to authenticate user
@@ -59,5 +52,13 @@ router.get('/google/callback', (req, res, next) => {
     });
   })(req,res,next)
 });
+
+router.route('/logout')
+	.get((req, res)=>{
+		//req.logout added by passport - delete the user id/session
+    req.logout();
+    console.log("USER IS LOGGED OUT");
+    res.redirect('/');
+	});
 
 module.exports = router;

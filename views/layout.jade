@@ -13,12 +13,12 @@ body
     if (currentUser)
       div(id="user-info")
         div(class='logout-btn')
-          a(href="auth/logout") 
+          a(href="/auth/logout") 
             button(class='btn btn-warning') LOGOUT
         p The current user is #{currentUser.name}
     else 
       div(class='google-btn')
-        a(href="auth/google") 
+        a(href="/auth/google") 
           button(class='btn btn-danger') LOGIN WITH GOOGLE
     block content
 
