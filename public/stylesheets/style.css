@@ -1,13 +1,13 @@
 /* COLOR SCHEME */
-/* green #5fcf80*/
-/* grey #c9cacb*/
-/* white #ffffff*/
-/* purple #838cc7*/
-/* black #3e474f*/
-/* blue #3079ab*/
-/* red #e15258*/
-/* orange #f9845b*/
-/* lightblue #53bbb4*/
+/* green #5fcf80 */
+/* grey #c9cacb */
+/* white #ffffff */
+/* purple #838cc7 */
+/* black #3e474f */
+/* blue #3079ab */
+/* red #e15258 */
+/* orange #f9845b */
+/* lightblue #53bbb4 */
 
 @font-face {
   font-family:'nunito-bold';
@@ -19,4 +19,10 @@
     url('../fonts/nunito/nunito-bold-webfont.woff') format('woff'),
     url('../fonts/nunito/nunito-bold-webfont.ttf') format('truetype'),
     url('../fonts/nunito/nunito-bold-webfont.svg#webfont') format('svg');
+}
+
+body {
+  background-color: #5fcf80;
+  color: white;
+  font-family: 'nunito-bold';
 }

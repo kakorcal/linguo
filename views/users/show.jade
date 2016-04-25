@@ -1,22 +1,24 @@
 extends ../layout
+block styles
+	link(rel='stylesheet' href='/stylesheets/users/show.css')
 block content
-	h1 Users Show Page
-
-	li #{user.name}
-	li #{user.gender}
-	li #{user.age}
-	li #{user.description}
-
-	a(href="#{user.id}/edit") Edit this User
-
-	table
-		caption Language Profile
-		tr
-			th Language
-			th Proficiency
-			th Intent
-				each language in languages
-					tr
-						td=language.languages
-						td=language.proficiency
-						td=language.approach
+	div(id='show')
+		h1 Users Show Page
+		li #{user.name}
+		li #{user.gender}
+		li #{user.age}
+		li #{user.description}
+		a(href="#{user.id}/edit") Edit this User
+		table
+			caption Language Profile
+			tr
+				th Language
+				th Proficiency
+				th Intent
+					each language in languages
+						tr
+							td=language.languages
+							td=language.proficiency
+							td=language.approach
+block scripts
+	script(type="text/javascript", src="/javascripts/script.js")

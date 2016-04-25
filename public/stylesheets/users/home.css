@@ -1,8 +1,4 @@
-body {
-  background-color: #5fcf80;
-  color: white;
-  font-family: 'nunito-bold';
-}
+/* HEADER */
 
 .home-header {
   position: relative;
@@ -33,6 +29,8 @@ img#logo {
   background-color: #e15258;
   font-size: 25px;
 }
+
+/* CONTENT */
 
 .home-content {
   text-align: center;
@@ -74,6 +72,22 @@ img#logo {
   font-size: 17px;
 }
 
+.how-it-works .fa-search {
+  color: #e15258;
+}
+
+.how-it-works .fa-envelope-o {
+  color: #f9845b;
+}
+
+.how-it-works .fa-language {
+  color: #3079ab;
+}
+
 .testimonials {
   margin: 5%;
+}
+
+.testimonial .fa-quote-left {
+  color: #838cc7;
 }
