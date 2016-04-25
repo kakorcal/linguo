@@ -7,10 +7,10 @@ nav
           a(href="/users/")
             button(class='btn btn-primary') SEARCH PARTNERS
         span(class='inbox-btn')
-          a(href="/users/#{user.id}")
+          a(href="/users/#{currentUser.id}")
             button(class='btn btn-success') VIEW INBOX
         span(class='edit-btn')
-          a(href="/users/#{user.id}/edit")
+          a(href="/users/#{currentUser.id}/edit")
             button(class='btn btn-warning') EDIT PROFILE
         span(class='auth-btn')
           a(href="/auth/logout")
