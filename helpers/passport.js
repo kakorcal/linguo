@@ -4,6 +4,7 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const knex = require('../db/knex');
 
 module.exports = (passport) => {
+  // LOG IN - STEP 2 > Determine if User exists
   passport.use(new GoogleStrategy({
       clientID: process.env.GOOGLE_API_KEY,
       clientSecret: process.env.GOOGLE_SECRET_KEY,
@@ -11,8 +12,9 @@ module.exports = (passport) => {
     },
     function(accessToken, refreshToken, profile, done) {
       const data = profile._json;
-      // Does user have an account with us?
+      // LOG IN - STEP 3 > Does user have an account with us?
       knex('users').where('email', data.emails[0].value).first().then((user) => {
+        
         // If not, insert them into the database
         if(!user) {
           knex('users').insert({
@@ -37,14 +39,25 @@ module.exports = (passport) => {
   ));
 
   passport.serializeUser(function(user, done) {
+    // LOG IN - STEP 5 > User's 'hand is stamped'
+    // Goes to req.logIn in auth.js
     //later this will be where you selectively send to the browser an identifier for your user, like their primary key from the database, or their ID from linkedin
-    console.log("SERIALIZE")
-    done(null, user);
+    console.log("SERIALIZE" ,user)
+    var id = user.id;
+    // eval(require('locus'))
+    done(null, user.id);
   });
 
   passport.deserializeUser(function(obj, done) {
+    // LOG IN - STEP 7 > User's 'hand stamp' is checked, and their ID can be passed to find the user and attach it to req.user
     //here is where you will go to the database and get the user each time from it's id, after you set up your db
-    console.log("DESERIALIZE")
-    done(null, obj);
+    knex('users').where('id', obj).first()
+      .then((user) => {
+        console.log("DESERIALIZE", user)
+        done(null, user);
+      }).catch((err) => {
+        console.log("DESERIALIZE FAILED", err)
+        done(err, null);
+      });
   });
 }

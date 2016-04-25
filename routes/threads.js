@@ -1,7 +1,7 @@
 const express = require("express"),
 	    router = express.Router(),
-	    knex = require('../db/knex');
-	    //knex
+	    knex = require('../db/knex'),
+			authHelpers = require("../helpers/authHelpers");
 
 router.route('/')
 	.get(function(req, res)
