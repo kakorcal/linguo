@@ -62,7 +62,7 @@ router.route('/logout')
 	.get((req, res)=>{
 		//req.logout added by passport - delete the user id/session
     req.logout();
-    console.log("USER IS LOGGED OUT");
+    console.log("LOGOUT SUCCESSFUL");
     req.flash('logoutMessage', 'You have successfully logged out!')
     res.redirect('/');
 	});

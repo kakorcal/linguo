@@ -9,7 +9,7 @@ router.route('/')
 	.get((req, res)=>{
 		knex('users')
 		.then(users=>{
-			res.render('users/index', {users});
+			res.render('users/index', {users, message: req.flash('notCorrectUser')});
 		});
 	})
 	.post((req, res)=>{
@@ -22,7 +22,7 @@ router.route('/new')
 	});
 
 router.route('/:id/edit')
-	.get((req, res)=>{
+	.get(authHelpers.ensureCorrectUser, (req, res)=>{
 		knex('users')
 		.where('id', req.params.id)
 		.first()
@@ -36,7 +36,7 @@ router.route('/:id/edit')
 	})
 
 router.route('/:id')
-	.get((req, res)=>{
+	.get(authHelpers.ensureCorrectUser, (req, res)=>{
 		knex('users')
 		.where('id', req.params.id)
 		.first()
@@ -48,7 +48,7 @@ router.route('/:id')
 			});
 		});
 	})
-	.put((req, res)=>{
+	.put(authHelpers.ensureCorrectUser, (req, res)=>{
 			knex('users')
 			.where('id', req.params.id)
 			.update(req.body.user)
@@ -56,7 +56,7 @@ router.route('/:id')
 				res.redirect('/users/'+req.params.id);	
 			});
 	})
-	.delete((req, res)=>{
+	.delete(authHelpers.ensureCorrectUser, (req, res)=>{
 		knex('users')
 		.where('id', req.params.id)
 		.del()
