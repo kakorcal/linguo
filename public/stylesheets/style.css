@@ -57,6 +57,7 @@ img#logo {
 }
 
 #nav-container {
+  margin-bottom: 30px;
   background-color: #53bbb4;
 }
 
@@ -94,4 +95,14 @@ img#logo {
 
 .btn-field .auth-btn button {
   background-color: #e15258;
+}
+
+.current-user {
+  position: absolute;
+  top: 150%;
+  right: 0;
+}
+
+#edit, #sidebar h3, #sidebar p {
+  color: #3e474f;
 }
