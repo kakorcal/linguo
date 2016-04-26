@@ -48,7 +48,7 @@ const authMiddleware = {
             if (el.uid === req.user.id) { return next() } 
           })
           req.flash('notCorrectUser', 'You may not access message threads in which you are not a participant');
-          res.redirect(`/users`);
+          res.redirect(`/users/${req.user.id}`);
         })
     }
     else {
