@@ -6,5 +6,18 @@ block nav
 block content
 	div(id='show')
 		h1 Users Show Page
+	div(id='users-msgs')
+		table
+			tr
+				th From
+				th To
+				th Subject
+			each msg in usersMsgs
+				tr
+					td #{msg.send_email}
+					td #{msg.rec_email}
+					td 
+						a(href="/threads/#{msg.thread_id}") #{msg.subject}
+
 block scripts
 	script(type="text/javascript", src="/javascripts/script.js")

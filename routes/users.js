@@ -37,17 +37,20 @@ router.route('/:id/edit')
 
 router.route('/:id')
 	.get(authHelpers.ensureCorrectUser, (req, res)=>{
-		knex('users')
-		.where('id', req.params.id)
-		.first()
-		.then(user=>{
-			knex('languages')
-			.where('user_id', user.id)
-			.then(languages => {
-				res.render('users/show', {user, languages, message: req.flash('loginMessage')});
-			});
-		});
+		knex('messages as m')
+			// Currently set up to match user id to their email when dispalying sender and recipient
+			// However may make sense to switch out email and include name instead
+			.select('us.id as uid', 'm.id as mid', 'm.thread_id', 'm.sender_id', 'us.email as send_email', 'm.rec_id', 'ur.email as rec_email', 't.subject')
+			.join('threads as t', 'm.thread_id', 't.id')
+			.join('users as us', 'm.sender_id', 'us.id')
+			.join('users as ur', 'm.rec_id', 'ur.id')
+			.where('m.sender_id', req.params.id)
+			.orWhere('m.rec_id', req.params.id)
+			.then((usersMsgs) => {
+				res.render('users/show', {usersMsgs, message: req.flash('loginMessage')});
+			})
 	})
+
 	.put(authHelpers.ensureCorrectUser, (req, res)=>{
 			knex('users')
 			.where('id', req.params.id)

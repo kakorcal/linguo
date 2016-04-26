@@ -4,13 +4,7 @@ const express = require("express"),
 			authHelpers = require("../helpers/authHelpers");
 
 router.route('/')
-	.get(function(req, res)
-	{
-		knex('threads')
-		.then((threads)=>{
-			res.render("threads/index", {threads})
-		})
-	})
+	// START A CONVERSATION WITH ANOTHER USER(S)
 	.post(function(req, res)
 	{
 		//INSERTS A THREAD INTO THE THREADS TABLE
@@ -22,7 +16,7 @@ router.route('/')
 			//CHECK WHAT MESSAGE LOOKS LIKE
 			var message = req.body.message;
 
-			eval(require('locus'))
+			// eval(require('locus'))
 			knex('messages')
 			.insert(
 			{
@@ -37,7 +31,7 @@ router.route('/')
 				knex('thread_participants')
 				.insert({thread_id:thread_id[0], user_id:data[0].sender_id})
 				.then(()=>{
-					eval(require('locus'))
+					// eval(require('locus'))
 			  	knex('thread_participants')
 			  	.insert({thread_id:thread_id[0], user_id:data[0].rec_id})
 			  	.then(()=>{})
@@ -49,18 +43,8 @@ router.route('/')
 	});
 });
 
-router.route('/new')
-	.get(function(req,res)
-	{
-		eval(require('locus'))
-		res.render("threads/new");
-	});
-
-router.route('/:id/edit')
-	.get(function(req, res)
-	{});
-
 router.route('/:id')
+	// VIEW A SPECIFIC THREAD
 	.get(function(req, res)
 	{
 		knex('threads')
@@ -71,21 +55,10 @@ router.route('/:id')
 			knex('messages')
 			.where('thread_id', thread.id)
 			.then((messages)=>{
+				eval(require('locus'))
 				res.render('threads/show', {thread, messages});
 			})
 		})
 	})
-	.put(function(req, res)
-	{
-	})
-	.delete(function(req,res)
-	{
-		knex('threads')
-		.where('id', req.params.id)
-		.delete()
-		.then(()=>{
-			res.redirect('/threads')
-		});
-	});
 
 module.exports = router;
