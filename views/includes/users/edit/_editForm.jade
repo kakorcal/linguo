@@ -28,7 +28,7 @@ div(class='edit-form')
       h3 Edit Language Preferences
       form(action="/languages" method="POST")
         p Add a language to your profile!
-          select(name="language[languages]" required)
+          select(name="language[language]" required)
             option
             option(value = "Spanish") Spanish
             option(value = "English") English
@@ -56,7 +56,7 @@ div(class='edit-form')
           th Intent
             each language in languages
               tr
-                td=language.languages
+                td=language.language
                 td=language.proficiency
                 td=language.approach 
                 td
