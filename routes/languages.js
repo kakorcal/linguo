@@ -39,7 +39,6 @@ router.route('/:id')
 		.returning('*')
 		.then(deleted =>
 		{
-			eval(require('locus'))
 			res.redirect("/users/"+deleted[0].user_id);
 		});
 	});
