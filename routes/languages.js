@@ -11,6 +11,7 @@ router.route('/')
 		knex('languages')
 		.insert(req.body.language)
 		.then(()=>{
+			eval(require('locus'));
 			res.redirect('/users/'+req.body.language.user_id);
 	 })
 		.catch(err=>{
