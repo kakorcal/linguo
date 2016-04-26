@@ -1,0 +1,16 @@
+div(id='users-search')
+  div(class='panel')
+    div(class='panel-body')
+      h1 Users Search
+      form
+        p Language
+          select(id = "languageInput")
+            each language in languagesList
+              option=language
+        p Location
+          input(type="text", name="" id = "locationInput")
+        p
+          input(type ="submit" value = "SEARCH" id="search")
+      form
+        p
+          input(type = "submit" value = "SEARCH BASED ON PROFILE")

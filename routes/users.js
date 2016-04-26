@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const authHelpers = require("../helpers/authHelpers")
 const knex = require('../db/knex');
-const multiline = require('multiline')
+const multiline = require('multiline');
+const languagesList =  require('../db/languagesList').languages;
 
 router.use(authHelpers.currentUser);
 
@@ -10,7 +11,8 @@ router.route('/')
 	.get((req, res)=>{
 		knex('users')
 		.then(users=>{
-			res.render('users/index', {users, message: req.flash('notCorrectUser')});
+			eval(require('locus'))
+			res.render('users/index', {users, languagesList, message: req.flash('notCorrectUser')});
 		});
 	})
 	.post((req, res)=>{
