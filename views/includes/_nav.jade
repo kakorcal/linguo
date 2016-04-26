@@ -1,4 +1,4 @@
-nav
+div(id='nav-container')
   div(class='container' id='navbar')
     include _logo
     div(class='btn-field')
@@ -15,6 +15,8 @@ nav
         span(class='auth-btn')
           a(href="/auth/logout")
             button(class='btn btn-danger') LOGOUT
+        div(class='current-user')
+          p Current User: #{currentUser.name}
       else
         span(class='search-btn')
           a(href="/users/")

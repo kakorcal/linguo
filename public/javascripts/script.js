@@ -1,4 +1,17 @@
 $(()=>{
+
+  // LOGO ANIMATION MAYBE
+
+  // var $logo = $('.logo-container');
+
+  // $logo.hover(function(){
+  //   $(this).addClass('pulse animated'); 
+  // }, function () {
+  //     $(this).removeClass('pulse animated');
+  // });
+
+  // FLASH MESSAGE
+
   var $flash = $('#flash-message');
   var $container = $('#flash-container');
   if($flash.text()){
@@ -21,9 +34,12 @@ $(()=>{
       $container.addClass('alert-warning');
       $flash.addClass('flash animated');
       console.log('not logged in');
+      break;
     case 46: 
-      $container.addClass('alert-info');
+      $container.addClass('alert-danger');
       $flash.addClass('flash animated');
       console.log('not correct user');
+      break;
   }
+  
 });

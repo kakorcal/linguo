@@ -41,6 +41,11 @@ input, textarea {
   font-weight: 300;
 }
 
+.logo-container a {
+  color: white;
+  text-decoration: none;
+}
+
 .logo-container h1 {
   font-size: 56px;
   display: inline;
@@ -51,7 +56,8 @@ img#logo {
   width: 180px;
 }
 
-nav {
+#nav-container {
+  margin-bottom: 30px;
   background-color: #53bbb4;
 }
 
@@ -89,4 +95,14 @@ nav {
 
 .btn-field .auth-btn button {
   background-color: #e15258;
+}
+
+.current-user {
+  position: absolute;
+  top: 150%;
+  right: 0;
+}
+
+#edit, #sidebar h3, #sidebar p {
+  color: #3e474f;
 }

@@ -1,64 +1,13 @@
 extends ../layout
+block styles
+	link(rel='stylesheet' href='/stylesheets/users/edit.css')
 block nav
 	include ../includes/_nav
 block content
-	h1 Users Edit Page
-	form(action="/users/#{user.id}?_method=put" method="POST")
-		p Location:
-			input(type="text" name="user[location]" value = "#{user.location}")
-		p Gender:
-			input(type="text" name="user[gender]" value = "#{user.gender}")
-		p Age:
-			input(type="text" name="user[age]" value = "#{user.age}")
-		p Avatar URL:
-			input(type="text" name="user[img_url]" value = "#{user.img_url}")
-		p Description:
-			input(type="text" name="user[description]" value = "#{user.description}")
-		p
-			input(type="submit" value = "Update My Info")
-	form(action="/users/#{user.id}?_method=delete" method="POST")
-		p
-			input(type="submit" value="Delete this user")
-
-	form(action="/languages" method="POST")
-		p Add a language to your profile!
-			select(name="language[languages]" required)
-				option
-				option(value = "Spanish") Spanish
-				option(value = "English") English
-		p Level of Proficiency
-			select(name="language[proficiency]" required)
-				option
-				option 1
-				option 2
-				option 3
-				option 4
-				option 5
-		p Intent
-			select(name= "language[approach]" required)
-				option
-				option Learning
-				option Teaching
-		p		
-			input(type = "hidden" name= "language[user_id]" value = "#{user.id}")
-			input(type = "submit" value = "Add to My Language Profile")
-
-	form(action="/users/#{user.id}?_method=delete" method="POST")
-		p
-			input(type="submit" value="Delete this user")
- 
-	table
-		caption Language Profile
-		tr
-			th Language
-			th Proficiency
-			th Intent
-				each language in languages
-					tr
-						td=language.languages
-						td=language.proficiency
-						td=language.approach 
-						td
-							form(action = "/languages/"+language.id+"?_method=delete" method = "POST")
-								input('type' = "submit" value = "Remove")
-
+	div(id='edit')
+		div(class='row')
+			div(class='col-md-8')
+				include ../includes/edit/_userProfile
+				include ../includes/edit/_editForm
+			div(class='col-md-4')
+				include ../includes/_sidebar
