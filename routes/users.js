@@ -11,7 +11,6 @@ router.route('/')
 	.get((req, res)=>{
 		knex('users')
 		.then(users=>{
-			eval(require('locus'))
 			res.render('users/index', {users, languagesList, message: req.flash('notCorrectUser')});
 		});
 	})

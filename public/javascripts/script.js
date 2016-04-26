@@ -79,7 +79,6 @@ $(()=>{
 
     function searchCallback(location){
       var language = $('#languageInput').val();
-      debugger
       var searchData = {searchData: {location, language}};
       $.get( "/users", searchData );
 
