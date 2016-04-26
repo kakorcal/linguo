@@ -3,6 +3,8 @@ block content
 	h1 Threads Show Page
 
 	h3 #{thread.subject}
-	h4
+	each message in messages
+		li=message.message
+	h5
 		form(action = "/threads/#{thread.id}?_method=delete" method = "POST")
 			input(type = "submit" value ="Delete this Thread")
