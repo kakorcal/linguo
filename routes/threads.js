@@ -15,6 +15,7 @@ router.route('/')
 			//INSERTS A MESSAGE INTO THE MESSAGES TABLE BASED ON THE THREAD ID
 			//CHECK WHAT MESSAGE LOOKS LIKE
 			var message = req.body.message;
+
 			knex('messages')
 			.insert(
 			{
@@ -29,6 +30,7 @@ router.route('/')
 				knex('thread_participants')
 				.insert({thread_id:thread_id[0], user_id:data[0].sender_id})
 				.then(()=>{
+
 			  	knex('thread_participants')
 			  	.insert({thread_id:thread_id[0], user_id:data[0].rec_id})
 			  	.then(()=>{})
