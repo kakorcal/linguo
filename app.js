@@ -36,6 +36,7 @@ app.use('/users', routes.users);
 app.use('/auth', routes.auth);
 app.use('/threads', routes.threads);
 app.use('/languages', routes.languages);
+app.use('/threads/:thread_id/messages', routes.messages);
 
 
 app.get('/', (req,res)=>{

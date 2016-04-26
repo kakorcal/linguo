@@ -15,6 +15,8 @@ router.route('/')
 			//INSERTS A MESSAGE INTO THE MESSAGES TABLE BASED ON THE THREAD ID
 			//CHECK WHAT MESSAGE LOOKS LIKE
 			var message = req.body.message;
+
+			// eval(require('locus'))
 			knex('messages')
 			.insert(
 			{
@@ -29,6 +31,7 @@ router.route('/')
 				knex('thread_participants')
 				.insert({thread_id:thread_id[0], user_id:data[0].sender_id})
 				.then(()=>{
+					// eval(require('locus'))
 			  	knex('thread_participants')
 			  	.insert({thread_id:thread_id[0], user_id:data[0].rec_id})
 			  	.then(()=>{})
@@ -44,18 +47,17 @@ router.route('/:id')
 	// VIEW A SPECIFIC THREAD
 	.get(function(req, res)
 	{
-		knex('threads')
-		.where('id', req.params.id)
-		.first()
-		.then((thread)=>{
-			//REFACTOR TO A JOIN BETWEEN MESSAGES AND USERS SO THAT USERS CAN BE DISPLAYED ON THREADS PAGE
-			knex('messages')
-			.where('thread_id', thread.id)
-			.then((messages)=>{
-				eval(require('locus'))
-				res.render('threads/show', {thread, messages});
+		knex('threads as t')
+			.select('t.id as tid', 'm.id as mid', 'm.rec_id as rec_id', 'ur.email as rec_email', 'm.sender_id as send_id', 'us.email as send_email', 't.subject', 'm.message')
+			.join('messages as m', 'm.thread_id', 't.id')
+			.join('users as ur', 'ur.id', 'm.rec_id')
+			.join('users as us', 'us.id', 'm.sender_id')
+			.where('t.id', req.params.id)
+			.orderBy('m.id')
+			.then((threadMsgs) => {
+			  res.render('threads/show', {threadMsgs})
 			})
-		})
 	})
+
 
 module.exports = router;

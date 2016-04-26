@@ -20,6 +20,7 @@
     "locus": "^1.2.0",
     "method-override": "^2.3.5",
     "morgan": "^1.7.0",
+    "multiline": "^1.0.2",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
     "passport-google-oauth": "^1.0.0",
