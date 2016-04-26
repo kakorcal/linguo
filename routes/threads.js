@@ -55,6 +55,7 @@ router.route('/:id')
 			knex('messages')
 			.where('thread_id', thread.id)
 			.then((messages)=>{
+				eval(require('locus'))
 				res.render('threads/show', {thread, messages});
 			})
 		})
