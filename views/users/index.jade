@@ -2,15 +2,10 @@ extends ../layout
 block nav
 	include ../includes/_nav
 block content
-	h1 Users Index Page
-	each user in users
-		div(class="list-group")
-			h4(class = "list-group-item-heading") #{user.name}
-			p(class = "list-group-item-text"): li Description: #{user.description}
-			form(action = "/threads" method = "POST")
-				input(type = "text" name = "thread[subject]")
-				input(type = "text" name = "message[message]")
-				input(type = "hidden" name = "message[sender_id]" value = "#{user.id}")
-				input(type = "hidden" name = "message[rec_id]" value = "#{user.id}")
-				input(type = "submit" value = "Send Message!")
+	div(id='user-index')
+		div(class='row')
+			div(class='col-md-8')
+				include ../includes/users/_usersList
+			div(class='col-md-4')
+				include ../includes/_sidebar
 
