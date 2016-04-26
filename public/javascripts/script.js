@@ -41,5 +41,41 @@ $(()=>{
       console.log('not correct user');
       break;
   }
-  
+
+  $('#update').on('click', formatLocation);
+
+  function formatLocation()
+  {
+    var geoCoder = new google.maps.Geocoder();
+    var $location = $("#location");
+    if(!$location.val())
+    {
+      alert("Some text for if nothing was entered");
+      return;
+    }
+
+    geoCoder.geocode({address: $location.val(), 
+                    componentRestrictions: {locality: "San Francisco"}}, 
+    (results, status)=>
+    {
+      if(status == google.maps.GeocoderStatus.OK)
+       {
+        $location[0].value = (results[0].geometry.location.lat()+','+results[0].geometry.location.lng());
+        var loc = [results[0].geometry.location.lat(), results[0].geometry.location.lng()];
+        debugger
+        $.ajax({
+          type: "PUT",
+          url: '/users/ '+'1',
+          data: loc,
+          success: ()=>{}
+        });
+        return;
+       }
+      else 
+       { 
+         alert("Geocode was not successful for the following reason: " + status);
+       }
+
+    })
+  }
 });
