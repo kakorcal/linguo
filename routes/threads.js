@@ -21,8 +21,6 @@ router.route('/')
 			//INSERTS A MESSAGE INTO THE MESSAGES TABLE BASED ON THE THREAD ID
 			//CHECK WHAT MESSAGE LOOKS LIKE
 			var message = req.body.message;
-
-			eval(require('locus'))
 			knex('messages')
 			.insert(
 			{
@@ -37,7 +35,6 @@ router.route('/')
 				knex('thread_participants')
 				.insert({thread_id:thread_id[0], user_id:data[0].sender_id})
 				.then(()=>{
-					eval(require('locus'))
 			  	knex('thread_participants')
 			  	.insert({thread_id:thread_id[0], user_id:data[0].rec_id})
 			  	.then(()=>{})
@@ -52,7 +49,6 @@ router.route('/')
 router.route('/new')
 	.get(function(req,res)
 	{
-		eval(require('locus'))
 		res.render("threads/new");
 	});
 
