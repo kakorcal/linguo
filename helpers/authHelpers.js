@@ -1,3 +1,5 @@
+const knex = require('../db/knex');
+
 const authMiddleware = {
   currentUser(req, res, next) {
     // if user is authenticated (passport method returns true when serialized)
@@ -27,6 +29,27 @@ const authMiddleware = {
       else {
         return next();
       }
+    }
+    else {
+      req.flash('notLoggedIn', 'Please log in to access all site features');
+      res.redirect('/');
+    }
+  },
+  ensureThreadParticipant(req, res, next) {
+    // Is User logged in?
+    if (req.isAuthenticated()) {
+      // Find users in thread
+      knex('thread_participants')
+        .select('user_id as uid')
+        .where('thread_id', req.params.id)
+        .then((users) => {
+          // Is this user either the sender or recipient in this thread
+          users.forEach((el) => {
+            if (el.uid === req.user.id) { return next() } 
+          })
+          req.flash('notCorrectUser', 'You may not access message threads in which you are not a participant');
+          res.redirect(`/users`);
+        })
     }
     else {
       req.flash('notLoggedIn', 'Please log in to access all site features');
