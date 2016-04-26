@@ -2,9 +2,11 @@ extends ../layout
 block content
 	h1 Threads Show Page
 
-	h3 #{thread.subject}
-	each message in messages
-		li=message.message
+	each msg in threadMsgs
+		h3 From: #{msg.send_email}  
+		h3 To: #{msg.rec_email}  
+		h3 Subject: #{msg.subject}
+		p Body: #{msg.message}
 	h5
-		form(action = "/threads/#{thread.id}/messages" method = "POST")
+		form(action = "/threads/#{threadMsgs[0].tid}/messages" method = "POST")
 			input(type = "submit" value ="Reply this Thread")
