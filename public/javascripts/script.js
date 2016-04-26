@@ -1,5 +1,15 @@
 $(()=>{
 
+  // LOGO ANIMATION MAYBE
+
+  // var $logo = $('.logo-container');
+
+  // $logo.hover(function(){
+  //   $(this).addClass('pulse animated'); 
+  // }, function () {
+  //     $(this).removeClass('pulse animated');
+  // });
+
   // FLASH MESSAGE
 
   var $flash = $('#flash-message');
@@ -32,14 +42,4 @@ $(()=>{
       break;
   }
   
-  // LOGO ANIMATION
-
-  var $logo = $('.logo-container');
-
-  $logo.hover(function(){
-    $(this).addClass('pulse animated'); 
-  }, function () {
-      $(this).removeClass('pulse animated');
-  });
-
 });
