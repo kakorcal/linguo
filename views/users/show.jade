@@ -16,7 +16,8 @@ block content
 				tr
 					td #{msg.send_email}
 					td #{msg.rec_email}
-					td #{msg.subject}
+					td 
+						a(href="/threads/#{msg.thread_id}") #{msg.subject}
 
 block scripts
 	script(type="text/javascript", src="/javascripts/script.js")
