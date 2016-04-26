@@ -42,34 +42,38 @@ $(()=>{
       break;
   }
 
+  var currentUserID = $('#current-user-id').text();
+
   $('#update').on('click', formatLocation);
 
-  function formatLocation()
+  function formatLocation(e)
   {
+    e.preventDefault();
     var geoCoder = new google.maps.Geocoder();
-    var $location = $("#location");
-    if(!$location.val())
-    {
-      alert("Some text for if nothing was entered");
-      return;
-    }
 
-    geoCoder.geocode({address: $location.val(), 
-                    componentRestrictions: {locality: "San Francisco"}}, 
+    geoCoder.geocode({address: $('#locationInput').val()}, 
     (results, status)=>
     {
+      
       if(status == google.maps.GeocoderStatus.OK)
        {
-        $location[0].value = (results[0].geometry.location.lat()+','+results[0].geometry.location.lng());
-        var loc = [results[0].geometry.location.lat(), results[0].geometry.location.lng()];
-        debugger
+        $('#locationInput')[0].value = (results[0].geometry.location.lat()+','+results[0].geometry.location.lng());
+
+        var location = $("#locationInput").val(),
+            gender = $("#genderInput").val(),
+            description = $("#descriptionInput").val(),
+            age = $("#ageInput").val(),
+            img_url = $("#imgInput").val(),
+            user = {user: {location, gender, age, img_url, description}}
+
         $.ajax({
           type: "PUT",
-          url: '/users/ '+'1',
-          data: loc,
-          success: ()=>{}
+          url: '/users/'+currentUserID,
+          data: user,
+          success: (data)=>{
+            window.location.pathname = data;
+          }
         });
-        return;
        }
       else 
        { 

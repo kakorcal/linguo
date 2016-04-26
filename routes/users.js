@@ -58,26 +58,13 @@ router.route('/:id')
 	})
 
 	.put(authHelpers.ensureCorrectUser, (req, res)=>{
-	eval(require('locus'))
-	res.format({
-  	html: function(){
     	knex('users')
 				.where('id', req.params.id)
 				.update(req.body.user)
 				.then(()=>{
-					res.redirect('/users/'+req.params.id);	
+					res.send('/users/'+req.params.id+'/edit');	
 				});
-  	},
-  	json: function(){
-    	knex('users')
-    	.where('id', req.params.id)
-    	.update({location : req.body})
-    	.then(()=>{
-    		eval(require('locus'))
-    		res.redirect('/users/'+req.params.id);
-    	})}
-});
-	})
+  	})
 	.delete(authHelpers.ensureCorrectUser, (req, res)=>{
 		knex('users')
 		.where('id', req.params.id)
