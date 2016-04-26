@@ -44,28 +44,20 @@ $(()=>{
 
   var currentUserID = $('#current-user-id').text();
 
-  $('#update').on('click', formatLocation);
+  $('#update').on('click', update);
+  $('#search').on('click', search)
 
-  function formatLocation(e)
+  function update(e)
   {
     e.preventDefault();
-    var geoCoder = new google.maps.Geocoder();
-
-    geoCoder.geocode({address: $('#locationInput').val()}, 
-    (results, status)=>
-    {
+    var inputLocation = $('#locationInput').val();
+    function updateCallback(location){
       
-      if(status == google.maps.GeocoderStatus.OK)
-       {
-        $('#locationInput')[0].value = (results[0].geometry.location.lat()+','+results[0].geometry.location.lng());
-
-        var location = $("#locationInput").val(),
-            gender = $("#genderInput").val(),
-            description = $("#descriptionInput").val(),
-            age = $("#ageInput").val(),
-            img_url = $("#imgInput").val(),
-            user = {user: {location, gender, age, img_url, description}}
-
+    var gender = $("#genderInput").val(),
+        description = $("#descriptionInput").val(),
+        age = $("#ageInput").val(),
+        img_url = $("#imgInput").val(),
+        user = {user: {location, gender, age, img_url, description}}
         $.ajax({
           type: "PUT",
           url: '/users/'+currentUserID,
@@ -74,7 +66,38 @@ $(()=>{
             window.location.pathname = data;
           }
         });
-       }
+    }
+
+    formatLocation(inputLocation, updateCallback);
+  }
+  function search(e)
+  {
+    e.preventDefault();
+
+    var inputLocation = $('#locationInput').val();
+    formatLocation(inputLocation, searchCallback);
+
+    function searchCallback(location){
+      var language = $('#languageInput').val();
+      debugger
+      var searchData = {searchData: {location, language}};
+      $.get( "/users", searchData );
+
+    }
+
+  }
+
+
+  function formatLocation(inputLocation, cb)
+  {
+    var geoCoder = new google.maps.Geocoder();
+    geoCoder.geocode({address: inputLocation}, 
+    (results, status)=>
+    {
+      if(status == google.maps.GeocoderStatus.OK)
+      {
+        cb(results[0].formatted_address);
+      }
       else 
        { 
          alert("Geocode was not successful for the following reason: " + status);
