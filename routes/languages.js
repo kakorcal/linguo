@@ -8,11 +8,9 @@ router.route('/')
 	{})
 	.post(function(req, res)
 	{
-		eval(require('locus'))
 		knex('languages')
 		.insert(req.body.language)
 		.then(()=>{
-			eval(require('locus'));
 			res.redirect('/users/'+req.body.language.user_id);
 	 })
 		.catch(err=>{
