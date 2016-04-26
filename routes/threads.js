@@ -4,13 +4,7 @@ const express = require("express"),
 			authHelpers = require("../helpers/authHelpers");
 
 router.route('/')
-	.get(function(req, res)
-	{
-		knex('threads')
-		.then((threads)=>{
-			res.render("threads/index", {threads})
-		})
-	})
+	// START A CONVERSATION WITH ANOTHER USER(S)
 	.post(function(req, res)
 	{
 		//INSERTS A THREAD INTO THE THREADS TABLE
@@ -48,17 +42,8 @@ router.route('/')
 	});
 });
 
-router.route('/new')
-	.get(function(req,res)
-	{
-		res.render("threads/new");
-	});
-
-router.route('/:id/edit')
-	.get(function(req, res)
-	{});
-
 router.route('/:id')
+	// VIEW A SPECIFIC THREAD
 	.get(function(req, res)
 	{
 		knex('threads')
@@ -73,17 +58,5 @@ router.route('/:id')
 			})
 		})
 	})
-	.put(function(req, res)
-	{
-	})
-	.delete(function(req,res)
-	{
-		knex('threads')
-		.where('id', req.params.id)
-		.delete()
-		.then(()=>{
-			res.redirect('/threads')
-		});
-	});
 
 module.exports = router;
