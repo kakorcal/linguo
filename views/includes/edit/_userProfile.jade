@@ -1,13 +1,23 @@
 div(class='user-profile')
   div(class='panel')
     div(class='panel-body')
-      img(src='#{user.img_url}' alt='profile')
-      h2 #{user.name}
-      h4 Gender, Age: #{user.gender} #{user.age}
-      h4 Location: #{user.location}
-      h4 Email: #{user.email}
-      h4 Native Language:
-      h4 Practicing Language:
-      h4 Description: #{user.description}
-      h4 Member Since: #{user.created_at}
-      h4 Last Login: #{user.updated_at}
+      div(class='profile-head')
+        img(src='#{user.img_url}' alt='profile')
+        h2 #{user.name}
+      hr
+      div(class='profile-desc')
+        h4 Gender, Age: #{user.gender} #{user.age}
+        hr
+        h4 Location: #{user.location}
+        hr
+        h4 Email: #{user.email}
+        hr
+        h4 Native Language:
+        hr
+        h4 Practicing Language:
+        hr
+        h4 Description: #{user.description}
+        hr
+        h4 Member Since: #{user.created_at}
+        hr
+        h4 Last Login: #{user.updated_at}
