@@ -3,11 +3,10 @@ div(class='user-profile')
     div(class='panel-body')
       div(class='profile-head')
         img(src='#{user.img_url}' alt='profile')
-        h2 #{user.name}
+        h2 #{user.name} &nbsp;
+          span #{user.gender} Male, #{user.age} 24
       hr
       div(class='profile-desc')
-        h4 Gender, Age: #{user.gender} #{user.age}
-        hr
         h4 Location: #{user.location}
         hr
         h4 Email: #{user.email}
