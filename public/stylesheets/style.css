@@ -34,7 +34,7 @@ body {
   font-size: 25px;
 }
 
-input, textarea {
+input:not([type='submit']), textarea {
   color: black;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", 
                "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 

@@ -7,3 +7,19 @@
 .profile-head h2 span {
   font-size: 17px;
 }
+
+.edit-user, .edit-languages {
+  padding: 15px;
+}
+
+.edit-user h3, .edit-languages h3 {
+  margin: 0 0 10px 0;
+}
+
+.btn-update {
+  background-color: #5fcf80;
+}
+
+.btn-delete {
+  background-color: #e15258;
+}

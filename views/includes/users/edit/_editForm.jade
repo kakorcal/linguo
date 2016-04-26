@@ -3,22 +3,26 @@ div(class='edit-form')
     div(class='edit-user')
       h3 Edit Profile Info
       form
-        p Location:
-          input(type="text" name="user[location]" value = "#{currentUser.location}" id = "locationInput")
-        p Gender:
-          input(type="text" name="user[gender]" value = "#{currentUser.gender}" id = "genderInput")
-        p Age:
-          input(type="text" name="user[age]" value = "#{currentUser.age}" id = "ageInput")
-        p Avatar URL:
-          input(type="text" name="user[img_url]" value = "#{currentUser.img_url}" id = "imgInput")
-        p Description:
-          input(type="text" name="user[description]" value = "#{currentUser.description}" id = "descriptionInput")
-        p
-          input(type="submit" value = "Update My Info" id="update")
-      form(action="/users/#{currentUser.id}?_method=delete" method="POST")
-        p
-          input(type="submit" value="Delete this user")
-  
+        div(class='form-group')
+          label(for='locationInput') Location:
+          input(type="text" class='form-control' name="user[location]" value = "#{currentUser.location}" id = "locationInput")
+        div(class='form-group')
+          label(for='genderInput') Gender:
+          input(type="text" class='form-control' name="user[gender]" value = "#{currentUser.gender}" id = "genderInput")
+        div(class='form-group')
+          label(for='ageInput') Age:
+          input(type="text" class='form-control' name="user[age]" value = "#{currentUser.age}" id = "ageInput")
+        div(class='form-group')
+          label(for='imgInput') Avatar URL:
+          input(type="text" class='form-control' name="user[img_url]" value = "#{currentUser.img_url}" id = "imgInput")
+        div(class='form-group')
+          label(for='descriptionInput') Description:
+          input(type="text" class='form-control' name="user[description]" value = "#{currentUser.description}" id = "descriptionInput")
+        div(class='form-group text-center')
+          input(type="submit" class='btn btn-success btn-update' value = "Update My Info" id="update")
+          form(action="/users/#{currentUser.id}?_method=delete" method="POST")
+              &nbsp;
+              input(type="submit" class='btn btn-danger btn-delete' value="Delete My Account")
   div(class='panel')
     div(class='edit-languages')
       h3 Edit Language Preferences
