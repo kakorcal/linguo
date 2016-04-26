@@ -8,7 +8,6 @@ router.route('/')
 	{})
 	.post(function(req, res)
 	{
-		eval(require('locus'))
 		knex('languages')
 		.insert(req.body.language)
 		.then(()=>{
