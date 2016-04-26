@@ -66,7 +66,22 @@ router.route('/:id')
 			.then((usersMsgs) => {
 				// 'usersMsgs.rows' is needed b/c the 'usersMsgs' returned by the Knex.raq query comes back in a different format than normal Knex
 				//  You must access the 'rows' key of the 'usersMsgs' object to get the array of results
-				res.render('users/show', {usersMsgs: usersMsgs.rows, message: req.flash('loginMessage')});
+
+				// Set conditionals for messages depening on where/why someone is arriving at their User Show page
+				var loginMessage = req.flash('loginMessage');
+				var notCorrectUser = req.flash('notCorrectUser');
+				if (!!loginMessage.length) {
+				  console.log("A USER HAS LOGGED IN MSG WILL BE DISPLAYED");
+				  res.render('users/show', {usersMsgs: usersMsgs.rows, message: loginMessage});
+				} 
+				else if (!!notCorrectUser.length) {
+				  console.log("A USER HAS TRIED TO ACCESS A THREAD THEY DON'T BELONG TO");    
+				  res.render('users/show', {usersMsgs: usersMsgs.rows, message: notCorrectUser});
+				} 
+				else {
+				  console.log("NORMAL USER SHOW RENDER");
+				  res.render('users/show', {usersMsgs: usersMsgs.rows}); 
+				}
 			})
 	})
 
