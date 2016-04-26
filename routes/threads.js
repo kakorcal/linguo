@@ -41,7 +41,7 @@ router.route('/')
 		})
 	});
 });
-	
+
 router.route('/:id')
 	// VIEW A SPECIFIC THREAD
 	.get(function(req, res)
