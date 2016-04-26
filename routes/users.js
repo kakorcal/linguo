@@ -40,7 +40,13 @@ router.route('/:id')
 		knex('messages as m')
 			// Currently set up to match user id to their email when dispalying sender and recipient
 			// However may make sense to switch out email and include name instead
-			.select('us.id as uid', 'm.id as mid', 'm.thread_id', 'm.sender_id', 'us.email as send_email', 'm.rec_id', 'ur.email as rec_email', 't.subject')
+			// I switched it to display the name! 
+			// Might want to consider getting the timestamp for when the first message was created - Ken
+			.select(
+				'us.id as uid', 'm.id as mid', 'm.thread_id', 
+				'm.sender_id', 'us.name as sender_name', 'm.rec_id', 
+				'ur.name as rec_name','t.subject'
+			)
 			.join('threads as t', 'm.thread_id', 't.id')
 			.join('users as us', 'm.sender_id', 'us.id')
 			.join('users as ur', 'm.rec_id', 'ur.id')

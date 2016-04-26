@@ -5,19 +5,10 @@ block nav
 	include ../includes/_nav
 block content
 	div(id='show')
-		h1 Users Show Page
-	div(id='users-msgs')
-		table
-			tr
-				th From
-				th To
-				th Subject
-			each msg in usersMsgs
-				tr
-					td #{msg.send_email}
-					td #{msg.rec_email}
-					td 
-						a(href="/threads/#{msg.thread_id}") #{msg.subject}
-
+		div(class='row')
+			div(class='col-md-8')
+				include ../includes/users/show/_threads
+			div(class='col-md-4')
+				include ../includes/_sidebar
 block scripts
 	script(type="text/javascript", src="/javascripts/script.js")
