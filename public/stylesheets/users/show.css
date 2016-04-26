@@ -1,12 +1,36 @@
-table {
-    table-layout: fixed;
-    width: 100%;
+.threads {
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 4px;
 }
 
-td {
-    word-wrap:break-word;
+.threads table {
+  margin-bottom: 0;
+}
+
+.threads .table-bordered {
+  border: 0;
 }
 
 thead th {
   font-size: 22px;
 }
+
+tbody td {
+  font-size: 15px;
+}
+
+table thead tr th.th-from,
+table thead tr th.th-to,
+table thead tr th.th-subject{
+  padding: 15px 15px 15px 10px;
+}
+
+table thead tr th.th-from {
+  padding-right: 70px;
+}
+
+table thead tr th.th-to {
+  padding-right: 100px;
+}
+
