@@ -2,11 +2,12 @@ extends ../layout
 block content
 	h1 Threads Show Page
 
+	h3 Subject: #{threadMsgs[0].subject}
 	each msg in threadMsgs
-		h3 From: #{msg.send_email}  
-		h3 To: #{msg.rec_email}  
-		h3 Subject: #{msg.subject}
-		p Body: #{msg.message}
+		h5 From: #{msg.send_email}  
+		h5 To: #{msg.rec_email}  
+		h6 Body: #{msg.message}
+		h4 -----------------NEXT MESSAGE-----------------
 	h5
 		form(action = "/threads/#{threadMsgs[0].tid}/messages" method = "POST")
 			input(type = "text" name = "message[message]" placeholder= "Add a reply")

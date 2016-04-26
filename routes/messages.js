@@ -12,13 +12,12 @@ router.route('/')
   .post((req, res) => {
     var message = req.body.message;
     var thread_id = +req.params.thread_id;
-    eval(require('locus'))
     knex('messages')
       .insert(
         Object.assign(message, {thread_id})
       )
       .then(() => {
-        res.redirect('/threads/${thread_id}')
+        res.redirect('/threads/'+req.params.thread_id)
       })
   });
 
