@@ -4,7 +4,10 @@ div(class='user-profile')
       div(class='profile-head')
         img(src='#{user.img_url}' alt='profile')
         h2 #{user.name} &nbsp;
-          span #{user.gender} &nbsp; #{user.age}
+          if (user.gender)
+            span Gender: #{user.gender} &nbsp;
+          if (user.age) 
+            span Age: #{user.age}
       hr
       div(class='profile-desc')
         h4 Location: #{user.location}

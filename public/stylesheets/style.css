@@ -34,7 +34,7 @@ body {
   font-size: 25px;
 }
 
-input, textarea {
+input:not([type='submit']), textarea {
   color: black;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", 
                "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
@@ -107,7 +107,7 @@ img#logo {
   opacity: 0;
 }
 
-#user-index, #show, #edit, 
-#sidebar h3, #sidebar p {
+#user-index, #user-show, #user-edit, 
+#messages-show, #sidebar h3, #sidebar p {
   color: #3e474f;
 }

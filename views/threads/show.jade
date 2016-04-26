@@ -1,19 +1,27 @@
 extends ../layout
+block nav
+	include ../includes/_nav
 block content
-	h1 Threads Show Page
-
-	h3 Subject: #{threadMsgs[0].subject}
-	each msg in threadMsgs
-		h5 From: #{msg.send_email}  
-		h5 To: #{msg.rec_email}  
-		h6 Body: #{msg.message}
-		h4 -----------------NEXT MESSAGE-----------------
-	h5
-		form(action = "/threads/#{threadMsgs[0].tid}/messages" method = "POST")
-			input(type = "text" name = "message[message]" placeholder= "Add a reply")
-			input(type = "hidden" name = "message[sender_id]" value = "#{currentUser.id}")
-			if (currentUser.id === threadMsgs[0].send_id)
-				input(type = "hidden" name = "message[rec_id]" value = "#{threadMsgs[0].rec_id}")
-			else 
-				input(type = "hidden" name = "message[rec_id]" value = "#{threadMsgs[0].send_id}")
-			input(type = "submit" value ="Send Reply")
+	div(id='messages-show')
+		div(class='row')
+			div(class='col-md-8')
+				div(class='panel')
+					div(class='panel-body')
+						h1 Threads Show Page
+						h3 Subject: #{threadMsgs[0].subject}
+						each msg in threadMsgs
+							h5 From: #{msg.send_email}  
+							h5 To: #{msg.rec_email}  
+							h6 Body: #{msg.message}
+							h4 -----------------NEXT MESSAGE-----------------
+						h5
+							form(action = "/threads/#{threadMsgs[0].tid}/messages" method = "POST")
+								input(type = "text" name = "message[message]" placeholder= "Add a reply")
+								input(type = "hidden" name = "message[sender_id]" value = "#{currentUser.id}")
+								if (currentUser.id === threadMsgs[0].send_id)
+									input(type = "hidden" name = "message[rec_id]" value = "#{threadMsgs[0].rec_id}")
+								else 
+									input(type = "hidden" name = "message[rec_id]" value = "#{threadMsgs[0].send_id}")
+								input(type = "submit" value ="Send Reply")
+			div(class='col-md-4')
+				include ../includes/_sidebar
