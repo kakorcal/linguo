@@ -14,8 +14,8 @@ block content
 				th Subject
 			each msg in usersMsgs
 				tr
-					td #{msg.sender_id}
-					td #{msg.rec_id}
+					td #{msg.send_email}
+					td #{msg.rec_email}
 					td #{msg.subject}
 
 block scripts
