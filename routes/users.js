@@ -103,6 +103,7 @@ router.route('/:id')
 				.where('id', req.params.id)
 				.update(req.body.user)
 				.then(()=>{
+					eval(require('locus'));
 					res.send('/users/'+req.params.id+'/edit');	
 				});
   	})

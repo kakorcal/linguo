@@ -46,3 +46,14 @@ function formatLocation()
     })
 }
 });
+
+
+------ _editForm.jade -------
+
+div(class='form-group')
+  span Gender: &nbsp;
+    label(for='Male') Male: &nbsp;
+    input(type="radio" id='Male' name="user[gender]" value='')
+  span &nbsp; &nbsp;
+    label(for='Female') Female: &nbsp;
+    input(type="radio" id='Female' name="user[gender]" value='')
