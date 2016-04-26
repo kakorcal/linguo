@@ -17,6 +17,7 @@ div(id='nav-container')
             button(class='btn btn-danger') LOGOUT
         div(class='current-user')
           p Current User: #{currentUser.name}
+            span(id='current-user-id') #{currentUser.id}
       else
         span(class='search-btn')
           a(href="/users/")
