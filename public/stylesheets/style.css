@@ -103,6 +103,10 @@ img#logo {
   right: 0;
 }
 
+#current-user-id {
+  opacity: 0;
+}
+
 #user-index, #show, #edit, 
 #sidebar h3, #sidebar p {
   color: #3e474f;
