@@ -1,0 +1,14 @@
+div(class='threads')
+  div(class='panel')
+    div(class='panel-body')
+      table
+        tr
+          th From
+          th To
+          th Subject
+        each msg in usersMsgs
+          tr
+            td #{msg.send_email}
+            td #{msg.rec_email}
+            td 
+              a(href="/threads/#{msg.thread_id}") #{msg.subject}
