@@ -17,5 +17,13 @@ $(()=>{
       $flash.addClass('flash animated');
       console.log('logout success');
       break;
+    case 41:
+      $container.addClass('alert-warning');
+      $flash.addClass('flash animated');
+      console.log('not logged in');
+    case 46: 
+      $container.addClass('alert-info');
+      $flash.addClass('flash animated');
+      console.log('not correct user');
   }
 });
