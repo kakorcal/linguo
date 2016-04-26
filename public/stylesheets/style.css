@@ -107,7 +107,7 @@ img#logo {
   opacity: 0;
 }
 
-#user-index, #show, #edit, 
-#sidebar h3, #sidebar p {
+#user-index, #user-show, #user-edit, 
+#messages-show, #sidebar h3, #sidebar p {
   color: #3e474f;
 }
