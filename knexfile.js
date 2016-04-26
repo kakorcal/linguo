@@ -9,6 +9,18 @@ module.exports = {
     debug : true
   },
 
+  test: {
+    client: 'pg',
+    connection: {
+      database: 'language_app'
+    },
+      pool: {
+      min: 1,
+      max: 5
+    },
+    debug:true
+  },
+
   staging: {
     client: 'postgresql',
     connection: {
