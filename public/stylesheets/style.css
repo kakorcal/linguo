@@ -41,6 +41,11 @@ input, textarea {
   font-weight: 300;
 }
 
+.logo-container a {
+  color: white;
+  text-decoration: none;
+}
+
 .logo-container h1 {
   font-size: 56px;
   display: inline;
