@@ -37,7 +37,8 @@ router.route('/')
 			  	.then(()=>{})
 				})
 			.then(()=>{
-				res.redirect("/threads");
+				//Ideally form closes and flash message about message success
+				res.redirect("/users");
 			})
 		})
 	});
