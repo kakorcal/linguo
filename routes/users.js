@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const authHelpers = require("../helpers/authHelpers")
 const knex = require('../db/knex');
+const multiline = require('multiline')
 
 router.use(authHelpers.currentUser);
 
@@ -37,23 +38,34 @@ router.route('/:id/edit')
 
 router.route('/:id')
 	.get(authHelpers.ensureCorrectUser, (req, res)=>{
-		knex('messages as m')
-			// Currently set up to match user id to their email when dispalying sender and recipient
-			// However may make sense to switch out email and include name instead
-			// I switched it to display the name! 
-			// Might want to consider getting the timestamp for when the first message was created - Ken
-			.select(
-				'us.id as uid', 'm.id as mid', 'm.thread_id', 
-				'm.sender_id', 'us.name as sender_name', 'm.rec_id', 
-				'ur.name as rec_name','t.subject'
-			)
-			.join('threads as t', 'm.thread_id', 't.id')
-			.join('users as us', 'm.sender_id', 'us.id')
-			.join('users as ur', 'm.rec_id', 'ur.id')
-			.where('m.sender_id', req.params.id)
-			.orWhere('m.rec_id', req.params.id)
+		// Need to user 'knex.raw' query here because the 'distinct on' join method is not supported in Knex
+			// Note 1: 'distinct on' is needed to ensure that ony one record per thread_id is returned
+
+			// Note 2: In a 'knex.raw' query, NEVER NEVER NEVER pass a variable that contains user info (like req.params.id) into the raq 'query' string
+
+					// Why? It leaves you vulnerable to a 'raw SQL injection attack', where someone could 
+						// insert their own SQL in that place and change our database
+
+					// Always put a '?' in raw SQL 'query' string, and then pass variables in an array as second argument in 'knex.raw()'
+					
+		var query = multiline.stripIndent(function() { /*
+			select distinct on (m.thread_id) m.id as mid, m.thread_id, m.sender_id, us.name as sender_name, m.rec_id, ur.name as rec_name, t.subject, m.message
+			from messages as m
+			join threads as t
+			on m.thread_id=t.id
+			join users as us
+			on m.sender_id=us.id
+			join users as ur
+			on m.rec_id=ur.id
+			where m.sender_id=?
+			or m.rec_id=?
+			order by m.thread_id desc;
+		*/});
+		knex.raw(query, [req.params.id, req.params.id])
 			.then((usersMsgs) => {
-				res.render('users/show', {usersMsgs, message: req.flash('loginMessage')});
+				// 'usersMsgs.rows' is needed b/c the 'usersMsgs' returned by the Knex.raq query comes back in a different format than normal Knex
+				//  You must access the 'rows' key of the 'usersMsgs' object to get the array of results
+				res.render('users/show', {usersMsgs: usersMsgs.rows, message: req.flash('loginMessage')});
 			})
 	})
 
