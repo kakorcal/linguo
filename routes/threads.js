@@ -50,6 +50,7 @@ router.route('/:id')
 			.join('users as ur', 'ur.id', 'm.rec_id')
 			.join('users as us', 'us.id', 'm.sender_id')
 			.where('t.id', req.params.id)
+			.orderBy('m.id')
 			.then((threadMsgs) => {
 			  res.render('threads/show', {threadMsgs})
 			})
