@@ -46,7 +46,7 @@ router.route('/')
 
 router.route('/:id')
 	// VIEW A SPECIFIC THREAD
-	.get(function(req, res)
+	.get(authHelpers.ensureThreadParticipant, function(req, res)
 	{
 		knex('threads as t')
 			.select('t.id as tid', 'm.id as mid', 'm.rec_id as rec_id', 'ur.email as rec_email', 'm.sender_id as send_id', 'us.email as send_email', 't.subject', 'm.message')
