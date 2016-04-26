@@ -1,0 +1,13 @@
+div(class='user-profile')
+  div(class='panel')
+    div(class='panel-body')
+      img(src='#{user.img_url}' alt='profile')
+      h2 #{user.name}
+      h4 Gender, Age: #{user.gender} #{user.age}
+      h4 Location: #{user.location}
+      h4 Email: #{user.email}
+      h4 Native Language:
+      h4 Practicing Language:
+      h4 Description: #{user.description}
+      h4 Member Since: #{user.created_at}
+      h4 Last Login: #{user.updated_at}
