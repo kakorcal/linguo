@@ -128,10 +128,13 @@ router.route('/:id')
 				});
   	})
 	.delete(authHelpers.ensureCorrectUser, (req, res)=>{
+		req.logout();
+		console.log("LOGOUT SUCCESSFUL");
 		knex('users')
 		.where('id', req.params.id)
 		.del()
 		.then(()=>{
+			console.log("USER DELETED");
 			res.redirect('/');
 		});
 	});
