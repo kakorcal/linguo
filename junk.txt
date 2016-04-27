@@ -50,6 +50,7 @@ function formatLocation()
 
 ------ _editForm.jade -------
 
+--- gender edit ---
 div(class='form-group')
   span Gender: &nbsp;
     label(for='Male') Male: &nbsp;
@@ -57,3 +58,20 @@ div(class='form-group')
   span &nbsp; &nbsp;
     label(for='Female') Female: &nbsp;
     input(type="radio" id='Female' name="user[gender]" value='')
+
+--- lang table ---
+
+table
+  caption Language Profile
+  tr
+    th Language
+    th Proficiency
+    th Intent
+      each language in languages
+        tr
+          td=language.language
+          td=language.proficiency
+          td=language.approach 
+          td
+            form(action = "/languages/"+language.id+"?_method=delete" method = "POST")
+              input('type' = "submit" value = "Remove")

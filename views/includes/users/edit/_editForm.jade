@@ -30,39 +30,32 @@ div(class='edit-form')
 	div(class='panel')
 		div(class='edit-languages')
 			h3 Edit Language Preferences
-			form(action="/languages" method="POST")
-				p Add a language to your profile!
-					select(name="language[language]" required)
-						option
-						option(value = "Spanish") Spanish
-						option(value = "English") English
-				p Level of Proficiency
-					select(name="language[proficiency]" required)
-						option
-						option 1
-						option 2
-						option 3
-						option 4
-						option 5
-				p Intent
-					select(name= "language[approach]" required)
-						option
-						option Learning
-						option Teaching
-				p   
-					input(type = "hidden" name= "language[user_id]" value = "#{currentUser.id}")
-					input(type = "submit" value = "Add to My Language Profile")   
-			table
-				caption Language Profile
-				tr
-					th Language
-					th Proficiency
-					th Intent
-						each language in languages
-							tr
-								td=language.language
-								td=language.proficiency
-								td=language.approach 
-								td
-									form(action = "/languages/"+language.id+"?_method=delete" method = "POST")
-										input('type' = "submit" value = "Remove")
+			form(action="/languages" class='form-horizontal' method="POST")
+				div(class='form-group')
+						label(for='languageProfile' class='col-md-3 control-label') Add a language:
+						div(class='col-md-9')
+							select(name="language[language]" id='languageProfile' required)
+								option
+								option(value = "Spanish") Spanish
+								option(value = "English") English
+				div(class='form-group')
+						label(for='languageProfciency' class='col-md-3 control-label') Level of Proficiency:
+						div(class='col-md-9')
+							select(name="language[proficiency]" id='languageProfciency' required)
+								option
+								option 1
+								option 2
+								option 3
+								option 4
+								option 5
+				div(class='form-group')
+						label(for='languageApproach' class='col-md-3 control-label') Intent:
+						div(class='col-md-9')
+							select(name= "language[approach]" id='languageApproach' required)
+								option
+								option Learning
+								option Teaching
+				div(class='form-group')
+						div(class='col-md-offset-3 col-md-3')
+							input(type = "hidden" name= "language[user_id]" value = "#{currentUser.id}")
+							input(type = "submit" class='btn btn-success btn-update' value = "Add to My Language Profile")   

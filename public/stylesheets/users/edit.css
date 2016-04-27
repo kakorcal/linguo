@@ -50,3 +50,15 @@ textarea {
 .btn-delete {
   background-color: #e15258;
 }
+
+.edit-languages .form-group {
+  margin: 30px 0;
+}
+
+.edit-languages select {
+  width: 100%;
+}
+
+.edit-languages .control-label {
+  padding-top: 0;
+}
