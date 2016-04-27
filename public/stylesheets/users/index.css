@@ -1,3 +1,7 @@
+#users-search h1 {
+  margin: 5px 0 15px 0;
+}
+
 #users-search .form-group:nth-child(1) label {
   padding-top: 0;
 }
