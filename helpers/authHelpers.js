@@ -43,10 +43,6 @@ const authMiddleware = {
         .select('user_id as uid')
         .where('thread_id', req.params.id)
         .then((users) => {
-          // Is this user either the sender or recipient in this thread
-          // users.forEach((el) => {
-          //   if (el.uid === req.user.id) { return next() } //I DON'T THINK YOU CAN RETURN THIS WAY -Thomas
-          // })
           if(users.findIndex(function(el){return el.uid === req.user.id}) !== -1)
           {
             return next()
