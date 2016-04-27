@@ -1,0 +1,58 @@
+#users-search h1, #users-list .header {
+  margin: 5px 0 15px 0;
+}
+
+#users-search .form-group:nth-child(1) label {
+  padding-top: 0;
+}
+
+.json-users {
+  display: none;
+}
+
+#languageInput {
+  width: 100%;
+}
+
+#search {
+  margin-right: 10px;
+}
+
+.user-profile {
+  overflow-wrap: break-word;
+}
+
+.teaching-languages, .learning-languages {
+  margin-left: 12%;
+  font-size: 18px;
+}
+
+.teaching-languages p, .learning-languages p {
+  position: relative;
+}
+
+.stars .fa-star{
+  color: #f9845b;
+}
+
+.language-delete-form {
+  position: absolute;
+  top: -5px;
+  right: 0;
+}
+
+.profile-head img {
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.profile-head h2 {
+  display: inline;
+  vertical-align: middle;
+  margin-left: 20px;
+}
+
+.profile-head h2 span {
+  font-size: 17px;
+  vertical-align: middle;
+}

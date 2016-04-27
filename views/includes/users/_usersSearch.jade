@@ -1,16 +1,18 @@
 div(id='users-search')
   div(class='panel')
     div(class='panel-body')
-      h1 Users Search
-      form
-        p Language
-          select(id = "languageInput")
-            each language in languagesList
-              option=language
-        p Location
-          input(type="text", name="" id = "locationInput")
-        p
-          input(type ="submit" value = "SEARCH" id="search")
-      form
-        p
-          input(type = "submit" value = "SEARCH BASED ON PROFILE")
+      h1 Search Partners
+      form(class='form-horizontal')
+        div(class='form-group')
+          label(for='languageInput' class='col-md-2 control-label') Language:
+          div(class='col-md-10')
+            select(id = "languageInput")
+              each language in languagesList
+                option=language
+        div(class='form-group')
+          label(for='locationInput' class='col-md-2 control-label') Location:
+          div(class='col-md-10')
+            input(type="text", class='form-control' name="" id = "locationInput")
+        div(class='form-group text-center')
+          input(type ="submit" class="btn btn-success" value = "SEARCH" id="search")
+          input(type = "submit" class="btn btn-primary" value = "SEARCH BASED ON PROFILE")
