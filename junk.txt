@@ -82,12 +82,6 @@ TODO: Add flash message after a non logged in user tries to message somebody
       put request for user form 
 
 
-<div class="progress">
-  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-    <span class="sr-only">40% Complete (success)</span>
-  </div>
-</div>
-
 span Gender: &nbsp;
     label(for='Male') Male: &nbsp;
     input(type="radio" id='Male' name="user[gender]")
@@ -97,3 +91,39 @@ span
 span
   label(for='ageInput') Age: &nbsp;
   input(type="number" class='form-control' name="user[age]" value="#{currentUser.age}" id="ageInput" size="6" min="18" max="99")
+
+--- index userslist ---
+
+div(class="list-group")
+  h4(class = "list-group-item-heading") #{user.name}
+  p(class = "list-group-item-text"): li Description: #{user.description}
+  form(action = "/threads" method = "POST")
+    input(type = "text" name = "thread[subject]")
+    input(type = "text" name = "message[message]")
+    input(type = "hidden" name = "message[sender_id]" value = "#{user.id}")
+    input(type = "hidden" name = "message[rec_id]" value = "#{user.id}")
+    input(type = "submit" value = "Send Message!")
+
+    div(class='profile-head')
+      img(src='#{user.img_url}' alt='profile')
+      h2 #{user.name} &nbsp;
+        if (user.gender)
+          span Gender: #{user.gender} &nbsp;
+        if (user.age) 
+          span Age: #{user.age}
+    hr
+    div(class='profile-desc')
+      h4 Teaching Languages:
+      div(class='teaching-languages')
+      hr
+      h4 Learning Languages:
+      div(class='learning-languages')
+      hr
+      h4 Description: 
+      p #{user.description}
+      hr
+      h4 Location: #{user.location}
+      hr
+      h4 Member Since: #{user.created_at}
+      hr
+      h4 Last Login: #{user.updated_at}

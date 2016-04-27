@@ -44,9 +44,15 @@ const authMiddleware = {
         .where('thread_id', req.params.id)
         .then((users) => {
           // Is this user either the sender or recipient in this thread
-          users.forEach((el) => {
-            if (el.uid === req.user.id) { return next() } 
-          })
+          for(var i = 0; i < users.length; i++){
+            if(users[i].uid === req.user.id){
+              return next();
+            }
+          }
+          // users.forEach((el) => {
+            // returns undefined
+          //   if (el.uid === req.user.id) { return next() } 
+          // })
           req.flash('notCorrectUser', 'You may not access message threads in which you are not a participant');
           res.redirect(`/users/${req.user.id}`);
         })
