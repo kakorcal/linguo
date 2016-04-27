@@ -1,0 +1,11 @@
+#users-search .form-group:nth-child(1) label {
+  padding-top: 0;
+}
+
+#languageInput {
+  width: 100%;
+}
+
+#search {
+  margin-right: 15px;
+}

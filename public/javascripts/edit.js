@@ -1,5 +1,4 @@
 $(()=>{
-  console.log(languages);
   var learningContainer = $('.learning-languages');
   var teachingContainer = $('.teaching-languages');
   var languages = JSON.parse($('.json-languages').text())
