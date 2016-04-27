@@ -75,3 +75,25 @@ table
           td
             form(action = "/languages/"+language.id+"?_method=delete" method = "POST")
               input('type' = "submit" value = "Remove")
+
+TODO: Add flash message after a non logged in user tries to message somebody
+      edit profile flash - tell user that language pref is required
+      user[gender] not updating
+      put request for user form 
+
+
+<div class="progress">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+    <span class="sr-only">40% Complete (success)</span>
+  </div>
+</div>
+
+span Gender: &nbsp;
+    label(for='Male') Male: &nbsp;
+    input(type="radio" id='Male' name="user[gender]")
+span
+  label(for='Female') Female: &nbsp;
+  input(type="radio" id='Female' name="user[gender]")
+span
+  label(for='ageInput') Age: &nbsp;
+  input(type="number" class='form-control' name="user[age]" value="#{currentUser.age}" id="ageInput" size="6" min="18" max="99")

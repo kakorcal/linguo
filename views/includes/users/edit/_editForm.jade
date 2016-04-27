@@ -2,14 +2,14 @@ div(class='edit-form')
 	div(class='panel')
 		div(class='edit-user')
 			h3 Edit Profile Info
-			form
+			form(action="/users/#{currentUser.id}/?_method=PUT" method='POST')
 				div(class='form-group form-span')
-					span Gender: &nbsp;
-							label(for='Male') Male: &nbsp;
-							input(type="radio" id='Male' name="user[gender]")
 					span
-						label(for='Female') Female: &nbsp;
-						input(type="radio" id='Female' name="user[gender]")
+						label(for='gender') Gender: &nbsp;
+						select(name="user[gender]" id='gender')
+							option
+							option(value = "Male") Male
+							option(value = "Female") Female
 					span
 						label(for='ageInput') Age: &nbsp;
 						input(type="number" class='form-control' name="user[age]" value="#{currentUser.age}" id="ageInput" size="6" min="18" max="99")
