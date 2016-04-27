@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return knex.schema.table('thread_participants', (table)=>{
-  	table.integer('thread_id').notNullable().index().references('thread.id');
+  	table.integer('thread_id').notNullable().index().references('threads.id');
   	table.integer('user_id').notNullable().index().references('users.id');
   })
 };

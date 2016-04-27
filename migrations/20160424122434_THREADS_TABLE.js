@@ -6,5 +6,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  return knex.dropTable('threads');
+  return knex.schema.dropTable('threads');
 };
