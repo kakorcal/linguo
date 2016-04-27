@@ -25,7 +25,7 @@ afterEach((done) => {
   });
 });
 
-describe('GET Home', () => {
+describe('GET /', () => {
   it('gets the home page', done => {
     request(app)
     .get('/')
@@ -36,3 +36,25 @@ describe('GET Home', () => {
     })
   })
 })
+
+describe('GET /users', () => {
+  it('gets the users index page', done => {
+    request(app)
+    .get('/users')
+    .expect('Content-Type', 'text/html')
+    .end((err, res) => {
+      expect(res.status).to.equal(200)
+      done();
+    })
+  })
+  it('retrieves all the users for index page', done => {
+    request(app)
+    .get('/users')
+    .expect('Content-Type', 'text/html')
+    .end((err, res) => {
+      expect(res.body.length).to.equal(allUsers.length)
+      done();
+    })
+  })
+})
+
