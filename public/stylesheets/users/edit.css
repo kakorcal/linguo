@@ -1,3 +1,7 @@
+.user-profile {
+  overflow-wrap: break-word;
+}
+
 .profile-head img {
   max-width: 150px;
   max-height: 150px;

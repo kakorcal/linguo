@@ -11,7 +11,7 @@ router.route('/')
 		knex('languages')
 		.insert(req.body.language)
 		.then(()=>{
-			res.redirect('/users/'+req.body.language.user_id);
+			res.redirect('/users/'+req.body.language.user_id+'/edit');
 	 })
 		.catch(err=>{
 			//WRITE TESTS FOR INVALID INPUT
