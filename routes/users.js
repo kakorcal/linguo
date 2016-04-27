@@ -135,6 +135,7 @@ router.route('/:id')
 		.del()
 		.then(()=>{
 			console.log("USER DELETED");
+			req.flash('accountDeleted', 'Your account has been successfully deleted');
 			res.redirect('/');
 		});
 	});

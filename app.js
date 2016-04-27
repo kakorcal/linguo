@@ -46,6 +46,7 @@ app.get('/', (req,res)=>{
   // Define flash msgs
   var logoutMsg = req.flash('logoutMessage');
   var notLoggedInMsg = req.flash('notLoggedIn');
+  var accountDeleted = req.flash('accountDeleted');
   // Determine which (if any) flash message has been passed through
   if (!!logoutMsg.length) {
     console.log("A LOGOUT MESSAGE WILL BE DISPLAYED");
@@ -54,7 +55,11 @@ app.get('/', (req,res)=>{
   else if (!!notLoggedInMsg.length) {
     console.log("A NOT LOGGED IN MESSAGE WILL BE DISPLAYED");    
     res.render('home', {message: notLoggedInMsg});
-  } 
+  }
+  else if (!!accountDeleted.length) {
+    console.log("AN ACCOUNT DELETED MESSAGE WILL BE DISPLAYED");    
+    res.render('home', {message: accountDeleted});
+  }  
   else {
     console.log("NORMAL HOME RENDER");
     res.render('home'); 
