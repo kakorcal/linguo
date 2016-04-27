@@ -4,7 +4,7 @@ $(()=>{
   var teachingContainers = feedContainer.find('.teaching-languages');
   var feed = JSON.parse($('.json-users').text())
       // .forEach(user => {
-        
+          
       // });
 
   console.log(feed);

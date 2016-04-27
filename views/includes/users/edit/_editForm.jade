@@ -25,8 +25,8 @@ div(class='edit-form')
 				div(class='form-group text-center')
 					input(type="submit" class='btn btn-success btn-update' value = "Update My Info" id="update")
 			form(class='text-center' action="/users/#{currentUser.id}?_method=delete" method="POST")
-					&nbsp;
-					input(type="submit" class='btn btn-danger btn-delete' value="Delete My Account")
+				&nbsp;
+				input(type="submit" class='btn btn-danger btn-delete' value="Delete My Account")
 	div(class='panel')
 		div(class='edit-languages')
 			h3 Edit Language Preferences
