@@ -20,6 +20,11 @@ $(()=>{
   }
 
   switch($flash.text().length){
+    case 17: 
+      $container.addClass('alert-success');
+      $flash.addClass('flash animated');
+      console.log('login success and profile is updated');
+      break;
     case 77:
       $container.addClass('alert-danger');
       $flash.addClass('flash animated');
@@ -40,6 +45,10 @@ $(()=>{
       $flash.addClass('flash animated');
       console.log('not correct user');
       break;
+    case 69:
+      $container.addClass('alert-danger');
+      $flash.addClass('flash animated');
+      console.log('cannot access thread if not participant');
   }
 
   var currentUserID = $('#current-user-id').text();
