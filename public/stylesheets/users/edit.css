@@ -13,7 +13,11 @@
 }
 
 .edit-user h3, .edit-languages h3 {
-  margin: 0 0 10px 0;
+  margin: 5px 0 15px 0;
+}
+
+textarea {
+  min-height: 100px;
 }
 
 .btn-update {

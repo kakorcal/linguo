@@ -17,7 +17,7 @@ div(class='edit-form')
           input(type="text" class='form-control' name="user[img_url]" value = "#{currentUser.img_url}" id = "imgInput")
         div(class='form-group')
           label(for='descriptionInput') Description:
-          input(type="text" class='form-control' name="user[description]" value = "#{currentUser.description}" id = "descriptionInput")
+          textarea(type="text" class='form-control' name="user[description]" id = "descriptionInput") #{currentUser.description}
         div(class='form-group text-center')
           input(type="submit" class='btn btn-success btn-update' value = "Update My Info" id="update")
           form(action="/users/#{currentUser.id}?_method=delete" method="POST")
