@@ -124,7 +124,9 @@ $(()=>{
                   $($listGroup).append($form);
 
                 });
+
                 $($listGroup).insertAfter('.header');
+
               }, 
               'json');
 

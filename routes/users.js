@@ -19,9 +19,23 @@ router.route('/')
 		json: ()=>{
 			//NEEDS TO BE REFACTORED TO A JOIN WITH THE LANGUAGES TABLE SO THAT THE WE CAN SEND USERS WHOSE PRACTICING LANGUAGE
 			//MATCHES REQ.QUERY.LANGUAGE
-			knex('users')
+			// knex('threads as t')
+			// .select('t.id as tid', 'm.id as mid', 'm.rec_id as rec_id', 'ur.email as rec_email', 'm.sender_id as send_id', 'us.email as send_email', 't.subject', 'm.message')
+			// .join('messages as m', 'm.thread_id', 't.id')
+			// .join('users as ur', 'ur.id', 'm.rec_id')
+			// .join('users as us', 'us.id', 'm.sender_id')
+			// .where('t.id', req.params.id)
+			// .orderBy('m.id')
+
+
+			knex.select('*')
+			.from('users')
+			.leftOuterJoin('languages', 'users.id', 'languages.user_id')
 			.where('location', req.query.location)
+			.andWhere('languages.language', req.query.language)
+			.andWhere('languages.approach', 'Teaching')//NOT SURE IF THIS SHOULD BE A RESTRICTION
 			.then(users=>{
+				eval(require('locus'))
 				res.send(users);
 			})
 		}
