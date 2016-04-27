@@ -29,9 +29,9 @@ describe('GET Home', () => {
   it('gets the home page', done => {
     request(app)
     .get('/')
-    .expect('Content-Type', text/html)
+    .expect('Content-Type', 'text/html')
     .end((err, res) => {
-      expect(res.body.length).to.equal(allUsers.length)
+      expect(res.status).to.equal(200)
       done();
     })
   })
