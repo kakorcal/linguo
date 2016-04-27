@@ -115,9 +115,9 @@ $(()=>{
                   $($listGroup).append($form);
 
                 });
-                debugger
+                
                 $($listGroup).insertAfter('.header');
-                debugger
+                
               }, 
               'json');
 
