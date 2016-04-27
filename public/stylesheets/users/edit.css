@@ -1,3 +1,8 @@
+.profile-head img {
+  max-width: 150px;
+  max-height: 150px;
+}
+
 .profile-head h2 {
   display: inline;
   vertical-align: middle;
@@ -6,6 +11,7 @@
 
 .profile-head h2 span {
   font-size: 17px;
+  vertical-align: middle;
 }
 
 .edit-user, .edit-languages {
@@ -14,6 +20,19 @@
 
 .edit-user h3, .edit-languages h3 {
   margin: 5px 0 15px 0;
+}
+
+.form-span {
+  display: inline-block;
+}
+
+.form-span span {
+  margin-right: 15px;
+}
+
+.form-span input[type='number'] {
+  display: inline-block;
+  width: auto;
 }
 
 textarea {

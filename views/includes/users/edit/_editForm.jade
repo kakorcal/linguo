@@ -1,64 +1,68 @@
 div(class='edit-form')
-  div(class='panel')
-    div(class='edit-user')
-      h3 Edit Profile Info
-      form
-        div(class='form-group')
-          label(for='locationInput') Location:
-          input(type="text" class='form-control' name="user[location]" value = "#{currentUser.location}" id = "locationInput")
-        div(class='form-group')
-          label(for='genderInput') Gender:
-          input(type="text" class='form-control' name="user[gender]" value = "#{currentUser.gender}" id = "genderInput")
-        div(class='form-group')
-          label(for='ageInput') Age:
-          input(type="text" class='form-control' name="user[age]" value = "#{currentUser.age}" id = "ageInput")
-        div(class='form-group')
-          label(for='imgInput') Avatar URL:
-          input(type="text" class='form-control' name="user[img_url]" value = "#{currentUser.img_url}" id = "imgInput")
-        div(class='form-group')
-          label(for='descriptionInput') Description:
-          textarea(type="text" class='form-control' name="user[description]" id = "descriptionInput") #{currentUser.description}
-        div(class='form-group text-center')
-          input(type="submit" class='btn btn-success btn-update' value = "Update My Info" id="update")
-          form(action="/users/#{currentUser.id}?_method=delete" method="POST")
-              &nbsp;
-              input(type="submit" class='btn btn-danger btn-delete' value="Delete My Account")
-  div(class='panel')
-    div(class='edit-languages')
-      h3 Edit Language Preferences
-      form(action="/languages" method="POST")
-        p Add a language to your profile!
-          select(name="language[language]" required)
-            option
-            option(value = "Spanish") Spanish
-            option(value = "English") English
-        p Level of Proficiency
-          select(name="language[proficiency]" required)
-            option
-            option 1
-            option 2
-            option 3
-            option 4
-            option 5
-        p Intent
-          select(name= "language[approach]" required)
-            option
-            option Learning
-            option Teaching
-        p   
-          input(type = "hidden" name= "language[user_id]" value = "#{currentUser.id}")
-          input(type = "submit" value = "Add to My Language Profile")   
-      table
-        caption Language Profile
-        tr
-          th Language
-          th Proficiency
-          th Intent
-            each language in languages
-              tr
-                td=language.language
-                td=language.proficiency
-                td=language.approach 
-                td
-                  form(action = "/languages/"+language.id+"?_method=delete" method = "POST")
-                    input('type' = "submit" value = "Remove")
+	div(class='panel')
+		div(class='edit-user')
+			h3 Edit Profile Info
+			form
+				div(class='form-group form-span')
+					span Gender: &nbsp;
+							label(for='Male') Male: &nbsp;
+							input(type="radio" id='Male' name="user[gender]")
+					span
+						label(for='Female') Female: &nbsp;
+						input(type="radio" id='Female' name="user[gender]")
+					span
+						label(for='ageInput') Age: &nbsp;
+						input(type="number" class='form-control' name="user[age]" value="#{currentUser.age}" id="ageInput" size="6" min="18" max="99")
+				div(class='form-group')
+					label(for='locationInput') Location:
+					input(type="text" class='form-control' name="user[location]" value = "#{currentUser.location}" id = "locationInput")
+				div(class='form-group')
+					label(for='imgInput') Avatar URL:
+					input(type="text" class='form-control' name="user[img_url]" value = "#{currentUser.img_url}" id = "imgInput")
+				div(class='form-group')
+					label(for='descriptionInput') Description:
+					textarea(type="text" class='form-control' name="user[description]" id = "descriptionInput") #{currentUser.description}
+				div(class='form-group text-center')
+					input(type="submit" class='btn btn-success btn-update' value = "Update My Info" id="update")
+					form(action="/users/#{currentUser.id}?_method=delete" method="POST")
+							&nbsp;
+							input(type="submit" class='btn btn-danger btn-delete' value="Delete My Account")
+	div(class='panel')
+		div(class='edit-languages')
+			h3 Edit Language Preferences
+			form(action="/languages" method="POST")
+				p Add a language to your profile!
+					select(name="language[language]" required)
+						option
+						option(value = "Spanish") Spanish
+						option(value = "English") English
+				p Level of Proficiency
+					select(name="language[proficiency]" required)
+						option
+						option 1
+						option 2
+						option 3
+						option 4
+						option 5
+				p Intent
+					select(name= "language[approach]" required)
+						option
+						option Learning
+						option Teaching
+				p   
+					input(type = "hidden" name= "language[user_id]" value = "#{currentUser.id}")
+					input(type = "submit" value = "Add to My Language Profile")   
+			table
+				caption Language Profile
+				tr
+					th Language
+					th Proficiency
+					th Intent
+						each language in languages
+							tr
+								td=language.language
+								td=language.proficiency
+								td=language.approach 
+								td
+									form(action = "/languages/"+language.id+"?_method=delete" method = "POST")
+										input('type' = "submit" value = "Remove")
