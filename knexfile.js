@@ -12,7 +12,7 @@ module.exports = {
   test: {
     client: 'pg',
     connection: {
-      database: 'language_app'
+      database: 'language_app_test'
     },
       pool: {
       min: 1,
