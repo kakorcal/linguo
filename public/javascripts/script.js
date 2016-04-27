@@ -79,10 +79,50 @@ $(()=>{
 
     function searchCallback(location){
       var language = $('#languageInput').val();
-      var searchData = {searchData: {location, language}};
-      $.get( "/users", searchData );
+      var searchData = {location, language};
+      $.get( "/users", 
+              searchData, 
+              function(data){
+                
+                $('.list-group').remove()
+                var $listGroup = $("<div/>")
+                $listGroup.addClass('list-group');
+
+                data.forEach((el)=>{
+                  
+                  var $h4 = $('<h4/>');
+                  $h4.addClass("list-group-item-heading")
+                  $h4.text(el.name);
+                  
+                  var $p = $('<p/>')
+                  $p.addClass('list-group-item-text')
+                  var $li = $('<li/>');
+                  $li.text("Description: "+el.description);
+                  $p.append($li);
+                  
+                  var $form = $('<form/>');
+                  $form.attr("action", "/threads");
+                  $form.attr("method", "POST")
+                  
+                  $('<input type = "text" name = "thread[subject]">'+
+                    '<input type = "text" name = "message[message]">'+
+                    '<input type = "hidden" name = "message[sender_id]" value ='+currentUserID+'>'+
+                    '<input type = "hidden" name = "message[rec_id]" value = '+el.id+'>'+
+                    '<input type = "submit" value = "Send Message!">').appendTo($form);
+
+                  $($listGroup).append($h4);
+                  $($listGroup).append($p);
+                  $($listGroup).append($form);
+
+                });
+                debugger
+                $($listGroup).insertAfter('.header');
+                debugger
+              }, 
+              'json');
 
     }
+
 
   }
 

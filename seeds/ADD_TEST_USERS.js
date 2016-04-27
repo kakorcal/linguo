@@ -10,7 +10,7 @@ exports.seed = function(knex, Promise) {
     	id: 1, 
     	google_id: 'google_id_of_1',
     	name: 'Thomas',
-    	location: 'Seattle',
+    	location: 'Seattle, WA, USA',
     	gender: 'male',
     	age: 24,
     	img_url: 'lorempixel.com/200/200',
@@ -24,12 +24,12 @@ exports.seed = function(knex, Promise) {
     	id: 2, 
     	google_id: 'google_id_of_2',
     	name: 'Dumbledore',
-    	location: 'Hogwarts',
+    	location: 'Seattle, WA, USA',
     	gender: 'male',
     	age: 153,
     	img_url: 'lorempixel.com/200/200',
     	description: 'I am here to learn a new language!',
-        email: "albus@abrakadabra.com"
+        email: "thomasobrien99@gmail.com"
     }),
     
     knex('users').insert(
@@ -42,7 +42,7 @@ exports.seed = function(knex, Promise) {
     	age: 46,
     	img_url: 'lorempixel.com/200/200',
     	description: "D'oh!",
-        email: "duffrulles@simpsons.com"
+        email: "thomasobrien99"
     })
   );
 };

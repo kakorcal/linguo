@@ -9,11 +9,24 @@ router.use(authHelpers.currentUser);
 
 router.route('/')
 	.get((req, res)=>{
-		knex('users')
-		.then(users=>{
-			res.render('users/index', {users, languagesList, message: req.flash('notCorrectUser')});
-		});
+	res.format({
+		html: ()=>{
+			knex('users')
+				.then(users=>{
+				res.render('users/index', {users, languagesList, message: req.flash('notCorrectUser')});
+			});
+		},
+		json: ()=>{
+			//NEEDS TO BE REFACTORED TO A JOIN WITH THE LANGUAGES TABLE SO THAT THE WE CAN SEND USERS WHOSE PRACTICING LANGUAGE
+			//MATCHES REQ.QUERY.LANGUAGE
+			knex('users')
+			.where('location', req.query.location)
+			.then(users=>{
+				res.send(users);
+			})
+		}
 	})
+})
 	.post((req, res)=>{
 		res.redirect('/users');
 	});
