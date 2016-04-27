@@ -54,7 +54,8 @@ $(()=>{
   var currentUserID = $('#current-user-id').text();
 
   $('#update').on('click', update);
-  $('#search').on('click', search)
+  $('#search').on('click', search);
+  $('#profileSearch').on('click', profileSearch);
 
   function update(e)
   {
@@ -79,15 +80,28 @@ $(()=>{
 
     formatLocation(inputLocation, updateCallback);
   }
-  function search(e)
+  function profileSearch(e)
   {
     e.preventDefault();
-
+    $.get('/users',
+          null,
+          function(data)
+          {
+            $('#locationInput').val(data.location);
+            
+            search(null, data.languages);
+          }, 
+          'json');
+  }
+  function search(e, languagesArr)
+  {
+    if(e){e.preventDefault();}
     var inputLocation = $('#locationInput').val();
     formatLocation(inputLocation, searchCallback);
 
     function searchCallback(location){
-      var language = $('#languageInput').val();
+      var language = languagesArr || [$('#languageInput').val()];
+
       var searchData = {location, language};
       $.get( "/users", 
               searchData, 
@@ -124,7 +138,9 @@ $(()=>{
                   $($listGroup).append($form);
 
                 });
+
                 $($listGroup).insertAfter('.header');
+
               }, 
               'json');
 
