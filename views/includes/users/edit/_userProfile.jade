@@ -1,4 +1,5 @@
 div(class='user-profile')
+  p(class='json-languages') #{JSON.stringify(languages)}
   div(class='panel')
     div(class='panel-body')
       div(class='profile-head')
@@ -10,9 +11,11 @@ div(class='user-profile')
             span Age: #{user.age}
       hr
       div(class='profile-desc')
-        h4 Native Languages:
+        h4 Teaching Languages:
+        div(class='teaching-languages')
         hr
-        h4 Practicing Languages:
+        h4 Learning Languages:
+        div(class='learning-languages')
         hr
         h4 Description: 
         p #{user.description}

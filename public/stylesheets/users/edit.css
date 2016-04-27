@@ -2,6 +2,29 @@
   overflow-wrap: break-word;
 }
 
+.json-languages {
+  display: none;
+}
+
+.teaching-languages, .learning-languages {
+  margin-left: 12%;
+  font-size: 18px;
+}
+
+.teaching-languages p, .learning-languages p {
+  position: relative;
+}
+
+.stars .fa-star{
+  color: #f9845b;
+}
+
+.language-delete-form {
+  position: absolute;
+  top: -5px;
+  right: 0;
+}
+
 .profile-head img {
   max-width: 150px;
   max-height: 150px;
