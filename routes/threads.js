@@ -21,7 +21,7 @@ router.route('/')
 			.insert(
 			{
 				message: message.message,
-				sender_id: message.sender_id,
+				sender_id: req.user.id,
 				rec_id: message.rec_id,
 				thread_id: thread_id[0]
 			})
