@@ -2,11 +2,11 @@ div(class='edit-form')
 	div(class='panel')
 		div(class='edit-user')
 			h3 Edit Profile Info
-			form(action="/users/#{currentUser.id}/?_method=PUT" method='POST')
+			form
 				div(class='form-group form-span')
 					span
-						label(for='gender') Gender: &nbsp;
-						select(name="user[gender]" id='gender')
+						label(for='genderInput') Gender: &nbsp;
+						select(name="user[gender]" id='genderInput')
 							option
 							option(value = "Male") Male
 							option(value = "Female") Female
@@ -24,9 +24,9 @@ div(class='edit-form')
 					textarea(type="text" class='form-control' name="user[description]" id = "descriptionInput") #{currentUser.description}
 				div(class='form-group text-center')
 					input(type="submit" class='btn btn-success btn-update' value = "Update My Info" id="update")
-					form(action="/users/#{currentUser.id}?_method=delete" method="POST")
-							&nbsp;
-							input(type="submit" class='btn btn-danger btn-delete' value="Delete My Account")
+			form(class='text-center' action="/users/#{currentUser.id}?_method=delete" method="POST")
+				&nbsp;
+				input(type="submit" class='btn btn-danger btn-delete' value="Delete My Account")
 	div(class='panel')
 		div(class='edit-languages')
 			h3 Edit Language Preferences

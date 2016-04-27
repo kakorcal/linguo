@@ -78,8 +78,13 @@ table
 
 TODO: Add flash message after a non logged in user tries to message somebody
       edit profile flash - tell user that language pref is required
-      user[gender] not updating
-      put request for user form 
+      
+      style index users list
+      ensure age field is inputted (has to be done before request is made)
+      put request ajax for profile edit -> ensure dom is rendered again
+      user can be deleted and cookies are reset
+      Style thread page
+      truncate timestamp
 
 
 span Gender: &nbsp;
@@ -127,3 +132,35 @@ div(class="list-group")
       h4 Member Since: #{user.created_at}
       hr
       h4 Last Login: #{user.updated_at}
+
+
+
+
+
+
+
+
+      div(class='panel')
+        div(class='panel-body')
+          div(class='feed')
+            div(class='profile-head')
+              img(src='#{user.img_url}' alt='profile')
+              h2 #{user.name} &nbsp;
+                if (user.gender)
+                  span Gender: #{user.gender} &nbsp;
+                if (user.age) 
+                  span Age: #{user.age}
+            hr
+            div(class='profile-desc')
+              h4 Teaching Languages:
+              div(class='teaching-languages')
+              hr
+              h4 Learning Languages:
+              div(class='learning-languages')
+              hr
+              h4 Description: 
+              p #{user.description}
+              hr
+              h4 Location: #{user.location}
+              hr
+              h4 Last Login: #{user.updated_at}
