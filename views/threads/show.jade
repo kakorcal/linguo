@@ -7,29 +7,29 @@ block content
 	div(id='messages-show')
 		div(class='row')
 			div(class='col-md-8')
-				div(class='panel')
-					div(class='panel-body')
-						h1 Threads Show Page
-						h3 Subject: #{threadMsgs[0].subject}
-						each msg in threadMsgs
-							if (msg.send_email === currentUser.email)
-								div(class='message-body user-msg')
-									h5.message-text From: #{msg.send_email}  
-									h5.message-text To: #{msg.rec_email}  
-									h6.message-text Body: #{msg.message}
-							else
-								div(class='message-body non-user-msg')
-									h5.message-text From: #{msg.send_email}  
-									h5.message-text To: #{msg.rec_email}  
-									h6.message-text Body: #{msg.message}
-						h5
-							form(action = "/threads/#{threadMsgs[0].tid}/messages" method = "POST")
-								input(type = "text" name = "message[message]" placeholder= "Add a reply")
-								input(type = "hidden" name = "message[sender_id]" value = "#{currentUser.id}")
-								if (currentUser.id === threadMsgs[0].send_id)
-									input(type = "hidden" name = "message[rec_id]" value = "#{threadMsgs[0].rec_id}")
-								else 
-									input(type = "hidden" name = "message[rec_id]" value = "#{threadMsgs[0].send_id}")
-								input(type = "submit" value ="Send Reply")
+				h1.message-subject Subject: #{threadMsgs[0].subject}
+					each msg in threadMsgs
+						if (msg.send_id === currentUser.id)
+							div(class='panel')
+								div(class='panel-body')
+									div(class='message-body user-msg')
+										h5.message-participant From: #{msg.send_name}  
+										h5.message-participant To: #{msg.rec_name}  
+										h4.message-text #{msg.message}
+						else
+							div(class='panel')
+								div(class='panel-body')
+									div(class='message-body non-user-msg')
+										h5.message-participant From: #{msg.send_name}  
+										h5.message-participant To: #{msg.rec_name}  
+										h4.message-text Body: #{msg.message}
+					form(action = "/threads/#{threadMsgs[0].tid}/messages" method = "POST")
+						input(type = "text" name = "message[message]" placeholder= "Add a reply")
+						input(type = "hidden" name = "message[sender_id]" value = "#{currentUser.id}")
+						if (currentUser.id === threadMsgs[0].send_id)
+							input(type = "hidden" name = "message[rec_id]" value = "#{threadMsgs[0].rec_id}")
+						else 
+							input(type = "hidden" name = "message[rec_id]" value = "#{threadMsgs[0].send_id}")
+						input(type = "submit" value ="Send Reply")
 			div(class='col-md-4')
 				include ../includes/_sidebar
