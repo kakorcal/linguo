@@ -164,3 +164,147 @@ div(class="list-group")
               h4 Location: #{user.location}
               hr
               h4 Last Login: #{user.updated_at}
+
+
+
+1. What dependency file does Heroku use to deploy your Node.js app?
+  package.json
+2. How does Git relate to Heroku?
+  git push heroku master
+3. How does Heroku associate your repo to its platform?
+  When you create an application on Heroku, it associates a new git remote, typically named heroku, with the local git repository for your application.
+4. What is a slug?
+  A slug is a bundle of your source, fetched dependencies, the language runtime, and compiled/generated output of the build system - ready for execution.
+  These slugs are a fundamental aspect of what happens during application execution - they contain your compiled, assembled application - ready to run - together with the instructions (the Procfile) of what you may want to execute.
+  Procfiles list process types - named commands that you may want executed
+5. What is a dyno?
+   Dynos are isolated, virtualized Unix containers, that provide the environment required to run an application.
+   Think of a running dyno as a lightweight, secure, virtualized Unix container that contains your application slug in its file system.
+6. What is a config variable?
+    Config vars contain customizable configuration data that can be changed independently of your source code. The configuration is exposed to a running application via environment variables.
+7. What is a release?
+  Earlier, this article stated that to run your application on a dyno, the Heroku platform loaded the dyno with your most recent slug. This needs to be refined: in fact it loads it with the slug and any config variables you have assigned to the application. The combination of slug and configuration is called a release.
+
+heroku login
+echo 'web: node app.js' > Procfile
+heroku run bash
+knex migrate: latest
+
+
+----- script.js -----
+// $('.list-group').remove()
+// var $listGroup = $("<div/>")
+// $listGroup.addClass('list-group');
+
+// data.forEach((el)=>{
+  
+//   var $h4 = $('<h4/>');
+//   $h4.addClass("list-group-item-heading")
+//   $h4.text(el.name);
+  
+//   var $p = $('<p/>')
+//   $p.addClass('list-group-item-text')
+//   var $li = $('<li/>');
+//   $li.text("Description: "+el.description);
+//   $p.append($li);
+  
+//   var $form = $('<form/>');
+//   $form.attr("action", "/threads");
+//   $form.attr("method", "POST")
+  
+//   $('<input type = "text" name = "thread[subject]">'+
+//     '<input type = "text" name = "message[message]">'+
+//     '<input type = "hidden" name = "message[sender_id]" value ='+currentUserID+'>'+
+//     '<input type = "hidden" name = "message[rec_id]" value = '+el.id+'>'+
+//     '<input type = "submit" value = "Send Message!">').appendTo($form);
+
+//   $($listGroup).append($h4);
+//   $($listGroup).append($p);
+//   $($listGroup).append($form);
+
+// });
+
+// $($listGroup).insertAfter('.header');
+
+--- build user stars ---
+
+// if(user.learning.length !== 0){
+//   user.learning.forEach(cur => {
+//     var languageEntry = $('<p></p>');
+//     var language = $('<span></span>').text(cur.lang + ' : ');
+//     var stars = $('<span class="stars"></span>'); 
+//     for(var i = 0; i < 5; i++){
+//       var star = $('<i class="fa" aria-hidden="true">');
+//       if(cur.prof > i){
+//         star.addClass('fa-star');
+//       }else{
+//         star.addClass('fa-star-o');
+//       }
+//       stars.append(star);
+//     }
+//     learningContainer.append('<hr>',
+//       languageEntry.append(
+//         language, stars
+//       )
+//     );
+//   });
+// }
+
+
+--- logo animation ---
+
+  // LOGO ANIMATION MAYBE
+
+  // var $logo = $('.logo-container');
+
+  // $logo.hover(function(){
+  //   $(this).addClass('pulse animated'); 
+  // }, function () {
+  //     $(this).removeClass('pulse animated');
+  // });
+
+
+--- index.js ---
+
+// var feedContainer = $('.feed');
+// var learningContainers = feedContainer.find('.learning-languages');
+// var teachingContainers = feedContainer.find('.teaching-languages');
+// var feed = JSON.parse($('.json-users').text())
+    // .forEach(user => {
+        
+    // });
+
+// console.log(feed);
+// var learningContainer = $('.learning-languages');
+// var teachingContainer = $('.teaching-languages');
+// var languages = JSON.parse($('.json-languages').text())
+//     .forEach(lang => {
+//       var languageEntry = $('<p></p>');
+//       var language = $('<span></span>').text(lang.language + ' : ');
+//       var stars = $('<span class="stars"></span>');
+//       var deleteForm = $('<form class="language-delete-form" method="POST"></form>');
+//       var deleteBtn = $('<input class="btn btn-danger btn-delete" type="submit" value="REMOVE"/>');
+//       deleteForm.attr('action', '/languages/'+lang.id+'?_method=delete');
+//       for(var i = 0; i < 5; i++){
+//         var star = $('<i class="fa" aria-hidden="true">');
+//         if(lang.proficiency > i){
+//           star.addClass('fa-star');
+//         }else{
+//           star.addClass('fa-star-o');
+//         }
+//         stars.append(star);
+//       }
+//       if(lang.approach === 'Teaching'){
+//         teachingContainer.append('<hr>',
+//           languageEntry.append(
+//             language, stars, deleteForm.append(deleteBtn)
+//           )
+//         );
+//       }else if (lang.approach === 'Learning'){
+//         learningContainer.append('<hr>',
+//           languageEntry.append(
+//             language, stars, deleteForm.append(deleteBtn)
+//           )
+//         );
+//       }
+//     });

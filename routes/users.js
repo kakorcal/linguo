@@ -9,17 +9,20 @@ router.use(authHelpers.currentUser);
 
 router.route('/')
 	.get((req, res)=>{
-		res.format({
-			html: ()=>{
-				knex('users')
-					// Excludes current user if one exists
-					.whereNot('id', (req.user ? req.user.id : null))
-					.then(users=>{
-						res.render('users/index', {users, languagesList, message: req.flash('notCorrectUser')});
-				});
-			},
-			json: ()=>{
-
+	res.format({
+		html: ()=>{
+			knex('users')
+				.then(users=>{
+					knex('languages').where('approach', 'Teaching').then(teachers => {
+						knex('languages').where('approach', 'Learning').then(learners => {
+							res.render('users/index', 
+								{users, languagesList, teachers, learners, message: req.flash('notCorrectUser')}
+							);
+						});
+					});
+			});
+		},
+		json: ()=>{
 				if(!req.query.location)
 				{
 					req.query.location = req.user.location;
@@ -33,20 +36,20 @@ router.route('/')
 						})
 						res.send(req.query);
 					})
-				}
-				else
-				{
+			}
+			else
+			{
+				// eval(require('locus'))
+				knex.select('*')
+				.from('users')
+				.leftOuterJoin('languages', 'users.id', 'languages.user_id')
+				.whereIn('languages.language', req.query.language)
+				.andWhere('location', req.query.location)
+				.then(users=>{
 					// eval(require('locus'))
-					knex.select('*')
-					.from('users')
-					.leftOuterJoin('languages', 'users.id', 'languages.user_id')
-					.whereIn('languages.language', req.query.language)
-					.andWhere('location', req.query.location)
-					.then(users=>{
-						
-						res.send(users);
-					})
-				}
+					
+					res.send(users);
+				})
 			}
 		})
 	})

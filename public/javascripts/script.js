@@ -1,15 +1,5 @@
 $(()=>{
 
-  // LOGO ANIMATION MAYBE
-
-  // var $logo = $('.logo-container');
-
-  // $logo.hover(function(){
-  //   $(this).addClass('pulse animated'); 
-  // }, function () {
-  //     $(this).removeClass('pulse animated');
-  // });
-
   // FLASH MESSAGE
 
   var $flash = $('#flash-message');
@@ -62,10 +52,10 @@ $(()=>{
     e.preventDefault();
     var inputLocation = $('#locationInput').val();
     function updateCallback(location){
-
-    var gender =  $("input[type='radio'][name=genderInput]:checked").val(),
+      
+    var gender = $("#genderInput").val(),
         description = $("#descriptionInput").val(),
-        age = ($("#ageInput").val() ? $("#ageInput").val() : undefined),
+        age = $("#ageInput").val(),
         img_url = $("#imgInput").val(),
         user = {user: {location, gender, age, img_url, description}}
         $.ajax({
@@ -80,6 +70,7 @@ $(()=>{
 
     formatLocation(inputLocation, updateCallback);
   }
+
   function profileSearch(e)
   {
     e.preventDefault();
@@ -93,62 +84,6 @@ $(()=>{
           }, 
           'json');
   }
-  function search(e, languagesArr)
-  {
-    if(e){e.preventDefault();}
-    var inputLocation = $('#locationInput').val();
-    formatLocation(inputLocation, searchCallback);
-
-    function searchCallback(location){
-      var language = languagesArr || [$('#languageInput').val()];
-
-      var searchData = {location, language};
-      $.get( "/users", 
-              searchData, 
-              function(data){
-                
-                $('.list-group').remove()
-                var $listGroup = $("<div/>")
-                $listGroup.addClass('list-group');
-
-                data.forEach((el)=>{
-                  
-                  var $h4 = $('<h4/>');
-                  $h4.addClass("list-group-item-heading")
-                  $h4.text(el.name);
-                  
-                  var $p = $('<p/>')
-                  $p.addClass('list-group-item-text')
-                  var $li = $('<li/>');
-                  $li.text("Description: "+el.description);
-                  $p.append($li);
-                  
-                  var $form = $('<form/>');
-                  $form.attr("action", "/threads");
-                  $form.attr("method", "POST")
-                  
-                  $('<input type = "text" name = "thread[subject]">'+
-                    '<input type = "text" name = "message[message]">'+
-                    '<input type = "hidden" name = "message[sender_id]" value ='+currentUserID+'>'+
-                    '<input type = "hidden" name = "message[rec_id]" value = '+el.id+'>'+
-                    '<input type = "submit" value = "Send Message!">').appendTo($form);
-
-                  $($listGroup).append($h4);
-                  $($listGroup).append($p);
-                  $($listGroup).append($form);
-
-                });
-
-                $($listGroup).insertAfter('.header');
-
-              }, 
-              'json');
-
-    }
-
-
-  }
-
 
   function formatLocation(inputLocation, cb)
   {
@@ -162,16 +97,182 @@ $(()=>{
       }
       else 
        { 
-         if(status = 'ZERO_RESULTS')
-         {
-          alert("Please enter a valid location");
-         }
-         else
-         {
-          alert("Geocode was not successful for the following reason: " + status);
-         }
+         alert("Geocode was not successful for the following reason: " + status);
        }
 
     })
+  }
+
+  function search(e, languagesArr)
+  {
+    if(e){e.preventDefault();}
+    var inputLocation = $('#locationInput').val();
+    formatLocation(inputLocation, searchCallback);
+
+    function searchCallback(location){
+      var language = languagesArr || [$('#languageInput').val()];
+
+      var searchData = {location, language};
+
+      $.get( "/users", searchData,
+        function(usersData){
+
+          $('#users-list').empty();
+          var languageArray = $.map(buildLanguageObj(usersData), cur => [cur])
+               .forEach(user => {
+                  buildUserList(user);
+              });                
+        }, 
+        'json');
+    }
+  }
+
+  function buildLanguageObj(usersData)
+  {   
+    // Build skeleton obj - adding learning and teaching arrays
+    var languageObj = usersData
+      .reduce(function(acc, cur){
+        if(!acc[cur.name]){
+          acc[cur.name] = {
+            id: cur.user_id,
+            name: cur.name, 
+            img_url: cur.img_url,
+            gender: cur.gender,
+            age: cur.age,
+            location: cur.location,
+            updated_at: cur.updated_at,
+            description: cur.description,
+            learning: [], 
+            teaching: []
+          }
+        }
+        return acc;
+      }, {});
+
+      // Push language and proficiency objects to the learning and teaching arrays
+      usersData.forEach(function(cur){
+        if(languageObj[cur.name]){
+          if(cur.approach === 'Learning'){
+            languageObj[cur.name].learning.push({lang: cur.language, prof: cur.proficiency});
+          }
+          if(cur.approach === 'Teaching'){
+            languageObj[cur.name].teaching.push({lang: cur.language, prof: cur.proficiency});
+          }
+        }
+      });
+
+      return languageObj;
+  }
+
+  function buildUserList(user)
+  {
+    var usersList = $('#users-list');
+    var panel = $('<div class="panel"></div>');
+    var panelBody = $('<div class="panel-body"></div>');
+    var profileHead = $('<div class="profile-head"></div>');
+    var profileDesc = $('<div class="profile-desc"></div>');
+    var thumbnail = $('<img src="'+user.img_url+'" alt="profile" />');
+    var username = $('<h2></h2>').text(user.name+' ');
+    var gender = $('<span></span>').text('Gender: '+user.gender.toUpperCase()+'  ');
+    var age = $('<span></span>').text('Age: '+user.age);
+    var teaching = $('<h4></h4>').text('Teaching Languages: ');
+    var teachingContainer = $('<div class="teaching-languages"></div>');
+    var learning = $('<h4></h4>').text('Learning Languages: ');
+    var learningContainer = $('<div class="learning-languages"></div>');
+    var descWrap = $('<h4></h4>').text('Description:');
+    var desc = $('<p></p>').text(user.description);
+    var location = $('<h4></h4>').text('Location: '+user.location);
+    var lastLogin = $('<h4></h4>').text('Last Login: '+user.updated_at);
+    var form = $('<form/>');
+        form.attr("action", "/threads");
+        form.attr("method", "POST");
+
+    buildForm(user.id, form);
+    buildUserStars(user.learning, learningContainer);
+    buildUserStars(user.teaching, teachingContainer);
+
+    usersList.append(
+      panel.append(
+        panelBody.append(
+          profileHead.append(
+            thumbnail, 
+            username.append(
+              gender, age
+            )
+          ),
+          profileDesc.append(
+            '<hr>',
+            learning,
+            learningContainer,
+            '<hr>',
+            teaching,
+            teachingContainer,
+            '<hr>',
+            descWrap,
+            desc,
+            '<hr>',
+            location,
+            '<hr>',
+            lastLogin
+          ),
+          '<hr>',
+          form
+        )
+      )
+    );
+
+  }
+
+  function buildForm(id, form)
+  {
+    var threadGroup = $('<div class="form-group"></div>');
+    var threadLabel = $('<p></p>').text('Subject: ');
+    var thread = $('<input class="form-control" type="text" name="thread[subject]">');
+    var messageGroup = $('<div class="form-group"></div>');
+    var messageLabel = $('<p></p>').text('Message: ');
+    var message = $('<textarea class="form-control" type = "text" name = "message[message]"></textarea>');
+    var senderId = $('<input type = "hidden" name = "message[sender_id]" value ='+currentUserID+'>');
+    var recId = $('<input type = "hidden" name = "message[rec_id]" value = '+id+'>');
+    var btnGroup = $('<div class="form-group text-center"></div>');
+    var sendBtn = $('<input type = "submit" class = "btn btn-info" value = "SEND MESSAGE">');
+
+    form.append(
+      threadGroup.append(
+        threadLabel,
+        thread
+      ),
+      messageGroup.append(
+        messageLabel,
+        message
+      ),
+      senderId,
+      recId,
+      btnGroup.append(sendBtn)
+    );
+  }
+
+  function buildUserStars(prop, container)
+  {
+    if(prop.length !== 0){
+      prop.forEach(cur => {
+        var languageEntry = $('<p></p>');
+        var language = $('<span></span>').text(cur.lang + ' : ');
+        var stars = $('<span class="stars"></span>');
+        for(var i = 0; i < 5; i++){
+          var star = $('<i class="fa" aria-hidden="true">');
+          if(cur.prof > i){
+            star.addClass('fa-star');
+          }else{
+            star.addClass('fa-star-o');
+          }
+          stars.append(star);
+        }
+        container.append('<hr>',
+          languageEntry.append(
+            language, stars
+          )
+        );
+      });          
+    }
   }
 });
