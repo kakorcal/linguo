@@ -23,7 +23,8 @@ module.exports = (passport) => {
             email: data.emails[0].value,
             google_id: data.id,
             name: data.displayName,
-            img_url: data.image.url
+            img_url: data.image.url,
+            location: ''
           })
           .returning('*')
           .then((user) => {

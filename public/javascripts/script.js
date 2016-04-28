@@ -162,7 +162,14 @@ $(()=>{
       }
       else 
        { 
-         alert("Geocode was not successful for the following reason: " + status);
+         if(status = 'ZERO_RESULTS')
+         {
+          alert("Please enter a valid location");
+         }
+         else
+         {
+          alert("Geocode was not successful for the following reason: " + status);
+         }
        }
 
     })
