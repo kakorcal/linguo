@@ -152,14 +152,14 @@ $(()=>{
 
       // Push language and proficiency objects to the learning and teaching arrays
       usersData.forEach(function(cur){
-        if(languageObj[cur.name]){
+        //if(languageObj[cur.name]){ --THINK THIS MAY ALWAYS EVALUATE TO TRUE
           if(cur.approach === 'Learning'){
             languageObj[cur.name].learning.push({lang: cur.language, prof: cur.proficiency});
           }
           if(cur.approach === 'Teaching'){
             languageObj[cur.name].teaching.push({lang: cur.language, prof: cur.proficiency});
           }
-        }
+       // }
       });
 
       return languageObj;
