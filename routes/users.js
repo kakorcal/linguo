@@ -39,14 +39,13 @@ router.route('/')
 				}
 				else
 				{
-					// eval(require('locus'))
 					knex.select('*')
 					.from('users')
 					.leftOuterJoin('languages', 'users.id', 'languages.user_id')
 					.whereIn('languages.language', req.query.language)
 					.andWhere('location', req.query.location)
 					.then(users=>{
-						// eval(require('locus'))
+
 						
 						res.send(users);
 					})
@@ -128,8 +127,10 @@ router.route('/:id')
     	knex('users')
 				.where('id', req.params.id)
 				.update(req.body.user)
-				.then(()=>{
-					res.send('/users/'+req.params.id+'/edit');	
+				.returning('*')
+				.then((user)=>{
+					//res.send('/users/'+req.params.id+'/edit');
+					res.send(user[0]);
 				});
   	})
 	.delete(authHelpers.ensureCorrectUser, (req, res)=>{

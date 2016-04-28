@@ -52,18 +52,28 @@ $(()=>{
     e.preventDefault();
     var inputLocation = $('#locationInput').val();
     function updateCallback(location){
+
       
-    var gender = $("#genderInput").val(),
+    var gender =  $("input[type='radio'][name=genderInput]:checked").val(),
         description = $("#descriptionInput").val(),
-        age = $("#ageInput").val(),
+        age = ($("#ageInput").val() ? $("#ageInput").val() : undefined),
         img_url = $("#imgInput").val(),
         user = {user: {location, gender, age, img_url, description}}
+        
         $.ajax({
           type: "PUT",
           url: '/users/'+currentUserID,
           data: user,
           success: (data)=>{
-            window.location.pathname = data;
+            //REBUILD USER PROFILE INFORMATION 
+            $("#profileAge").text(data.age);
+            $("#profileDescription").text(data.description);
+            $("#profileLocation").text(data.location);
+            $("#profileEmail").text(data.email);
+            $("#profileGender").text('Gender: '+data.gender+" ");
+            $("#profileAge").text('Age: '+data.age)
+
+            //window.location.pathname = data;
           }
         });
     }
