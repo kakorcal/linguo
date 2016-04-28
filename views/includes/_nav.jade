@@ -5,7 +5,7 @@ div(id='nav-container')
       if (currentUser)
         span(class='search-btn')
           a(href="/users/")
-            button(class='btn btn-primary') SEARCH PARTNERS
+            button(class='btn btn-primary') FIND A LANGUAGE PARTNER
         span(class='inbox-btn')
           a(href="/users/#{currentUser.id}")
             button(class='btn btn-success') VIEW MESSAGES
@@ -21,7 +21,7 @@ div(id='nav-container')
       else
         span(class='search-btn')
           a(href="/users/")
-            button(class='btn btn-primary') SEARCH PARTNERS
+            button(class='btn btn-primary') FIND A LANGUAGE PARTNER
         span(class='auth-btn')
           a(href="/auth/google") 
             button(class='btn btn-danger') LOGIN WITH GOOGLE
