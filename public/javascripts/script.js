@@ -65,7 +65,7 @@ $(()=>{
       
     var gender = $("#genderInput").val(),
         description = $("#descriptionInput").val(),
-        age = $("#ageInput").val(),
+        age = ($("#ageInput").val() ? $("#ageInput").val() : undefined),
         img_url = $("#imgInput").val(),
         user = {user: {location, gender, age, img_url, description}}
         $.ajax({
