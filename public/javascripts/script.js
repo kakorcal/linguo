@@ -79,7 +79,11 @@ $(()=>{
             $("#profileGender").text('Gender: '+data.gender+" ");
             $("#profileAge").text('Age: '+data.age)
 
-            //window.location.pathname = data;
+            //SCROLL TO TOP
+            $('html, body').animate({
+              scrollTop: 0
+              }, 600, 'linear', ()=>{
+              });
           }
         });
     }
