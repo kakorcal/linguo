@@ -9,46 +9,47 @@ router.use(authHelpers.currentUser);
 
 router.route('/')
 	.get((req, res)=>{
-	res.format({
-		html: ()=>{
-			knex('users')
-				.then(users=>{
-				res.render('users/index', {users, languagesList, message: req.flash('notCorrectUser')});
-			});
-		},
-		json: ()=>{
+		res.format({
+			html: ()=>{
+				knex('users')
+					// Excludes current user if one exists
+					.whereNot('id', (req.user ? req.user.id : null))
+					.then(users=>{
+						res.render('users/index', {users, languagesList, message: req.flash('notCorrectUser')});
+				});
+			},
+			json: ()=>{
 
-			if(!req.query.location)
-			{
-				req.query.location = req.user.location;
-				knex.select('language')
-				.from('languages')
-				.where('user_id', req.user.id)
-				.then((languages)=>{
-					req.query.languages = [];
-					languages.forEach((el)=>{
-						req.query.languages.push(el.language);
+				if(!req.query.location)
+				{
+					req.query.location = req.user.location;
+					knex.select('language')
+					.from('languages')
+					.where('user_id', req.user.id)
+					.then((languages)=>{
+						req.query.languages = [];
+						languages.forEach((el)=>{
+							req.query.languages.push(el.language);
+						})
+						res.send(req.query);
 					})
-					res.send(req.query);
-				})
+				}
+				else
+				{
+					// eval(require('locus'))
+					knex.select('*')
+					.from('users')
+					.leftOuterJoin('languages', 'users.id', 'languages.user_id')
+					.whereIn('languages.language', req.query.language)
+					.andWhere('location', req.query.location)
+					.then(users=>{
+						
+						res.send(users);
+					})
+				}
 			}
-			else
-			{
-				eval(require('locus'))
-				knex.select('*')
-				.from('users')
-				.leftOuterJoin('languages', 'users.id', 'languages.user_id')
-				.whereIn('languages.language', req.query.language)
-				.andWhere('location', req.query.location)
-				.then(users=>{
-					eval(require('locus'))
-					
-					res.send(users);
-				})
-			}
-		}
+		})
 	})
-})
 	.post((req, res)=>{
 		res.redirect('/users');
 	});
