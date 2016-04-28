@@ -39,14 +39,33 @@ router.route('/')
 				}
 				else
 				{
-					knex.select('*')
-					.from('users as u')
-					.join('languages as l', 'u.id', 'l.user_id')
-					.where('l.language', req.query.language)
-					.andWhere('u.location', req.query.location)
-					.then(users=>{
-
-						res.send(users);
+					// eval(require('locus'))
+					knex('languages').then((languages) => {
+						knex.select('*')
+						.from('users')
+						.leftOuterJoin('languages', 'users.id', 'languages.user_id')
+						.whereIn('languages.language', req.query.language)
+						.andWhere('location', req.query.location)
+						.then(users=>{
+							for(var i = 0; i < users.length; i++) {
+                // Create empty arrays for the languages, proficiency and approach keys
+                users[i].language = [];
+                users[i].proficiency = [];
+                users[i].approach = [];
+                // Loop through languages, finding any entry that contains user_id
+                for(var j = 0; j < languages.length; j++) {
+                  // If the id of the matched user is found in the languages table
+                  if (languages[j].user_id === users[i].user_id) {
+                    // Create empty arrays for the 
+                    users[i].proficiency.push(languages[j].proficiency);
+                    users[i].approach.push(languages[j].approach);
+                    users[i].language.push(languages[j].language);
+                  }
+                }
+              }
+              console.log(users);
+							res.send(users);		
+						})
 					})
 				}
 			}
