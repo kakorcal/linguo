@@ -6,10 +6,10 @@ div(class='edit-form')
 				div(class='form-group form-span')
 					span
 						label(for='genderInput') Gender: &nbsp;
-						select(name="user[gender]" id='genderInput')
-							option
-							option(value = "Male") Male
-							option(value = "Female") Female
+						span Male&nbsp; 
+							input(type="radio" name="genderInput" value="Male")
+						span Female &nbsp;
+							input(type="radio" name="genderInput" value="Female")
 					span
 						label(for='ageInput') Age: &nbsp;
 						input(type="number" class='form-control' name="user[age]" value="#{currentUser.age}" id="ageInput" size="6" min="18" max="99")

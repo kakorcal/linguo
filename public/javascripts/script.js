@@ -62,8 +62,8 @@ $(()=>{
     e.preventDefault();
     var inputLocation = $('#locationInput').val();
     function updateCallback(location){
-      
-    var gender = $("#genderInput").val(),
+
+    var gender =  $("input[type='radio'][name=genderInput]:checked").val(),
         description = $("#descriptionInput").val(),
         age = ($("#ageInput").val() ? $("#ageInput").val() : undefined),
         img_url = $("#imgInput").val(),
