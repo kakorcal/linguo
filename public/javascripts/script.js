@@ -1,5 +1,6 @@
 $(()=>{
-
+  //TEMP
+  $('.messageForm').hide();
   // FLASH MESSAGE
 
   var $flash = $('#flash-message');
@@ -52,6 +53,19 @@ $(()=>{
   $('#update').on('click', update);
   $('#search').on('click', search);
   $('#profileSearch').on('click', profileSearch);
+  $('.messageButton').on('click', toggleMessageForm)
+  //$('.sendMessageButton').on('click', toggleMessageForm)
+
+
+  function toggleMessageForm(e)
+  {
+    var recipientID = e.delegateTarget.dataset.id;
+    var messageButton = $('.messageButton[data-id = '+recipientID+']');
+      messageButton.toggle();
+    var messageForm = $('.messageForm[data-id = '+recipientID+']');
+      messageForm.toggle();
+
+  }
 
   function update(e)
   {

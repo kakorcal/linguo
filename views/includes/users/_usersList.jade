@@ -30,7 +30,12 @@ div(id='users-list')
             h4 Last Login: #{user.updated_at}
           hr
           if (currentUser)
-            form(action = "/threads" method = "POST")
+            div(class = 'text-center messageButton' data-id='#{user.id}')
+              div(class = 'btn btn-info')
+                span SEND MESSAGE
+            
+
+            form(action = "/threads" method = "POST" class = "messageForm" data-id ="#{user.id}")
               div(class='form-group')
                 p Subject: 
                 input(type = "text" class='form-control' name = "thread[subject]")
@@ -40,4 +45,4 @@ div(id='users-list')
               input(type = "hidden" name = "message[sender_id]" value = "#{currentUser.id}")
               input(type = "hidden" name = "message[rec_id]" value = "#{user.id}")
               div(class='form-group text-center')
-                input(type = "submit" class='btn btn-info' value = "SEND MESSAGE")
+                input(type = "submit" class='btn btn-info' value = "SEND MESSAGE" class="sendMessageButton" data-id="#{user.id}")
