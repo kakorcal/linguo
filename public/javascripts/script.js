@@ -1,5 +1,6 @@
 $(()=>{
-
+  //TEMP
+  $('.messageForm').hide();
   // FLASH MESSAGE
 
   var $flash = $('#flash-message');
@@ -52,6 +53,60 @@ $(()=>{
   $('#update').on('click', update);
   $('#search').on('click', search);
   $('#profileSearch').on('click', profileSearch);
+  $('.messageButton').on('click', (e)=>{
+   e.preventDefault();
+   toggleMessageForm(e);
+  })
+  $('.sendMessageButton').on('click', (e)=>{
+    e.preventDefault();
+    sendMessage(e);
+    toggleMessageForm(e);
+    
+  })
+
+
+  function toggleMessageForm(e)
+  {
+    var recipientID = e.delegateTarget.dataset.id;
+    var messageButton = $('.messageButton[data-id = '+recipientID+']');
+      messageButton.toggle('slow');
+    var messageForm = $('.messageForm[data-id = '+recipientID+']');
+      messageForm.toggle('slow');
+  }
+  function sendMessage(e)
+  {
+    var recipientID = e.delegateTarget.dataset.id;
+    //Check if either form was left empty
+    if(!$('.message[data-id = '+recipientID+']').val() || !$('.threadSubject[data-id = '+recipientID+']').val())
+    {
+      alert("You must specify both a subject and a message!");
+      return;
+    }
+
+    var thread = {subject: $('.threadSubject[data-id = '+recipientID+']').val()};
+
+    var message = {
+      message: $('.message[data-id = '+recipientID+']').val(),
+      sender_id: currentUserID,
+      rec_id: recipientID
+    }
+
+    $('.threadSubject[data-id = '+recipientID+']').val('');
+    $('.message[data-id = '+recipientID+']').val('');
+
+    var data = {
+      thread,
+      message
+    }
+    $.ajax({
+      type: "POST",
+      url: "/threads/",
+      data,
+      success: ()=>{
+        
+      }
+    })
+  }
 
   function update(e)
   {
@@ -79,7 +134,11 @@ $(()=>{
             $("#profileGender").text('Gender: '+data.gender+" ");
             $("#profileAge").text('Age: '+data.age)
 
-            //window.location.pathname = data;
+            //SCROLL TO TOP
+            $('html, body').animate({
+              scrollTop: 0
+              }, 600, 'linear', ()=>{
+              });
           }
         });
     }
