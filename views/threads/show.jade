@@ -1,27 +1,41 @@
 extends ../layout
+block styles
+	link(rel='stylesheet' href='/stylesheets/threads/show.css')
 block nav
 	include ../includes/_nav
 block content
 	div(id='messages-show')
 		div(class='row')
 			div(class='col-md-8')
-				div(class='panel')
-					div(class='panel-body')
-						h1 Threads Show Page
-						h3 Subject: #{threadMsgs[0].subject}
+				div(class='panel thread-panel')
+					div(class='panel-body thread-panel-body')
+						h1.message-subject #{threadMsgs[0].subject}
+						hr
 						each msg in threadMsgs
-							h5 From: #{msg.send_email}  
-							h5 To: #{msg.rec_email}  
-							h6 Body: #{msg.message}
-							h4 -----------------NEXT MESSAGE-----------------
-						h5
-							form(action = "/threads/#{threadMsgs[0].tid}/messages" method = "POST")
-								input(type = "text" name = "message[message]" placeholder= "Add a reply")
-								input(type = "hidden" name = "message[sender_id]" value = "#{currentUser.id}")
-								if (currentUser.id === threadMsgs[0].send_id)
-									input(type = "hidden" name = "message[rec_id]" value = "#{threadMsgs[0].rec_id}")
-								else 
-									input(type = "hidden" name = "message[rec_id]" value = "#{threadMsgs[0].send_id}")
-								input(type = "submit" value ="Send Reply")
+							if (msg.send_id === currentUser.id)
+								div(class='panel message-panel')
+									div(class='panel-body message-panel-body')
+										div(class='message-body user-msg')
+											h5.message-participant From: #{msg.send_name}  
+											h5.message-participant To: #{msg.rec_name}  
+											h4.message-text #{msg.message}
+										hr
+							else
+								div(class='panel message-panel')
+									div(class='panel-body message-panel-body')
+										div(class='message-body non-user-msg')
+											h5.message-participant From: #{msg.send_name}  
+											h5.message-participant To: #{msg.rec_name}  
+											h4.message-text #{msg.message}
+										hr
+						form(action = "/threads/#{threadMsgs[0].tid}/messages" method = "POST")
+							div.form-group
+								textarea(class="form-control" rows="3" type = "text" name = "message[message]" placeholder= "Add a reply")
+							input(type = "hidden" name = "message[sender_id]" value = "#{currentUser.id}")
+							if (currentUser.id === threadMsgs[0].send_id)
+								input(type = "hidden" name = "message[rec_id]" value = "#{threadMsgs[0].rec_id}")
+							else 
+								input(type = "hidden" name = "message[rec_id]" value = "#{threadMsgs[0].send_id}")
+							input(class="btn btn-success" type = "submit" value ="Send Reply")
 			div(class='col-md-4')
 				include ../includes/_sidebar

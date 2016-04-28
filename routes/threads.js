@@ -49,7 +49,7 @@ router.route('/:id')
 	.get(authHelpers.ensureThreadParticipant, function(req, res)
 	{
 		knex('threads as t')
-			.select('t.id as tid', 'm.id as mid', 'm.rec_id as rec_id', 'ur.email as rec_email', 'm.sender_id as send_id', 'us.email as send_email', 't.subject', 'm.message')
+			.select('t.id as tid', 'm.id as mid', 'm.rec_id as rec_id', 'ur.name as rec_name', 'm.sender_id as send_id', 'us.name as send_name', 't.subject', 'm.message')
 			.join('messages as m', 'm.thread_id', 't.id')
 			.join('users as ur', 'ur.id', 'm.rec_id')
 			.join('users as us', 'us.id', 'm.sender_id')
