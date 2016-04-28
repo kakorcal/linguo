@@ -225,3 +225,27 @@ knex migrate: latest
 // });
 
 // $($listGroup).insertAfter('.header');
+
+--- build user stars ---
+
+// if(user.learning.length !== 0){
+//   user.learning.forEach(cur => {
+//     var languageEntry = $('<p></p>');
+//     var language = $('<span></span>').text(cur.lang + ' : ');
+//     var stars = $('<span class="stars"></span>'); 
+//     for(var i = 0; i < 5; i++){
+//       var star = $('<i class="fa" aria-hidden="true">');
+//       if(cur.prof > i){
+//         star.addClass('fa-star');
+//       }else{
+//         star.addClass('fa-star-o');
+//       }
+//       stars.append(star);
+//     }
+//     learningContainer.append('<hr>',
+//       languageEntry.append(
+//         language, stars
+//       )
+//     );
+//   });
+// }
