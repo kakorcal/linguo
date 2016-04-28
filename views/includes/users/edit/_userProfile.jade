@@ -6,9 +6,9 @@ div(class='user-profile')
         img(src='#{user.img_url}' alt='profile')
         h2 #{user.name} &nbsp;
           if (user.gender)
-            span Gender: #{user.gender} &nbsp;
+            span(id="profileGender") Gender: #{user.gender} &nbsp;
           if (user.age) 
-            span Age: #{user.age}
+            span(id="profileAge") Age: #{user.age}
       hr
       div(class='profile-desc')
         h4 Teaching Languages:
@@ -18,12 +18,16 @@ div(class='user-profile')
         div(class='learning-languages')
         hr
         h4 Description: 
-        p #{user.description}
+        p(id='profileDescription') #{user.description}
         hr
-        h4 Location: #{user.location}
+        h4 Location: 
+          span(id='profileLocation') #{user.location}
         hr
-        h4 Email: #{user.email}
+        h4 Email: 
+          span(id='profileEmail') #{user.email}
         hr
-        h4 Member Since: #{user.created_at}
+        h4 Member Since: 
+          span(id='profileCreatedAt') #{user.created_at}
         hr
-        h4 Last Login: #{user.updated_at}
+        h4 Last Login:
+          span(id='profileLastLogin')  #{user.updated_at}
