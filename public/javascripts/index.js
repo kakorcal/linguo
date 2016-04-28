@@ -1,4 +1,12 @@
 $(()=>{
+  
+
+
+
+
+
+
+
   // var feedContainer = $('.feed');
   // var learningContainers = feedContainer.find('.learning-languages');
   // var teachingContainers = feedContainer.find('.teaching-languages');

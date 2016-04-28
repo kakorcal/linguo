@@ -113,6 +113,7 @@ $(()=>{
       var language = languagesArr || [$('#languageInput').val()];
 
       var searchData = {location, language};
+
       $.get( "/users", searchData,
         function(usersData){
 
