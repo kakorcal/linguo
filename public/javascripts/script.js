@@ -62,8 +62,8 @@ $(()=>{
     e.preventDefault();
     var inputLocation = $('#locationInput').val();
     function updateCallback(location){
-      
-    var gender = $("#genderInput").val(),
+
+    var gender =  $("input[type='radio'][name=genderInput]:checked").val(),
         description = $("#descriptionInput").val(),
         age = ($("#ageInput").val() ? $("#ageInput").val() : undefined),
         img_url = $("#imgInput").val(),
@@ -162,7 +162,14 @@ $(()=>{
       }
       else 
        { 
-         alert("Geocode was not successful for the following reason: " + status);
+         if(status = 'ZERO_RESULTS')
+         {
+          alert("Please enter a valid location");
+         }
+         else
+         {
+          alert("Geocode was not successful for the following reason: " + status);
+         }
        }
 
     })
