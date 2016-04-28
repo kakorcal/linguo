@@ -12,12 +12,14 @@ module.exports = (passport) => {
     },
     function(accessToken, refreshToken, profile, done) {
       const data = profile._json;
+      //eval(require('locus'))
       // LOG IN - STEP 3 > Does user have an account with us?
       knex('users').where('email', data.emails[0].value).first().then((user) => {
-        
+        //var genderUpCase = data.gender.toUpperCase()
         // If not, insert them into the database
         if(!user) {
           knex('users').insert({
+            //gender: genderUpCase,
             email: data.emails[0].value,
             google_id: data.id,
             name: data.displayName,
