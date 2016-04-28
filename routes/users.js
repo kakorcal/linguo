@@ -33,20 +33,20 @@ router.route('/')
 						})
 						res.send(req.query);
 					})
-				}
-				else
-				{
+			}
+			else
+			{
+				// eval(require('locus'))
+				knex.select('*')
+				.from('users')
+				.leftOuterJoin('languages', 'users.id', 'languages.user_id')
+				.whereIn('languages.language', req.query.language)
+				.andWhere('location', req.query.location)
+				.then(users=>{
 					// eval(require('locus'))
-					knex.select('*')
-					.from('users')
-					.leftOuterJoin('languages', 'users.id', 'languages.user_id')
-					.whereIn('languages.language', req.query.language)
-					.andWhere('location', req.query.location)
-					.then(users=>{
-						
-						res.send(users);
-					})
-				}
+					
+					res.send(users);
+				})
 			}
 		})
 	})

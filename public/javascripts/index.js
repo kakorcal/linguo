@@ -1,13 +1,13 @@
 $(()=>{
-  var feedContainer = $('.feed');
-  var learningContainers = feedContainer.find('.learning-languages');
-  var teachingContainers = feedContainer.find('.teaching-languages');
-  var feed = JSON.parse($('.json-users').text())
+  // var feedContainer = $('.feed');
+  // var learningContainers = feedContainer.find('.learning-languages');
+  // var teachingContainers = feedContainer.find('.teaching-languages');
+  // var feed = JSON.parse($('.json-users').text())
       // .forEach(user => {
           
       // });
 
-  console.log(feed);
+  // console.log(feed);
   // var learningContainer = $('.learning-languages');
   // var teachingContainer = $('.teaching-languages');
   // var languages = JSON.parse($('.json-languages').text())
