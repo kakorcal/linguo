@@ -132,7 +132,6 @@ $(()=>{
 
       $.get( "/users", searchData,
         function(usersData){
-          debugger;
           $('#users-list').empty();
           var languageArray = $.map(buildLanguageObj(usersData), cur => [cur])
                .forEach(user => {

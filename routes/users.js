@@ -45,8 +45,6 @@ router.route('/')
 					.whereIn('languages.language', req.query.language)
 					.andWhere('location', req.query.location)
 					.then(users=>{
-
-						
 						res.send(users);
 					})
 				}
