@@ -40,11 +40,12 @@ router.route('/')
 				else
 				{
 					knex.select('*')
-					.from('users')
-					.leftOuterJoin('languages', 'users.id', 'languages.user_id')
-					.whereIn('languages.language', req.query.language)
-					.andWhere('location', req.query.location)
+					.from('users as u')
+					.join('languages as l', 'u.id', 'l.user_id')
+					.where('l.language', req.query.language)
+					.andWhere('u.location', req.query.location)
 					.then(users=>{
+
 						res.send(users);
 					})
 				}
