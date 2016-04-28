@@ -21,6 +21,9 @@
 }
 
 /* CONTENT */
+#how-it-works{
+  opacity: 0;
+}
 
 .home-content {
   text-align: center;
@@ -47,7 +50,6 @@
 
 .social-media-btns {
   margin-top: 30px;
-  margin-bottom: 30%;
 }
   
 .social-media-btns i {
