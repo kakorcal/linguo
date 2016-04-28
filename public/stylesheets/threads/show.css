@@ -1,0 +1,11 @@
+.message-body {
+  border-radius: 3px;
+}
+
+.user-msg {
+  background-color: #c9cacb;
+}
+
+.non-user-msg {
+  background-color: #53bbb4;
+}
