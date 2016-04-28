@@ -39,6 +39,12 @@ $(()=>{
       $container.addClass('alert-danger');
       $flash.addClass('flash animated');
       console.log('cannot access thread if not participant');
+      break;
+    case 42:
+      $container.addClass('alert-danger');
+      $flash.addClass('flash animated');
+      console.log('account deleted');
+      break;
   }
 
   var currentUserID = $('#current-user-id').text();
@@ -126,7 +132,7 @@ $(()=>{
 
       $.get( "/users", searchData,
         function(usersData){
-
+          debugger;
           $('#users-list').empty();
           var languageArray = $.map(buildLanguageObj(usersData), cur => [cur])
                .forEach(user => {
