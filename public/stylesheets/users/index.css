@@ -6,7 +6,7 @@
   padding-top: 0;
 }
 
-.json-users {
+#json-users, #json-teachers, #json-learners, .user-id {
   display: none;
 }
 

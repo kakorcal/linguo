@@ -1,4 +1,7 @@
 div(id='users-list')
+  p(id='json-users') #{JSON.stringify(users)}
+  p(id='json-teachers') #{JSON.stringify(teachers)}
+  p(id='json-learners') #{JSON.stringify(learners)}
   each user in users
     div(class='panel')
       div(class='panel-body')
@@ -11,6 +14,7 @@ div(id='users-list')
               span Age: #{user.age}
         hr
         div(class='profile-desc')
+          p(class='user-id' data-id='#{user.id}')
           h4 Teaching Languages:
           div(class='teaching-languages')
           hr
@@ -25,8 +29,13 @@ div(id='users-list')
           h4 Last Login: #{user.updated_at}
         hr
         form(action = "/threads" method = "POST")
-          input(type = "text" name = "thread[subject]")
-          input(type = "text" name = "message[message]")
+          div(class='form-group')
+            p Subject: 
+            input(type = "text" class='form-control' name = "thread[subject]")
+          div(class='form-group')
+            p Message:
+            textarea(type = "text" class='form-control' name = "message[message]")
           input(type = "hidden" name = "message[sender_id]" value = "#{currentUser.id}")
           input(type = "hidden" name = "message[rec_id]" value = "#{user.id}")
-          input(type = "submit" value = "Send Message!")
+          div(class='form-group text-center')
+            input(type = "submit" class='btn btn-info' value = "SEND MESSAGE")
