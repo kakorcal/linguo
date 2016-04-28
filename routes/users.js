@@ -68,7 +68,7 @@ router.route('/:id/edit')
 			knex('languages')
 			.where('user_id', user.id)
 			.then(languages => {
-				res.render('users/edit', {user, languages, message: req.flash('loginMessage')});
+				res.render('users/edit', {user, languages, languagesList, message: req.flash('loginMessage')});
 			});
 		});
 	})
