@@ -184,7 +184,7 @@ $(()=>{
     var profileDesc = $('<div class="profile-desc"></div>');
     var thumbnail = $('<img src="'+user.img_url+'" alt="profile" />');
     var username = $('<h2></h2>').text(user.name+' ');
-    var gender = $('<span></span>').text('Gender: '+user.gender.toUpperCase()+'  ');
+    var gender = $('<span></span>').text('Gender: '+user.gender.charAt(0).toUpperCase() + user.gender.slice(1)+'  ');
     var age = $('<span></span>').text('Age: '+user.age);
     var teaching = $('<h4></h4>').text('Teaching Languages: ');
     var teachingContainer = $('<div class="teaching-languages"></div>');
