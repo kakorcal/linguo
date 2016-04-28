@@ -1,4 +1,5 @@
 $(()=>{
+    //  IN PROGRESS COMING SOON
   // // initialize language profile
   // var users = JSON.parse($('#json-users').text());
   // var teachers = JSON.parse($('#json-teachers').text());

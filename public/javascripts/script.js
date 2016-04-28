@@ -130,7 +130,9 @@ $(()=>{
   function buildLanguageObj(usersData)
   {   
     // Build skeleton obj - adding learning and teaching arrays
-    var languageObj = usersData
+    var current = currentUserID ? currentUserID : -1;
+    debugger;
+    var languageObj = usersData.filter(cur => cur.user_id !== +current)
       .reduce(function(acc, cur){
         if(!acc[cur.name]){
           acc[cur.name] = {
