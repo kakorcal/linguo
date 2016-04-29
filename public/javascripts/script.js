@@ -1,5 +1,4 @@
 $(()=>{
-  //TEMP
   $('.messageForm').hide();
   // FLASH MESSAGE
 
@@ -53,6 +52,7 @@ $(()=>{
   $('#update').on('click', update);
   $('#search').on('click', search);
   $('#profileSearch').on('click', profileSearch);
+
   $('.messageButton').on('click', (e)=>{
    e.preventDefault();
    toggleMessageForm(e);
@@ -70,6 +70,7 @@ $(()=>{
     var recipientID = e.delegateTarget.dataset.id;
     var messageButton = $('.messageButton[data-id = '+recipientID+']');
       messageButton.toggle('slow');
+    debugger
     var messageForm = $('.messageForm[data-id = '+recipientID+']');
       messageForm.toggle('slow');
   }
@@ -103,6 +104,7 @@ $(()=>{
       url: "/threads/",
       data,
       success: ()=>{
+
         
       }
     })
@@ -138,7 +140,11 @@ $(()=>{
             $('html, body').animate({
               scrollTop: 0
               }, 600, 'linear', ()=>{
-              });
+              }); 
+
+            $('#flash-message').addClass('flash animated')
+            $('#flash-message').text('Profile Updated!');
+            $('#flash-container').show();
           }
         });
     }
@@ -172,7 +178,23 @@ $(()=>{
       }
       else 
        { 
-         alert("Geocode was not successful for the following reason: " + status);
+          var flashContainerHeightPadding = [$('#flash-container').css('height'), $('#flash-container').css('padding')];
+          
+          $('#flash-container').addClass('alert-danger');
+          $('#flash-message').addClass('flash animated')
+          $('#flash-message').text('Location Not Recognized!');
+          $('#flash-container').show();
+          $('html, body').animate({
+            scrollTop: 0
+            }, 0, 'linear', () => {
+            //   $('#flash-container').animate({height:"0px", padding: "0px"}, 2500, ()=>{
+            //   //$('#flash-container').hide();
+            //   $('#flash-container').css('height',flashContainerHeightPadding[0]);
+            //   $('#flash-container').css('padding',flashContainerHeightPadding[1]);
+            // });
+          });
+          
+          
        }
 
     })
@@ -211,7 +233,7 @@ $(()=>{
     var profileDesc = $('<div class="profile-desc"></div>');
     var thumbnail = $('<img src="'+user.img_url+'" alt="profile" />');
     var username = $('<h2></h2>').text(user.name+' ');
-    var gender = $('<span></span>').text('Gender: '+user.gender.charAt(0).toUpperCase() + user.gender.slice(1)+'  ');
+    var gender = $('<span></span>').text('Gender: '+user.gender)//.charAt(0).toUpperCase() + user.gender.slice(1)+'  ');
     var age = $('<span></span>').text('Age: '+user.age);
     var teaching = $('<h4></h4>').text('Teaching Languages: ');
     var teachingContainer = $('<div class="teaching-languages"></div>');
@@ -220,10 +242,28 @@ $(()=>{
     var descWrap = $('<h4></h4>').text('Description:');
     var desc = $('<p></p>').text(user.description);
     var location = $('<h4></h4>').text('Location: '+user.location);
+<<<<<<< 046df8917eea8842742aa8aa51e8738a272fbc6c
     var form = $('<form/>');
         form.attr("action", "/threads");
         form.attr("method", "POST");
     
+=======
+    var lastLogin = $('<h4></h4>').text('Last Login: '+user.updated_at);
+    
+    var giveMeForm = $('<div class = "text-center messageButton" data-id='+user.user_id+'></div>');
+    debugger
+    var giveMeFormButton = $('<div class = "btn btn-info"></div>');
+    giveMeFormButton.text('SEND MESSAGE');
+    giveMeForm.append(giveMeFormButton);
+
+    var form = $('<form/>');
+        form.attr("action", "/threads");
+        form.attr("method", "POST");
+        form.addClass("messageForm");
+        form.attr("data-id", user.user_id);
+
+
+>>>>>>> severely partial but need to pull changes
     buildForm(user.user_id, form);
     buildUserStars(user.learning, learningContainer);
     buildUserStars(user.teaching, teachingContainer);
@@ -248,7 +288,15 @@ $(()=>{
             descWrap,
             desc,
             '<hr>',
+<<<<<<< 046df8917eea8842742aa8aa51e8738a272fbc6c
             location
+=======
+            location,
+            '<hr>',
+            lastLogin,
+            '<hr>',
+            giveMeForm
+>>>>>>> severely partial but need to pull changes
           ),
           '<hr>',
           form
@@ -256,20 +304,34 @@ $(()=>{
       )
     );
 
+    $('.messageButton').on('click', (e)=>{
+      e.preventDefault();
+      toggleMessageForm(e);
+    })
+    $('.sendMessageButton').on('click', (e)=>{
+      e.preventDefault();
+      sendMessage(e);
+      toggleMessageForm(e);
+     })
+    
+    $('.messageForm').hide();
+
+
   }
 
   function buildForm(id, form)
   {
+
     var threadGroup = $('<div class="form-group"></div>');
     var threadLabel = $('<p></p>').text('Subject: ');
-    var thread = $('<input class="form-control" type="text" name="thread[subject]">');
+    var thread = $('<input class="form-control" type="text" name="thread[subject] class= "threadSubject" data-id = '+id+'>');
     var messageGroup = $('<div class="form-group"></div>');
     var messageLabel = $('<p></p>').text('Message: ');
-    var message = $('<textarea class="form-control" type = "text" name = "message[message]"></textarea>');
-    var senderId = $('<input type = "hidden" name = "message[sender_id]" value ='+currentUserID+'>');
-    var recId = $('<input type = "hidden" name = "message[rec_id]" value = '+id+'>');
+    var message = $('<textarea class="form-control" type = "text" name = "message[message]" class = "message" data-id = '+id+'></textarea>');
+    var senderId = $('<input type = "hidden" name = "message[sender_id]" value ='+currentUserID+' class="sender_id" data-id = '+currentUserID+'>');
+    var recId = $('<input type = "hidden" name = "message[rec_id]" value = '+id+' class="rec_id" data-id = '+id+'>');
     var btnGroup = $('<div class="form-group text-center"></div>');
-    var sendBtn = $('<input type = "submit" class = "btn btn-info" value = "SEND MESSAGE">');
+    var sendBtn = $('<input type = "submit" class="btn btn-info" value = "SEND MESSAGE" class="sendMessageButton" data-id='+id+'>');
 
     form.append(
       threadGroup.append(
