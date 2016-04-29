@@ -223,7 +223,7 @@ $(()=>{
     var form = $('<form/>');
         form.attr("action", "/threads");
         form.attr("method", "POST");
-
+    
     buildForm(user.user_id, form);
     buildUserStars(user.learning, learningContainer);
     buildUserStars(user.teaching, teachingContainer);
