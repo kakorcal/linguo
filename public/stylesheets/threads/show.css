@@ -1,4 +1,4 @@
-.col-md-8 > .panel {
+.col-md-8 > .panel{
   margin-bottom: 0px;
 }
 
@@ -30,6 +30,7 @@
   background-color: #3e474f;
   width: 100%;
   border: 0px solid transparent;
+  margin-bottom: 0;
 }
 
 .message-panel-body {

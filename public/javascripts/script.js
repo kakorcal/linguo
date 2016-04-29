@@ -220,7 +220,6 @@ $(()=>{
     var descWrap = $('<h4></h4>').text('Description:');
     var desc = $('<p></p>').text(user.description);
     var location = $('<h4></h4>').text('Location: '+user.location);
-    var lastLogin = $('<h4></h4>').text('Last Login: '+user.updated_at);
     var form = $('<form/>');
         form.attr("action", "/threads");
         form.attr("method", "POST");
@@ -249,9 +248,7 @@ $(()=>{
             descWrap,
             desc,
             '<hr>',
-            location,
-            '<hr>',
-            lastLogin
+            location
           ),
           '<hr>',
           form
