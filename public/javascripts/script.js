@@ -299,6 +299,7 @@ $(()=>{
     })
     $('.sendMessageButton').on('click', (e)=>{
       e.preventDefault();
+      debugger
       sendMessage(e);
       toggleMessageForm(e);
      })
@@ -313,14 +314,14 @@ $(()=>{
 
     var threadGroup = $('<div class="form-group"></div>');
     var threadLabel = $('<p></p>').text('Subject: ');
-    var thread = $('<input class="form-control" type="text" name="thread[subject] class= "threadSubject" data-id = '+id+'>');
+    var thread = $('<input class="form-control threadSubject" type="text" name="thread[subject]" data-id = '+id+'>');
     var messageGroup = $('<div class="form-group"></div>');
     var messageLabel = $('<p></p>').text('Message: ');
-    var message = $('<textarea class="form-control" type = "text" name = "message[message]" class = "message" data-id = '+id+'></textarea>');
+    var message = $('<textarea class="form-control message" type = "text" name = "message[message]" data-id = '+id+'></textarea>');
     var senderId = $('<input type = "hidden" name = "message[sender_id]" value ='+currentUserID+' class="sender_id" data-id = '+currentUserID+'>');
     var recId = $('<input type = "hidden" name = "message[rec_id]" value = '+id+' class="rec_id" data-id = '+id+'>');
     var btnGroup = $('<div class="form-group text-center"></div>');
-    var sendBtn = $('<input type = "submit" class="btn btn-info" value = "SEND MESSAGE" class="sendMessageButton" data-id='+id+'>');
+    var sendBtn = $('<input type = "submit" class="btn btn-info sendMessageButton" value = "SEND MESSAGE" data-id='+id+'>');
 
     form.append(
       threadGroup.append(
