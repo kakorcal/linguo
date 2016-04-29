@@ -427,3 +427,18 @@ function buildLanguageObj(usersData)
 //      .forEach(user => {
 //         buildUserList(user);
 //     }); 
+
+$('.learning-languages').each((idx, elem) => {
+  debugger;
+  if($(this).text() === ''){
+    $(this).hide();
+    $(this).prev().hide();
+  }
+}, elem);
+
+$('.teaching-languages').each((idx, elem) => {
+  if($(this).text() === ''){
+    $(this).hide();
+    $(this).prev().hide();
+  }
+}, elem);
