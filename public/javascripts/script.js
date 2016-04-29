@@ -1,5 +1,5 @@
 $(()=>{
-  $('.messageForm').hide();
+  // $('.messageForm').hide();
   // FLASH MESSAGE
 
   var $flash = $('#flash-message');
@@ -53,27 +53,27 @@ $(()=>{
   $('#search').on('click', search);
   $('#profileSearch').on('click', profileSearch);
 
-  $('.messageButton').on('click', (e)=>{
-   e.preventDefault();
-   toggleMessageForm(e);
-  })
+  // $('.messageButton').on('click', (e)=>{
+  //  e.preventDefault();
+  //  // toggleMessageForm(e);
+  // })
   $('.sendMessageButton').on('click', (e)=>{
     e.preventDefault();
     sendMessage(e);
     toggleMessageForm(e);
-    
   })
 
 
-  function toggleMessageForm(e)
-  {
-    var recipientID = e.delegateTarget.dataset.id;
-    var messageButton = $('.messageButton[data-id = '+recipientID+']');
-      messageButton.toggle('slow');
+  // function toggleMessageForm(e)
+  // {
+  //   var recipientID = e.delegateTarget.dataset.id;
+  //   var messageButton = $('.messageButton[data-id = '+recipientID+']');
+  //     messageButton.toggle('slow');
     
-    var messageForm = $('.messageForm[data-id = '+recipientID+']');
-      messageForm.toggle('slow');
-  }
+  //   var messageForm = $('.messageForm[data-id = '+recipientID+']');
+  //     messageForm.toggle('slow');
+  // }
+  
   function sendMessage(e)
   {
     var recipientID = e.delegateTarget.dataset.id;
@@ -256,7 +256,7 @@ $(()=>{
 
     var lastLogin = $('<h4></h4>').text('Last Login: '+user.updated_at);
     
-    var giveMeForm = $('<div class = "text-center messageButton" data-id='+user.user_id+'></div>');
+    // var giveMeForm = $('<div class = "text-center messageButton" data-id='+user.user_id+'></div>');
     
     var giveMeFormButton = $('<div class = "btn btn-info"></div>');
     giveMeFormButton.text('SEND MESSAGE');
@@ -302,11 +302,11 @@ $(()=>{
         )
       )
     );
+
     if(currentUserID)
     {
       profileDesc.append('<hr>', giveMeForm);
     }
-
 
   }
 

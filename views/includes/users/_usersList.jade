@@ -38,7 +38,7 @@ div(id='users-list')
               div(class='form-group')
                 p Message:
                 textarea(type = "text" class='form-control' name = "message[message]" class = "message" data-id="#{user.id}")
-              input(type = "hidden" name = "message[sender_id]" value = "#{currentUser.id}" class="sender_id" data-id = currentUser.id)
+              input(type = "hidden" name = "message[sender_id]" value = "#{currentUser.id}" class="sender_id" data-id = "#{user.sender_id}")
               input(type = "hidden" name = "message[rec_id]" value = "#{user.id}" class="rec_id" data-id = "#{user.id}")
               div(class='form-group text-center')
                 input(type = "submit" class='btn btn-info' value = "SEND MESSAGE" class="sendMessageButton" data-id="#{user.id}")
