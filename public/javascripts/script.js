@@ -70,7 +70,7 @@ $(()=>{
     var recipientID = e.delegateTarget.dataset.id;
     var messageButton = $('.messageButton[data-id = '+recipientID+']');
       messageButton.toggle('slow');
-    debugger
+    
     var messageForm = $('.messageForm[data-id = '+recipientID+']');
       messageForm.toggle('slow');
   }
@@ -246,7 +246,7 @@ $(()=>{
     var lastLogin = $('<h4></h4>').text('Last Login: '+user.updated_at);
     
     var giveMeForm = $('<div class = "text-center messageButton" data-id='+user.user_id+'></div>');
-    debugger
+    
     var giveMeFormButton = $('<div class = "btn btn-info"></div>');
     giveMeFormButton.text('SEND MESSAGE');
     giveMeForm.append(giveMeFormButton);
@@ -283,7 +283,9 @@ $(()=>{
             descWrap,
             desc,
             '<hr>',
-            location
+            location,
+            '<hr>',
+            giveMeForm
           ),
           '<hr>',
           form
@@ -296,6 +298,7 @@ $(()=>{
       toggleMessageForm(e);
     })
     $('.sendMessageButton').on('click', (e)=>{
+      debugger
       e.preventDefault();
       sendMessage(e);
       toggleMessageForm(e);
