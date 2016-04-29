@@ -8,13 +8,17 @@ div(id='users-search')
           label(for='languageInput' class='col-md-2 control-label') Language:
           div(class='col-md-10')
             select(id = "languageInput")
+              option(selected="selected" disabled="disabled") Select a Language
               each language in languagesList
                 option=language
         div(class='form-group')
           label(for='locationInput' class='col-md-2 control-label') Location:
           div(class='col-md-10')
-            input(type="text", class='form-control' name="" id = "locationInput")
+            if (currentUser)
+              input(type="text", class='form-control' value="#{currentUser.location}" name="" id = "locationInput")
+            else
+              input(type="text", class='form-control' name="" id = "locationInput")
         div(class='form-group text-center')
           input(type ="submit" class="btn btn-success" value = "SEARCH" id="search")
-          input(type = "submit" class="btn btn-primary" value = "SEARCH BASED ON PROFILE")
+          
 

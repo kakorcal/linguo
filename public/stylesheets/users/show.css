@@ -4,6 +4,16 @@
   border-radius: 4px;
 }
 
+.threads-header {
+  padding-left: 10px;
+}
+
+hr {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border-top: 1px solid #ddd;
+}
+
 .threads table {
   margin-bottom: 0;
 }
