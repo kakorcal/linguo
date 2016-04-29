@@ -218,8 +218,8 @@ $(()=>{
           var languageArray = usersData.filter(cur => cur.user_id !== +current)        
               .forEach(user => {
                 buildUserList(user);
-
-                $('.messageButton').on('click', (e)=>{
+              });
+              $('.messageButton').on('click', (e)=>{
                   e.preventDefault();
                   toggleMessageForm(e);
                 })
@@ -230,8 +230,6 @@ $(()=>{
                  })
                 
                 $('.messageForm').hide();
-
-              });
         }, 
         'json');
     }
