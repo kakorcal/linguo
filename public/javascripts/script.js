@@ -298,7 +298,6 @@ $(()=>{
       toggleMessageForm(e);
     })
     $('.sendMessageButton').on('click', (e)=>{
-      debugger
       e.preventDefault();
       sendMessage(e);
       toggleMessageForm(e);
