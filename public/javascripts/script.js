@@ -192,10 +192,15 @@ $(()=>{
       $.get( "/users", searchData,
         function(usersData){
           $('#users-list').empty();
-          var languageArray = $.map(buildLanguageObj(usersData), cur => [cur])
-               .forEach(user => {
-                  buildUserList(user);
-              });                
+          // var languageArray = $.map(buildLanguageObj(usersData), cur => [cur])
+          //      .forEach(user => {
+          //         buildUserList(user);
+          //     }); 
+          var current = currentUserID ? currentUserID : -1;
+          var languageArray = usersData.filter(cur => cur.user_id !== +current)        
+              .forEach(user => {
+                buildUserList(user);
+              });
         }, 
         'json');
     }
