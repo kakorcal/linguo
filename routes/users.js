@@ -15,6 +15,7 @@ router.route('/')
 					.then(users=>{
 						knex('languages').where('approach', 'Teaching').then(teachers => {
 							knex('languages').where('approach', 'Learning').then(learners => {
+								// eval(require('locus'))
 								res.render('users/index', 
 									{users, languagesList, teachers, learners, message: req.flash('notCorrectUser')}
 								);
