@@ -192,10 +192,6 @@ $(()=>{
       $.get( "/users", searchData,
         function(usersData){
           $('#users-list').empty();
-          // var languageArray = $.map(buildLanguageObj(usersData), cur => [cur])
-          //      .forEach(user => {
-          //         buildUserList(user);
-          //     }); 
           var current = currentUserID ? currentUserID : -1;
           var languageArray = usersData.filter(cur => cur.user_id !== +current)        
               .forEach(user => {
@@ -204,44 +200,6 @@ $(()=>{
         }, 
         'json');
     }
-  }
-
-  function buildLanguageObj(usersData)
-  {   
-    // Build skeleton obj - adding learning and teaching arrays
-    var current = currentUserID ? currentUserID : -1;
-    var languageObj = usersData.filter(cur => cur.user_id !== +current)
-      .reduce(function(acc, cur){
-        if(!acc[cur.name]){
-          acc[cur.name] = {
-            id: cur.user_id,
-            name: cur.name, 
-            img_url: cur.img_url,
-            gender: cur.gender,
-            age: cur.age,
-            location: cur.location,
-            updated_at: cur.updated_at,
-            description: cur.description,
-            learning: [], 
-            teaching: []
-          }
-        }
-        return acc;
-      }, {});
-
-      // Push language and proficiency objects to the learning and teaching arrays
-      usersData.forEach(function(cur){
-        //if(languageObj[cur.name]){ --THINK THIS MAY ALWAYS EVALUATE TO TRUE
-          if(cur.approach === 'Learning'){
-            languageObj[cur.name].learning.push({lang: cur.language, prof: cur.proficiency});
-          }
-          if(cur.approach === 'Teaching'){
-            languageObj[cur.name].teaching.push({lang: cur.language, prof: cur.proficiency});
-          }
-       // }
-      });
-
-      return languageObj;
   }
 
   function buildUserList(user)
