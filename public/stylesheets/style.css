@@ -41,6 +41,10 @@ input:not([type='submit']), textarea {
   font-weight: 300;
 }
 
+select  {
+  font-size: 20px;
+}
+
 .logo-container a {
   color: white;
   text-decoration: none;

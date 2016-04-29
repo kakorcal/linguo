@@ -26,15 +26,11 @@ div(id='users-list')
             p #{user.description}
             hr
             h4 Location: #{user.location}
-            hr
-            h4 Last Login: #{user.updated_at}
           hr
           if (currentUser)
             div(class = 'text-center messageButton' data-id='#{user.id}')
               div(class = 'btn btn-info')
                 span SEND MESSAGE
-            
-
             form(action = "/threads" method = "POST" class = "messageForm" data-id ="#{user.id}")
               div(class='form-group')
                 p Subject: 

@@ -220,12 +220,11 @@ $(()=>{
     var descWrap = $('<h4></h4>').text('Description:');
     var desc = $('<p></p>').text(user.description);
     var location = $('<h4></h4>').text('Location: '+user.location);
-    var lastLogin = $('<h4></h4>').text('Last Login: '+user.updated_at);
     var form = $('<form/>');
         form.attr("action", "/threads");
         form.attr("method", "POST");
-
-    buildForm(user.id, form);
+    
+    buildForm(user.user_id, form);
     buildUserStars(user.learning, learningContainer);
     buildUserStars(user.teaching, teachingContainer);
 
@@ -235,23 +234,21 @@ $(()=>{
           profileHead.append(
             thumbnail, 
             username.append(
-              gender, age
+              '&nbsp;', gender, '&nbsp;', age
             )
           ),
           profileDesc.append(
             '<hr>',
-            learning,
-            learningContainer,
-            '<hr>',
             teaching,
             teachingContainer,
+            '<hr>',
+            learning,
+            learningContainer,
             '<hr>',
             descWrap,
             desc,
             '<hr>',
-            location,
-            '<hr>',
-            lastLogin
+            location
           ),
           '<hr>',
           form
