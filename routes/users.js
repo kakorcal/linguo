@@ -40,34 +40,50 @@ router.route('/')
 				}
 				else
 				{
-					// eval(require('locus'))
-					knex('languages').then((languages) => {
+
+					knex('languages').then(languages => {
 						knex.select('*')
 						.from('users')
 						.leftOuterJoin('languages', 'users.id', 'languages.user_id')
 						.whereIn('languages.language', req.query.language)
 						.andWhere('location', req.query.location)
 						.then(users=>{
-							for(var i = 0; i < users.length; i++) {
-                // Create empty arrays for the languages, proficiency and approach keys
-                users[i].language = [];
-                users[i].proficiency = [];
-                users[i].approach = [];
-                // Loop through languages, finding any entry that contains user_id
-                for(var j = 0; j < languages.length; j++) {
-                  // If the id of the matched user is found in the languages table
-                  if (languages[j].user_id === users[i].user_id) {
-                    // Create empty arrays for the 
-                    users[i].proficiency.push(languages[j].proficiency);
-                    users[i].approach.push(languages[j].approach);
-                    users[i].language.push(languages[j].language);
-                  }
-                }
-              }
-              console.log(users);
-							res.send(users);		
-						})
-					})
+								for(var i = 0; i < users.length; i++) {
+	                // Create empty arrays for the languages, proficiency and approach keys
+	                users[i].language = [];
+	                users[i].proficiency = [];
+	                users[i].approach = [];
+	                // Loop through languages, finding any entry that contains user_id
+	                for(var j = 0; j < languages.length; j++) {
+	                  // If the id of the matched user is found in the languages table
+	                  if (languages[j].user_id === users[i].user_id) {
+	                    // Create empty arrays for the 
+	                    users[i].proficiency.push(languages[j].proficiency);
+	                    users[i].approach.push(languages[j].approach);
+	                    users[i].language.push(languages[j].language);
+	                  }
+	                }
+	              }
+
+								users.forEach(cur => {
+									cur.teaching = [];
+									cur.learning = [];
+								});
+	
+								for(var i = 0; i < users.length; i++){
+									users[i].approach.forEach((app, idx) => {
+										if(app === 'Teaching'){
+											users[i].teaching.push({lang: users[i].language[idx], prof: users[i].proficiency[idx]});
+										}
+										if(app === 'Learning'){
+											users[i].learning.push({lang: users[i].language[idx], prof: users[i].proficiency[idx]});
+										}
+									});						
+								}
+								
+								res.send(users);
+						});
+					});
 				}
 			}
 		});
