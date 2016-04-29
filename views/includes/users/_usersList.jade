@@ -31,8 +31,6 @@ div(id='users-list')
             div(class = 'text-center messageButton' data-id='#{user.id}')
               div(class = 'btn btn-info')
                 span SEND MESSAGE
-            
-
             form(action = "/threads" method = "POST" class = "messageForm" data-id ="#{user.id}")
               div(class='form-group')
                 p Subject: 

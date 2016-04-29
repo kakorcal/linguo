@@ -224,7 +224,7 @@ $(()=>{
         form.attr("action", "/threads");
         form.attr("method", "POST");
 
-    buildForm(user.id, form);
+    buildForm(user.user_id, form);
     buildUserStars(user.learning, learningContainer);
     buildUserStars(user.teaching, teachingContainer);
 
@@ -234,16 +234,16 @@ $(()=>{
           profileHead.append(
             thumbnail, 
             username.append(
-              gender, age
+              '&nbsp;', gender, '&nbsp;', age
             )
           ),
           profileDesc.append(
             '<hr>',
-            learning,
-            learningContainer,
-            '<hr>',
             teaching,
             teachingContainer,
+            '<hr>',
+            learning,
+            learningContainer,
             '<hr>',
             descWrap,
             desc,
