@@ -218,6 +218,19 @@ $(()=>{
           var languageArray = usersData.filter(cur => cur.user_id !== +current)        
               .forEach(user => {
                 buildUserList(user);
+
+                $('.messageButton').on('click', (e)=>{
+                  e.preventDefault();
+                  toggleMessageForm(e);
+                })
+                $('.sendMessageButton').on('click', (e)=>{
+                  e.preventDefault();
+                  sendMessage(e);
+                  toggleMessageForm(e);
+                 })
+                
+                $('.messageForm').hide();
+
               });
         }, 
         'json');
@@ -249,6 +262,7 @@ $(()=>{
     
     var giveMeFormButton = $('<div class = "btn btn-info"></div>');
     giveMeFormButton.text('SEND MESSAGE');
+    
     giveMeForm.append(giveMeFormButton);
 
     var form = $('<form/>');
@@ -283,28 +297,17 @@ $(()=>{
             descWrap,
             desc,
             '<hr>',
-            location,
-            '<hr>',
-            giveMeForm
+            location
           ),
           '<hr>',
           form
         )
       )
     );
-
-    $('.messageButton').on('click', (e)=>{
-      e.preventDefault();
-      toggleMessageForm(e);
-    })
-    $('.sendMessageButton').on('click', (e)=>{
-      e.preventDefault();
-      debugger
-      sendMessage(e);
-      toggleMessageForm(e);
-     })
-    
-    $('.messageForm').hide();
+    if(currentUserID)
+    {
+      profileDesc.append('<hr>', giveMeForm);
+    }
 
 
   }
