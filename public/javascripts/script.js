@@ -242,12 +242,7 @@ $(()=>{
     var descWrap = $('<h4></h4>').text('Description:');
     var desc = $('<p></p>').text(user.description);
     var location = $('<h4></h4>').text('Location: '+user.location);
-<<<<<<< 046df8917eea8842742aa8aa51e8738a272fbc6c
-    var form = $('<form/>');
-        form.attr("action", "/threads");
-        form.attr("method", "POST");
-    
-=======
+
     var lastLogin = $('<h4></h4>').text('Last Login: '+user.updated_at);
     
     var giveMeForm = $('<div class = "text-center messageButton" data-id='+user.user_id+'></div>');
@@ -263,7 +258,7 @@ $(()=>{
         form.attr("data-id", user.user_id);
 
 
->>>>>>> severely partial but need to pull changes
+
     buildForm(user.user_id, form);
     buildUserStars(user.learning, learningContainer);
     buildUserStars(user.teaching, teachingContainer);
@@ -288,15 +283,7 @@ $(()=>{
             descWrap,
             desc,
             '<hr>',
-<<<<<<< 046df8917eea8842742aa8aa51e8738a272fbc6c
             location
-=======
-            location,
-            '<hr>',
-            lastLogin,
-            '<hr>',
-            giveMeForm
->>>>>>> severely partial but need to pull changes
           ),
           '<hr>',
           form
