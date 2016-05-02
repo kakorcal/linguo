@@ -138,7 +138,8 @@ router.route('/:id')
 			*/});
 			knex.raw(query, [req.params.id, req.params.id])
 				.then((usersMsgs) => {
-					// 'usersMsgs.rows' is needed b/c the 'usersMsgs' returned by the Knex.raq query comes back in a different format than normal Knex
+					eval(require('locus'));
+					// 'usersMsgs.rows' is needed b/c the 'usersMsgs' returned by the Knex.raw query comes back in a different format than normal Knex
 					//  You must access the 'rows' key of the 'usersMsgs' object to get the array of results
 
 					// Set conditionals for messages depening on where/why someone is arriving at their User Show page

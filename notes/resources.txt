@@ -1,5 +1,11 @@
 // Resources - Add any useful notes here!
 
+// Google Doc
+https://docs.google.com/document/d/16Nr1Vo7TmQ1q_XS4E8bZl3a3XSsgXDLYXcP6ipex8Sg/edit?pref=2&pli=1
+
+// git workflow
+https://www.atlassian.com/git/tutorials/comparing-workflows/forking-workflow
+
 // database
 http://dba.stackexchange.com/questions/54192/database-design-for-threading-messages
 
