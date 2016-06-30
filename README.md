@@ -3,6 +3,8 @@ Linguo helps connect users to find language partners near their area.
 * Live Site: https://linguoisdead.herokuapp.com/
 * Facebook Page: https://www.facebook.com/linguoisalive
 
+![Pic](./screenshot.png)
+
 ## Local Installation
 Login to your Github account and fork this repo. Then in your terminal:
 ```
