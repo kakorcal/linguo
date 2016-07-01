@@ -1,7 +1,6 @@
 ## Introduction
 Linguo helps connect users to find language partners near their area.
 * Live Site: https://linguoisdead.herokuapp.com/
-* Facebook Page: https://www.facebook.com/linguoisalive
 
 ![Pic](./screenshot.png)
 
